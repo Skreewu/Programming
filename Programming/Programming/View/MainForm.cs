@@ -37,5 +37,52 @@ namespace Programming
         {
 
         }
+
+        private void TextBoxParsing_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ParseButton_Click(object sender, EventArgs e)
+        {
+            string enteredValue = TextBoxParsing.Text.First().ToString().ToUpper() + TextBoxParsing.Text.Substring(1).ToLower();
+            Weekday day;
+            if (int.TryParse(enteredValue, out _))
+            {
+                MessageBox.Show("Значение введено неверно");
+            }
+            else if (Enum.TryParse(enteredValue, out day))
+            {
+                labelResultParsing.Text = $"Это день недели ({day} = {(int)day + 1})";
+            }
+            else
+            {
+                labelResultParsing.Text = "Нет такого дня недели";
+            }
+        }
+
+        private void ChooseSeasonButton_Click(object sender, EventArgs e)
+        {
+            if (SeasonComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Необходимо выбрать значение!");
+            }
+            Enums.BackColor = System.Drawing.Color.White;
+            switch (SeasonComboBox.SelectedItem)
+            {
+                case "Winter":
+                    MessageBox.Show("Бррр, холодно!");
+                    break;
+                case "Spring":
+                    SeasonHandle.BackColor = System.Drawing.Color.LightGreen;
+                    break;
+                case "Summer":
+                    MessageBox.Show("Ура! Солнце!");
+                    break;
+                case "Autumn":
+                    SeasonHandle.BackColor = System.Drawing.Color.OrangeRed;
+                    break;
+            }
+        }
     }
 }
