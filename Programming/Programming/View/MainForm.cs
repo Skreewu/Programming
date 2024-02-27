@@ -5,6 +5,7 @@ namespace Programming
     public partial class MainForm : Form
     {
         Type[] typeModel = new Type[6] { typeof(Colour), typeof(FormOfEducation), typeof(Genre), typeof(Season), typeof(SmartphoneManufacturer), typeof(Weekday) };
+        // Каждый элемент массива представляет собой объект типа Type, который представляет информацию о типе данных во время выполнения программы
         public MainForm()
         {
             InitializeComponent();
@@ -14,8 +15,9 @@ namespace Programming
         {
             int selectedIndex = EnumsListBox.SelectedIndex;
             object[] values = Enum.GetValues(typeModel[selectedIndex]).Cast<object>().ToArray();
+            // Получает все значения перечисления под некоторым индексом, затем преобразует полученные значения в тип object, а после преобразует последовательность значений в массив объектов.
             ValuesListBox.Items.Clear();
-            ValuesListBox.Items.AddRange(values);
+            ValuesListBox.Items.AddRange(values); // Добавляет массив объектов в listbox
         }
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -49,11 +51,11 @@ namespace Programming
             Weekday day;
             if (int.TryParse(enteredValue, out _))
             {
-                MessageBox.Show("Значение введено неверно");
+                labelResultParsing.Text = "Введено неверное значение";
             }
             else if (Enum.TryParse(enteredValue, out day))
             {
-                labelResultParsing.Text = $"Это день недели ({day} = {(int)day + 1})";
+                labelResultParsing.Text = $"Это день недели ({day} = {(int)day})";
             }
             else
             {
@@ -67,7 +69,7 @@ namespace Programming
             {
                 MessageBox.Show("Необходимо выбрать значение!");
             }
-            Enums.BackColor = System.Drawing.Color.White;
+            SeasonHandle.BackColor = System.Drawing.Color.White;
             switch (SeasonComboBox.SelectedItem)
             {
                 case "Winter":
