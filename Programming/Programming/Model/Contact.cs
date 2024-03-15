@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Programming.Model
+{
+    internal class Contact
+    {
+        private string Name { get; set; }
+        private string _surname;
+        private string _phoneNumber;
+
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set
+            {
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException("Value cannot be empty");
+                }
+                _phoneNumber = value;
+            }
+        }
+        public string Surname
+        {
+            get { return _surname; }
+            set
+            {
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException("Value cannot be empty");
+                }
+                _surname = value;
+            }
+        }
+        public Contact(string name, string surname, string phoneNumber)
+        {
+            Name = name;
+            Surname = surname;
+            PhoneNumber = phoneNumber;
+        }
+        public Contact()
+        {
+            Name = "Alex";
+            Surname = "Petrov";
+            PhoneNumber = "89637009911";
+        }
+    }
+}

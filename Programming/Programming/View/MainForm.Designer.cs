@@ -45,6 +45,7 @@
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
             tabControl1 = new TabControl();
+            Classes = new TabPage();
             Enums.SuspendLayout();
             SeasonHandle.SuspendLayout();
             WeekdayParsing.SuspendLayout();
@@ -218,12 +219,23 @@
             // tabControl1
             // 
             tabControl1.Controls.Add(Enums);
+            tabControl1.Controls.Add(Classes);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(800, 450);
             tabControl1.TabIndex = 0;
+            // 
+            // Classes
+            // 
+            Classes.Location = new Point(4, 24);
+            Classes.Name = "Classes";
+            Classes.Padding = new Padding(3);
+            Classes.Size = new Size(792, 422);
+            Classes.TabIndex = 1;
+            Classes.Text = "tabPage1";
+            Classes.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -262,5 +274,6 @@
         private Button ChooseSeasonButton;
         private ComboBox SeasonComboBox;
         private Label labelInSeasonHandle;
+        private TabPage Classes;
     }
 }
