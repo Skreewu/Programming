@@ -8,7 +8,7 @@ namespace Programming.Model
 {
     internal class Contact
     {
-        private string Name { get; set; }
+        public string ContactName { get; set; }
         private string _surname;
         private string _phoneNumber;
 
@@ -36,15 +36,15 @@ namespace Programming.Model
                 _surname = value;
             }
         }
-        public Contact(string name, string surname, string phoneNumber)
+        public Contact(string contactname, string surname, string phoneNumber)
         {
-            Name = name;
+            ContactName = contactname;
             Surname = surname;
             PhoneNumber = phoneNumber;
         }
         public Contact()
         {
-            Name = "Alex";
+            ContactName = "Alex";
             Surname = "Petrov";
             PhoneNumber = "89637009911";
         }

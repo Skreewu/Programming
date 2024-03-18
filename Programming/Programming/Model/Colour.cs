@@ -4,5 +4,11 @@ public enum Colour
 	Gray,
 	Black,
 	Blue,
-	Pink
+	Pink,
+	Red,
+	Yellow,
+	Green,
+	YellowGreen,
+	Orange,
+	Purple
 }

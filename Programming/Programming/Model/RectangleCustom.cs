@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Rectangle
+    internal class RectangleCustom
     {
-        private double _lengh;
+        private double _length;
         private double _width;
-        private string Colour { get; set; }
+        public Colour Color { get; set; }
 
-        public double Lengh
+        public double Length
         {
-            get { return _lengh; }
+            get { return _length; }
             set
             {
                 if (value <= 0)
                 {
                     throw new ArgumentException("Value must be a positive number");
                 }
-                _lengh = value;
+                _length = value;
             }
         }
         public double Width
@@ -36,17 +36,21 @@ namespace Programming.Model
                 _width = value;
             }
         }
-        public Rectangle(double lengh, double width, string colour)
+        public RectangleCustom(double length, double width, Colour color)
         {
-            Lengh = lengh;
+            Length = length;
             Width = width;
-            Colour = colour;
+            Color = color;
         }
-        public Rectangle()
+        public RectangleCustom()
         {
-            Lengh = 1;
+            Length = 1;
             Width = 1;
-            Colour = "White";
+            Color = Colour.White;
+        }
+        public override string ToString()
+        {
+            return $"Rectangle {Length}x{Width}";
         }
     }
 }

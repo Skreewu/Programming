@@ -8,7 +8,7 @@ namespace Programming.Model
 {
     internal class Discipline
     {
-        private string Name { get; set; }
+        public string DisciplineName { get; set; }
         private int _assessment;
         private bool _retakenOrNot;
 
@@ -37,15 +37,15 @@ namespace Programming.Model
                 _retakenOrNot = value;
             }
         }
-        public Discipline(string name, int assessment, bool retakenOrNot)
+        public Discipline(string disciplinename, int assessment, bool retakenOrNot)
         {
-            Name = name;
+            DisciplineName = disciplinename;
             Assessment = assessment;
             RetakenOrNot = retakenOrNot;
         }
         public Discipline()
         {
-            Name = "Alex";
+            DisciplineName = "Alex";
             Assessment = 5;
             RetakenOrNot = false;
         }

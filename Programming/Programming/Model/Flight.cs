@@ -8,8 +8,8 @@ namespace Programming.Model
 {
     internal class Flight
     {
-        private string DeparturePoint { get; set; }
-        private string Destination { get; set; }
+        public string DeparturePoint { get; set; }
+        public string Destination { get; set; }
         private int _flightTime;
 
         public int FlightTime

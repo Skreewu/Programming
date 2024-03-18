@@ -8,8 +8,8 @@ namespace Programming.Model
 {
     internal class Film
     {
-        private string FilmName { get; set; }
-        private string Genre { get; set; }
+        public string FilmName { get; set; }
+        public string Genre { get; set; }
         private int _filmDuration;
         private int _releaseYear;
         private double _rate;
@@ -65,6 +65,10 @@ namespace Programming.Model
             FilmDuration = 139;
             ReleaseYear = 1999;
             Rate = 8.7;
+        }
+        public override string ToString()
+        {
+            return $"{FilmName}";
         }
     }
 }

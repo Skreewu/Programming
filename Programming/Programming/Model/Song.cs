@@ -8,9 +8,9 @@ namespace Programming.Model
 {
     internal class Song
     {
-        private string Artist { get; set; }
-        private string Name { get; set; }
-        private string Genre { get; set; }
+        public string Artist { get; set; }
+        public string Name { get; set; }
+        public string Genre { get; set; }
         private int _songDuration;
 
         public int SongDuration
