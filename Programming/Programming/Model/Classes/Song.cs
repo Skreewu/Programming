@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     internal class Song
     {
@@ -18,10 +18,7 @@ namespace Programming.Model
             get { return _songDuration; }
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Value must be a positive number");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(SongDuration));
                 _songDuration = value;
             }
         }

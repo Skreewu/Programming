@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     internal class Discipline
     {
@@ -17,11 +17,7 @@ namespace Programming.Model
             get { return _assessment; }
             set
             {
-                if (value < 1 | value > 5)
-                {
-                    throw new ArgumentException("Value must be in range from 1 to 5");
-                }
-                _assessment = value;
+                Validator.AssertValueInRange(value, 1, 5, nameof(Assessment));
             }
         }
 

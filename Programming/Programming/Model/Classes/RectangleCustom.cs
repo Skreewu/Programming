@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     internal class RectangleCustom
     {
@@ -17,10 +17,7 @@ namespace Programming.Model
             get { return _length; }
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Value must be a positive number");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Length));
                 _length = value;
             }
         }
@@ -29,10 +26,7 @@ namespace Programming.Model
             get { return _width; }
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Value must be a positive number");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Width));
                 _width = value;
             }
         }

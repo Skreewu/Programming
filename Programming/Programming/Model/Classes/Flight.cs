@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     internal class Flight
     {
@@ -17,10 +17,7 @@ namespace Programming.Model
             get { return _flightTime; }
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("value must be a positive number");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(FlightTime));
                 _flightTime = value;
             }
         }

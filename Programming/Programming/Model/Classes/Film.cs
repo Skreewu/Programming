@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     internal class Film
     {
@@ -19,10 +19,7 @@ namespace Programming.Model
             get { return _filmDuration; }
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Value must be a positive number");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(FilmDuration));
                 _filmDuration = value;
             }
         }
@@ -31,10 +28,7 @@ namespace Programming.Model
             get { return _releaseYear; }
             set
             {
-                if (value <= 1900 | value >= DateTime.Now.Year)
-                {
-                    throw new ArgumentException("Value must be in range from 1900 to the current year");
-                }
+                Validator.AssertValueInRange(value, 1900, 2024, nameof(ReleaseYear));
                 _releaseYear = value;
             }
         }
@@ -43,10 +37,7 @@ namespace Programming.Model
             get { return _rate; }
             set
             {
-                if (value < 0 | value > 10)
-                {
-                    throw new ArgumentException("Value must be in range from 0 to 10");
-                }
+                Validator.AssertValueInRange(value, 0, 10, nameof(Rate));
                 _rate = value;
             }
         }

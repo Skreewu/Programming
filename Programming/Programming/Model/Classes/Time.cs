@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     internal class Time
     {
@@ -17,10 +17,7 @@ namespace Programming.Model
             get { return _hours; }
             set
             {
-                if (value < 0 | value > 23)
-                {
-                    throw new ArgumentException("Value must be in range from 0 to 23");
-                }
+                Validator.AssertValueInRange(value, 0, 23, nameof(Hours));
                 _hours = value;
             }
         }
@@ -29,10 +26,7 @@ namespace Programming.Model
             get { return _minutes; }
             set
             {
-                if (value < 0 | value > 60)
-                {
-                    throw new ArgumentException("Value must be in range from 0 to 60");
-                }
+                Validator.AssertValueInRange(value, 0, 60, nameof(Minutes));
                 _minutes = value;
             }
         }
@@ -41,10 +35,7 @@ namespace Programming.Model
             get { return _seconds; }
             set
             {
-                if (value < 0 | value > 60)
-                {
-                    throw new ArgumentException("Value must be in range from 0 to 60");
-                }
+                Validator.AssertValueInRange(value, 0, 60, nameof(Seconds));
                 _seconds = value;
             }
         }

@@ -1,4 +1,4 @@
-using Programming.Model;
+using Programming.Model.Classes;
 using System;
 using System.Drawing;
 
@@ -23,11 +23,10 @@ namespace Programming
         {
             InitializeComponent();
             Random random = new Random();
+            Colour[] colors = (Colour[])Enum.GetValues(typeof(Colour));
             for (int i = 0; i < 5; i++)
             {
-                Colour[] colors = (Colour[])Enum.GetValues(typeof(Colour));
-                Colour color = colors[random.Next(colors.Length)];
-                RectangleCustom rectangle = new RectangleCustom(random.Next(1, 50), random.Next(1, 50), color);
+                RectangleCustom rectangle = new RectangleCustom(random.Next(1, 50), random.Next(1, 50), colors[random.Next(colors.Length)]);
                 _rectangles[i] = rectangle;
                 RectanglesListBox.Items.Add(rectangle);
             }
@@ -181,6 +180,7 @@ namespace Programming
                     maxWidth = rectangles[i].Width;
                     maxWidthIndex = i;
                 }
+
             }
             return maxWidthIndex;
         }
