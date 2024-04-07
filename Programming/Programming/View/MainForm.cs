@@ -1,3 +1,4 @@
+using Programming.Model;
 using Programming.Model.Classes;
 using System;
 using System.Drawing;
@@ -26,7 +27,8 @@ namespace Programming
             Colour[] colors = (Colour[])Enum.GetValues(typeof(Colour));
             for (int i = 0; i < 5; i++)
             {
-                RectangleCustom rectangle = new RectangleCustom(random.Next(1, 50), random.Next(1, 50), colors[random.Next(colors.Length)]);
+                Point2D Center = new Point2D(random.Next(-100, 100), random.Next(-100, 100));
+                RectangleCustom rectangle = new RectangleCustom(random.Next(1, 50), random.Next(1, 50), colors[random.Next(colors.Length)], Center);
                 _rectangles[i] = rectangle;
                 RectanglesListBox.Items.Add(rectangle);
             }
@@ -117,11 +119,15 @@ namespace Programming
             LengthTextBox.Text = rectangle.Length.ToString();
             WidthTextBox.Text = rectangle.Width.ToString();
             ColourTextBox.Text = rectangle.Color.ToString();
+            XCoordinateTextBox.Text = rectangle.Center.X.ToString();
+            YCoordinateTextBox.Text = rectangle.Center.Y.ToString();
+            RectangleIDLabel.Text = $"Rectangle ID: {rectangle.Id}";
         }
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = RectanglesListBox.Items.IndexOf(_currentRectangle);
+            if (index == -1) return;
             RectanglesListBox.Items.RemoveAt(index);
             RectanglesListBox.Items.Insert(index, _currentRectangle);
             try
@@ -139,6 +145,7 @@ namespace Programming
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = RectanglesListBox.Items.IndexOf(_currentRectangle);
+            if (index == -1) return;
             RectanglesListBox.Items.RemoveAt(index);
             RectanglesListBox.Items.Insert(index, _currentRectangle);
             try
@@ -156,6 +163,7 @@ namespace Programming
         private void ColourListBox_TextChanged(object sender, EventArgs e)
         {
             int index = RectanglesListBox.Items.IndexOf(_currentRectangle);
+            if (index == -1) return;
             RectanglesListBox.Items.RemoveAt(index);
             RectanglesListBox.Items.Insert(index, _currentRectangle);
             try
@@ -205,6 +213,7 @@ namespace Programming
         private void FilmNameTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = FilmsListBox.Items.IndexOf(_currentfilm);
+            if (index == -1) return;
             FilmsListBox.Items.RemoveAt(index);
             FilmsListBox.Items.Insert(index, _currentfilm);
             try
@@ -222,6 +231,7 @@ namespace Programming
         private void FilmGenreTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = FilmsListBox.Items.IndexOf(_currentfilm);
+            if (index == -1) return;
             FilmsListBox.Items.RemoveAt(index);
             FilmsListBox.Items.Insert(index, _currentfilm);
             try
@@ -239,6 +249,7 @@ namespace Programming
         private void FilmDurationTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = FilmsListBox.Items.IndexOf(_currentfilm);
+            if (index == -1) return;
             FilmsListBox.Items.RemoveAt(index);
             FilmsListBox.Items.Insert(index, _currentfilm);
             try
@@ -256,6 +267,7 @@ namespace Programming
         private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = FilmsListBox.Items.IndexOf(_currentfilm);
+            if (index == -1) return;
             FilmsListBox.Items.RemoveAt(index);
             FilmsListBox.Items.Insert(index, _currentfilm);
             try
@@ -273,6 +285,7 @@ namespace Programming
         private void FilmRateTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = FilmsListBox.Items.IndexOf(_currentfilm);
+            if (index == -1) return;
             FilmsListBox.Items.RemoveAt(index);
             FilmsListBox.Items.Insert(index, _currentfilm);
             try

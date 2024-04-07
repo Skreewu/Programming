@@ -8,16 +8,16 @@ namespace Programming.Model
 {
     internal class Point2D
     {
-        private readonly double _x;
-        private readonly double _y;
+        private double _x;
+        private double _y;
 
         public double X
         {
             get { return _x; }
             private set
             {
-                Validator.AssertOnPositiveValue(_x, nameof(X));
                 Validator.AssertValueInRange(_x, -100, 100, nameof(X));
+                _x = value;
             }
         }
         public double Y
@@ -25,8 +25,8 @@ namespace Programming.Model
             get { return _y; }
             private set
             {
-                Validator.AssertOnPositiveValue(_y, nameof(Y));
                 Validator.AssertValueInRange(_y, -100, 100, nameof(Y));
+                _y = value;
             }
         }
 
