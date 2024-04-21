@@ -59,7 +59,7 @@ namespace Programming.Model.Classes
         }
         public override string ToString()
         {
-            return $"Rectangle {Length}x{Width}";
+            return $"{Length}x{Width}, X={Center.X}, Y={Center.Y}";
         }
     }
 }

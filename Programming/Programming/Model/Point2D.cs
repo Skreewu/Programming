@@ -14,7 +14,7 @@ namespace Programming.Model
         public double X
         {
             get { return _x; }
-            private set
+            set
             {
                 Validator.AssertValueInRange(_x, -100, 100, nameof(X));
                 _x = value;
@@ -23,7 +23,7 @@ namespace Programming.Model
         public double Y
         {
             get { return _y; }
-            private set
+            set
             {
                 Validator.AssertValueInRange(_y, -100, 100, nameof(Y));
                 _y = value;

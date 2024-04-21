@@ -60,6 +60,7 @@
             FilmRateTextBox = new TextBox();
             FilmsListBox = new ListBox();
             RectanglesGroupBox = new GroupBox();
+            RectangleIDLabel = new Label();
             XCoordinateTextBox = new TextBox();
             YCoordinateTextBox = new TextBox();
             XCoordinateLabel = new Label();
@@ -72,7 +73,22 @@
             WidthTextBox = new TextBox();
             LengthTextBox = new TextBox();
             WidthLabel = new Label();
-            RectangleIDLabel = new Label();
+            tabRectangles = new TabPage();
+            CanvasWidthTextBox = new TextBox();
+            CanvasLengthTextBox = new TextBox();
+            CanvasYTextBox = new TextBox();
+            CanvasXTextBox = new TextBox();
+            CanvasIdTextBox = new TextBox();
+            CanvasWidthLabel = new Label();
+            CanvasLengthLabel = new Label();
+            CanvasYLabel = new Label();
+            CanvasXLabel = new Label();
+            CanvasIdLabel = new Label();
+            SelectedRectangleLabel = new Label();
+            DeleteRectangleButton = new Button();
+            AddRectangleButton = new Button();
+            CanvasRectangleListBox = new ListBox();
+            Canvas = new Panel();
             Enums.SuspendLayout();
             SeasonHandle.SuspendLayout();
             WeekdayParsing.SuspendLayout();
@@ -80,6 +96,7 @@
             Classes.SuspendLayout();
             FilmsGroupBox.SuspendLayout();
             RectanglesGroupBox.SuspendLayout();
+            tabRectangles.SuspendLayout();
             SuspendLayout();
             // 
             // Enums
@@ -250,6 +267,7 @@
             // 
             tabControl1.Controls.Add(Enums);
             tabControl1.Controls.Add(Classes);
+            tabControl1.Controls.Add(tabRectangles);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -417,6 +435,15 @@
             RectanglesGroupBox.TabStop = false;
             RectanglesGroupBox.Text = "Rectangles";
             // 
+            // RectangleIDLabel
+            // 
+            RectangleIDLabel.AutoSize = true;
+            RectangleIDLabel.Location = new Point(156, 19);
+            RectangleIDLabel.Name = "RectangleIDLabel";
+            RectangleIDLabel.Size = new Size(75, 15);
+            RectangleIDLabel.TabIndex = 11;
+            RectangleIDLabel.Text = "Rectangle Id:";
+            // 
             // XCoordinateTextBox
             // 
             XCoordinateTextBox.Location = new Point(10, 287);
@@ -524,14 +551,167 @@
             WidthLabel.TabIndex = 2;
             WidthLabel.Text = "Width:";
             // 
-            // RectangleIDLabel
+            // tabRectangles
             // 
-            RectangleIDLabel.AutoSize = true;
-            RectangleIDLabel.Location = new Point(156, 19);
-            RectangleIDLabel.Name = "RectangleIDLabel";
-            RectangleIDLabel.Size = new Size(75, 15);
-            RectangleIDLabel.TabIndex = 11;
-            RectangleIDLabel.Text = "Rectangle Id:";
+            tabRectangles.Controls.Add(CanvasWidthTextBox);
+            tabRectangles.Controls.Add(CanvasLengthTextBox);
+            tabRectangles.Controls.Add(CanvasYTextBox);
+            tabRectangles.Controls.Add(CanvasXTextBox);
+            tabRectangles.Controls.Add(CanvasIdTextBox);
+            tabRectangles.Controls.Add(CanvasWidthLabel);
+            tabRectangles.Controls.Add(CanvasLengthLabel);
+            tabRectangles.Controls.Add(CanvasYLabel);
+            tabRectangles.Controls.Add(CanvasXLabel);
+            tabRectangles.Controls.Add(CanvasIdLabel);
+            tabRectangles.Controls.Add(SelectedRectangleLabel);
+            tabRectangles.Controls.Add(DeleteRectangleButton);
+            tabRectangles.Controls.Add(AddRectangleButton);
+            tabRectangles.Controls.Add(CanvasRectangleListBox);
+            tabRectangles.Controls.Add(Canvas);
+            tabRectangles.Location = new Point(4, 24);
+            tabRectangles.Name = "tabRectangles";
+            tabRectangles.Padding = new Padding(3);
+            tabRectangles.Size = new Size(792, 422);
+            tabRectangles.TabIndex = 2;
+            tabRectangles.Text = "Rectangles";
+            tabRectangles.UseVisualStyleBackColor = true;
+            // 
+            // CanvasWidthTextBox
+            // 
+            CanvasWidthTextBox.Location = new Point(81, 380);
+            CanvasWidthTextBox.Name = "CanvasWidthTextBox";
+            CanvasWidthTextBox.Size = new Size(152, 23);
+            CanvasWidthTextBox.TabIndex = 14;
+            CanvasWidthTextBox.TextChanged += CanvasWidthTextBox_TextChanged;
+            // 
+            // CanvasLengthTextBox
+            // 
+            CanvasLengthTextBox.Location = new Point(81, 346);
+            CanvasLengthTextBox.Name = "CanvasLengthTextBox";
+            CanvasLengthTextBox.Size = new Size(152, 23);
+            CanvasLengthTextBox.TabIndex = 13;
+            CanvasLengthTextBox.TextChanged += CanvasLengthTextBox_TextChanged;
+            // 
+            // CanvasYTextBox
+            // 
+            CanvasYTextBox.Location = new Point(81, 313);
+            CanvasYTextBox.Name = "CanvasYTextBox";
+            CanvasYTextBox.Size = new Size(152, 23);
+            CanvasYTextBox.TabIndex = 12;
+            CanvasYTextBox.TextChanged += CanvasYTextBox_TextChanged;
+            // 
+            // CanvasXTextBox
+            // 
+            CanvasXTextBox.Location = new Point(81, 278);
+            CanvasXTextBox.Name = "CanvasXTextBox";
+            CanvasXTextBox.Size = new Size(152, 23);
+            CanvasXTextBox.TabIndex = 11;
+            CanvasXTextBox.TextChanged += CanvasXTextBox_TextChanged;
+            // 
+            // CanvasIdTextBox
+            // 
+            CanvasIdTextBox.Location = new Point(81, 244);
+            CanvasIdTextBox.Name = "CanvasIdTextBox";
+            CanvasIdTextBox.ReadOnly = true;
+            CanvasIdTextBox.Size = new Size(152, 23);
+            CanvasIdTextBox.TabIndex = 10;
+            // 
+            // CanvasWidthLabel
+            // 
+            CanvasWidthLabel.AutoSize = true;
+            CanvasWidthLabel.Location = new Point(16, 388);
+            CanvasWidthLabel.Name = "CanvasWidthLabel";
+            CanvasWidthLabel.Size = new Size(45, 15);
+            CanvasWidthLabel.TabIndex = 9;
+            CanvasWidthLabel.Text = "Width: ";
+            // 
+            // CanvasLengthLabel
+            // 
+            CanvasLengthLabel.AutoSize = true;
+            CanvasLengthLabel.Location = new Point(16, 354);
+            CanvasLengthLabel.Name = "CanvasLengthLabel";
+            CanvasLengthLabel.Size = new Size(50, 15);
+            CanvasLengthLabel.TabIndex = 8;
+            CanvasLengthLabel.Text = "Length: ";
+            // 
+            // CanvasYLabel
+            // 
+            CanvasYLabel.AutoSize = true;
+            CanvasYLabel.Location = new Point(16, 321);
+            CanvasYLabel.Name = "CanvasYLabel";
+            CanvasYLabel.Size = new Size(17, 15);
+            CanvasYLabel.TabIndex = 7;
+            CanvasYLabel.Text = "Y:";
+            // 
+            // CanvasXLabel
+            // 
+            CanvasXLabel.AutoSize = true;
+            CanvasXLabel.Location = new Point(16, 286);
+            CanvasXLabel.Name = "CanvasXLabel";
+            CanvasXLabel.Size = new Size(17, 15);
+            CanvasXLabel.TabIndex = 6;
+            CanvasXLabel.Text = "X:";
+            // 
+            // CanvasIdLabel
+            // 
+            CanvasIdLabel.AutoSize = true;
+            CanvasIdLabel.Location = new Point(16, 252);
+            CanvasIdLabel.Name = "CanvasIdLabel";
+            CanvasIdLabel.Size = new Size(20, 15);
+            CanvasIdLabel.TabIndex = 5;
+            CanvasIdLabel.Text = "Id:";
+            // 
+            // SelectedRectangleLabel
+            // 
+            SelectedRectangleLabel.AutoSize = true;
+            SelectedRectangleLabel.Location = new Point(8, 221);
+            SelectedRectangleLabel.Name = "SelectedRectangleLabel";
+            SelectedRectangleLabel.Size = new Size(109, 15);
+            SelectedRectangleLabel.TabIndex = 4;
+            SelectedRectangleLabel.Text = "Selected Rectangle:";
+            // 
+            // DeleteRectangleButton
+            // 
+            DeleteRectangleButton.BackColor = Color.Transparent;
+            DeleteRectangleButton.Cursor = Cursors.Hand;
+            DeleteRectangleButton.FlatStyle = FlatStyle.Flat;
+            DeleteRectangleButton.Location = new Point(158, 184);
+            DeleteRectangleButton.Name = "DeleteRectangleButton";
+            DeleteRectangleButton.Size = new Size(75, 23);
+            DeleteRectangleButton.TabIndex = 3;
+            DeleteRectangleButton.Text = "Delete";
+            DeleteRectangleButton.UseVisualStyleBackColor = false;
+            DeleteRectangleButton.Click += DeleteRectangleButton_Click;
+            // 
+            // AddRectangleButton
+            // 
+            AddRectangleButton.Cursor = Cursors.Hand;
+            AddRectangleButton.FlatStyle = FlatStyle.Flat;
+            AddRectangleButton.Location = new Point(34, 184);
+            AddRectangleButton.Name = "AddRectangleButton";
+            AddRectangleButton.Size = new Size(75, 23);
+            AddRectangleButton.TabIndex = 2;
+            AddRectangleButton.Text = "Add";
+            AddRectangleButton.UseVisualStyleBackColor = true;
+            AddRectangleButton.Click += AddRectangleButton_Click;
+            // 
+            // CanvasRectangleListBox
+            // 
+            CanvasRectangleListBox.FormattingEnabled = true;
+            CanvasRectangleListBox.ItemHeight = 15;
+            CanvasRectangleListBox.Location = new Point(8, 15);
+            CanvasRectangleListBox.Name = "CanvasRectangleListBox";
+            CanvasRectangleListBox.Size = new Size(258, 154);
+            CanvasRectangleListBox.TabIndex = 1;
+            CanvasRectangleListBox.SelectedIndexChanged += CanvasRectangleListBox_SelectedIndexChanged;
+            // 
+            // Canvas
+            // 
+            Canvas.BorderStyle = BorderStyle.FixedSingle;
+            Canvas.Location = new Point(272, 0);
+            Canvas.Name = "Canvas";
+            Canvas.Size = new Size(524, 436);
+            Canvas.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -539,6 +719,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
+            MaximumSize = new Size(816, 489);
+            MinimumSize = new Size(816, 489);
             Name = "MainForm";
             Text = "Form1";
             Enums.ResumeLayout(false);
@@ -553,6 +735,8 @@
             FilmsGroupBox.PerformLayout();
             RectanglesGroupBox.ResumeLayout(false);
             RectanglesGroupBox.PerformLayout();
+            tabRectangles.ResumeLayout(false);
+            tabRectangles.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -603,5 +787,21 @@
         private TextBox XCoordinateTextBox;
         private TextBox YCoordinateTextBox;
         private Label RectangleIDLabel;
+        private TabPage tabRectangles;
+        private ListBox CanvasRectangleListBox;
+        private Panel Canvas;
+        private Button DeleteRectangleButton;
+        private Button AddRectangleButton;
+        private Label CanvasWidthLabel;
+        private Label CanvasLengthLabel;
+        private Label CanvasYLabel;
+        private Label CanvasXLabel;
+        private Label CanvasIdLabel;
+        private Label SelectedRectangleLabel;
+        private TextBox CanvasWidthTextBox;
+        private TextBox CanvasLengthTextBox;
+        private TextBox CanvasYTextBox;
+        private TextBox CanvasXTextBox;
+        private TextBox CanvasIdTextBox;
     }
 }

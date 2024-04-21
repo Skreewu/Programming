@@ -9,8 +9,10 @@ namespace Programming
     {
         Type[] typeModel = new Type[6] { typeof(Colour), typeof(FormOfEducation), typeof(Genre), typeof(Season), typeof(SmartphoneManufacturer), typeof(Weekday) };
         // Каждый элемент массива представляет собой объект типа Type, который представляет информацию о типе данных во время выполнения программы
-        RectangleCustom[] _rectangles = new RectangleCustom[5];
+        List<RectangleCustom> _rectangles = new List<RectangleCustom>();
         RectangleCustom _currentRectangle = new RectangleCustom();
+        Colour[] colors = (Colour[])Enum.GetValues(typeof(Colour));
+        Random random = new Random();
         Film _currentfilm = new Film();
         Film[] _films = new Film[]
         {
@@ -23,14 +25,13 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
-            Random random = new Random();
-            Colour[] colors = (Colour[])Enum.GetValues(typeof(Colour));
             for (int i = 0; i < 5; i++)
             {
                 Point2D Center = new Point2D(random.Next(-100, 100), random.Next(-100, 100));
                 RectangleCustom rectangle = new RectangleCustom(random.Next(1, 50), random.Next(1, 50), colors[random.Next(colors.Length)], Center);
-                _rectangles[i] = rectangle;
+                _rectangles.Add(rectangle);
                 RectanglesListBox.Items.Add(rectangle);
+                CanvasRectangleListBox.Items.Add(rectangle);
             }
             FilmsListBox.Items.AddRange(_films);
         }
@@ -115,6 +116,7 @@ namespace Programming
         {
             if (RectanglesListBox.SelectedIndex == -1) return;
             _currentRectangle = _rectangles[RectanglesListBox.SelectedIndex];
+            CanvasRectangleListBox.SelectedIndex = RectanglesListBox.SelectedIndex;
             RectangleCustom rectangle = (RectangleCustom)RectanglesListBox.SelectedItem;
             LengthTextBox.Text = rectangle.Length.ToString();
             WidthTextBox.Text = rectangle.Width.ToString();
@@ -177,11 +179,11 @@ namespace Programming
                 ColourTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-        private int FindRectangleWithMaxWidth(RectangleCustom[] rectangles)
+        private int FindRectangleWithMaxWidth(List<RectangleCustom> rectangles)
         {
             double maxWidth = Double.NegativeInfinity;
             int maxWidthIndex = 0;
-            for (int i = 0; i < rectangles.Length; i++)
+            for (int i = 0; i < rectangles.Count; i++)
             {
                 if (rectangles[i].Width > maxWidth)
                 {
@@ -317,6 +319,118 @@ namespace Programming
         {
             int index = FindFilmWithMaxRate(_films);
             FilmsListBox.SelectedIndex = index;
+        }
+
+        private void AddRectangleButton_Click(object sender, EventArgs e)
+        {
+            Point2D Center = new Point2D(random.Next(-100, 100), random.Next(-100, 100));
+            RectangleCustom rectangle = new RectangleCustom(random.Next(1, 50), random.Next(1, 50), colors[random.Next(colors.Length)], Center);
+            _rectangles.Add(rectangle);
+            RectanglesListBox.Items.Add(rectangle);
+            CanvasRectangleListBox.Items.Add(rectangle);
+        }
+
+        private void DeleteRectangleButton_Click(object sender, EventArgs e)
+        {
+            int index = CanvasRectangleListBox.SelectedIndex;
+            if (index == -1) { return; }
+            _rectangles.RemoveAt(index);
+            RectanglesListBox.Items.RemoveAt(index);
+            CanvasRectangleListBox.Items.RemoveAt(index);
+            CanvasLengthTextBox.Clear();
+            CanvasWidthTextBox.Clear();
+            CanvasIdTextBox.Clear();
+            CanvasXTextBox.Clear();
+            CanvasYTextBox.Clear();
+        }
+
+        private void CanvasRectangleListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CanvasRectangleListBox.SelectedIndex == -1) return;
+            _currentRectangle = _rectangles[CanvasRectangleListBox.SelectedIndex];
+            RectanglesListBox.SelectedIndex = CanvasRectangleListBox.SelectedIndex;
+            RectangleCustom rectangle = (RectangleCustom)CanvasRectangleListBox.SelectedItem;
+            CanvasLengthTextBox.Text = rectangle.Length.ToString();
+            CanvasWidthTextBox.Text = rectangle.Width.ToString();
+            CanvasIdTextBox.Text = rectangle.Id.ToString();
+            CanvasXTextBox.Text = rectangle.Center.X.ToString();
+            CanvasYTextBox.Text = rectangle.Center.Y.ToString();
+        }
+
+        private void CanvasXTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int index = CanvasRectangleListBox.Items.IndexOf(_currentRectangle);
+            if (index == -1) return;
+            try
+            {
+                CanvasXTextBox.BackColor = System.Drawing.Color.White;
+                int x = int.Parse(CanvasXTextBox.Text);
+                _currentRectangle.Center.X = x;
+            }
+            catch (Exception)
+            {
+                CanvasXTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            CanvasRectangleListBox.Items.RemoveAt(index);
+            CanvasRectangleListBox.Items.Insert(index, _currentRectangle);
+            CanvasRectangleListBox.SelectedIndex = index;
+        }
+
+        private void CanvasYTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int index = CanvasRectangleListBox.Items.IndexOf(_currentRectangle);
+            if (index == -1) return;
+            try
+            {
+                CanvasYTextBox.BackColor = System.Drawing.Color.White;
+                int y = int.Parse(CanvasYTextBox.Text);
+                _currentRectangle.Center.Y = y;
+            }
+            catch (Exception)
+            {
+                CanvasYTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            CanvasRectangleListBox.Items.RemoveAt(index);
+            CanvasRectangleListBox.Items.Insert(index, _currentRectangle);
+            CanvasRectangleListBox.SelectedIndex = index;
+        }
+
+        private void CanvasLengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int index = CanvasRectangleListBox.Items.IndexOf(_currentRectangle);
+            if (index == -1) return;
+            try
+            {
+                CanvasLengthTextBox.BackColor = System.Drawing.Color.White;
+                int length = int.Parse(CanvasLengthTextBox.Text);
+                _currentRectangle.Length = length;
+            }
+            catch (Exception)
+            {
+                CanvasLengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            CanvasRectangleListBox.Items.RemoveAt(index);
+            CanvasRectangleListBox.Items.Insert(index, _currentRectangle);
+            CanvasRectangleListBox.SelectedIndex = index;
+        }
+
+        private void CanvasWidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int index = CanvasRectangleListBox.Items.IndexOf(_currentRectangle);
+            if (index == -1) return;
+            try
+            {
+                CanvasWidthTextBox.BackColor = System.Drawing.Color.White;
+                int width = int.Parse(CanvasWidthTextBox.Text);
+                _currentRectangle.Width = width;
+            }
+            catch (Exception)
+            {
+                CanvasWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            CanvasRectangleListBox.Items.RemoveAt(index);
+            CanvasRectangleListBox.Items.Insert(index, _currentRectangle);
+            CanvasRectangleListBox.SelectedIndex = index;
         }
     }
 }
