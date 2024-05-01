@@ -30,67 +30,20 @@
         {
             components = new System.ComponentModel.Container();
             Enums = new TabPage();
+            enumerations1 = new View.Enumerations();
             SeasonHandle = new GroupBox();
-            ChooseSeasonButton = new Button();
-            SeasonComboBox = new ComboBox();
-            labelInSeasonHandle = new Label();
+            seasonHandle1 = new View.SeasonHandle();
             WeekdayParsing = new GroupBox();
-            TextBoxParsing = new TextBox();
-            ParseButton = new Button();
-            labelParsing = new Label();
-            labelResultParsing = new Label();
-            ChooseValue = new Label();
-            ChooseEnumeration = new Label();
-            labelIntValue = new Label();
-            intValue = new TextBox();
-            ValuesListBox = new ListBox();
-            EnumsListBox = new ListBox();
+            weekdayParsing1 = new View.WeekdayParsing();
             tabControl1 = new TabControl();
             Classes = new TabPage();
             FilmsGroupBox = new GroupBox();
-            FilmFindButton = new Button();
-            FilmRateLabel = new Label();
-            ReleaseYearLabel = new Label();
-            FilmDurationLabel = new Label();
-            FilmGenreLabel = new Label();
-            FilmNameLabel = new Label();
-            FilmNameTextBox = new TextBox();
-            FilmGenreTextBox = new TextBox();
-            FilmDurationTextBox = new TextBox();
-            ReleaseYearTextBox = new TextBox();
-            FilmRateTextBox = new TextBox();
-            FilmsListBox = new ListBox();
+            movies1 = new View.Movies();
             RectanglesGroupBox = new GroupBox();
-            RectangleIDLabel = new Label();
-            XCoordinateTextBox = new TextBox();
-            YCoordinateTextBox = new TextBox();
-            XCoordinateLabel = new Label();
-            YCoordinateLabel = new Label();
-            FindButton = new Button();
-            RectanglesListBox = new ListBox();
-            ColourTextBox = new TextBox();
-            LengthLabel = new Label();
-            ColourLabel = new Label();
-            WidthTextBox = new TextBox();
-            LengthTextBox = new TextBox();
-            WidthLabel = new Label();
+            rectanglesClasses1 = new View.RectanglesClasses();
             tabRectangles = new TabPage();
-            CanvasWidthTextBox = new TextBox();
-            CanvasLengthTextBox = new TextBox();
-            CanvasYTextBox = new TextBox();
-            CanvasXTextBox = new TextBox();
-            CanvasIdTextBox = new TextBox();
-            CanvasWidthLabel = new Label();
-            CanvasLengthLabel = new Label();
-            CanvasYLabel = new Label();
-            CanvasXLabel = new Label();
-            CanvasIdLabel = new Label();
-            SelectedRectangleLabel = new Label();
-            DeleteRectangleButton = new Button();
-            AddRectangleButton = new Button();
-            CanvasRectangleListBox = new ListBox();
-            Canvas = new Panel();
             contextMenuStrip1 = new ContextMenuStrip(components);
+            rectanglesCollisionControl1 = new View.RectanglesCollisionControl();
             Enums.SuspendLayout();
             SeasonHandle.SuspendLayout();
             WeekdayParsing.SuspendLayout();
@@ -103,14 +56,9 @@
             // 
             // Enums
             // 
+            Enums.Controls.Add(enumerations1);
             Enums.Controls.Add(SeasonHandle);
             Enums.Controls.Add(WeekdayParsing);
-            Enums.Controls.Add(ChooseValue);
-            Enums.Controls.Add(ChooseEnumeration);
-            Enums.Controls.Add(labelIntValue);
-            Enums.Controls.Add(intValue);
-            Enums.Controls.Add(ValuesListBox);
-            Enums.Controls.Add(EnumsListBox);
             Enums.Location = new Point(4, 24);
             Enums.Name = "Enums";
             Enums.Padding = new Padding(3);
@@ -119,11 +67,16 @@
             Enums.Text = "Enums";
             Enums.UseVisualStyleBackColor = true;
             // 
+            // enumerations1
+            // 
+            enumerations1.Location = new Point(8, 0);
+            enumerations1.Name = "enumerations1";
+            enumerations1.Size = new Size(780, 239);
+            enumerations1.TabIndex = 1;
+            // 
             // SeasonHandle
             // 
-            SeasonHandle.Controls.Add(ChooseSeasonButton);
-            SeasonHandle.Controls.Add(SeasonComboBox);
-            SeasonHandle.Controls.Add(labelInSeasonHandle);
+            SeasonHandle.Controls.Add(seasonHandle1);
             SeasonHandle.Location = new Point(377, 249);
             SeasonHandle.Name = "SeasonHandle";
             SeasonHandle.Size = new Size(411, 173);
@@ -131,40 +84,16 @@
             SeasonHandle.TabStop = false;
             SeasonHandle.Text = "Season Handle";
             // 
-            // ChooseSeasonButton
+            // seasonHandle1
             // 
-            ChooseSeasonButton.Location = new Point(178, 54);
-            ChooseSeasonButton.Name = "ChooseSeasonButton";
-            ChooseSeasonButton.Size = new Size(75, 23);
-            ChooseSeasonButton.TabIndex = 2;
-            ChooseSeasonButton.Text = "Go!";
-            ChooseSeasonButton.UseVisualStyleBackColor = true;
-            ChooseSeasonButton.Click += ChooseSeasonButton_Click;
-            // 
-            // SeasonComboBox
-            // 
-            SeasonComboBox.FormattingEnabled = true;
-            SeasonComboBox.Items.AddRange(new object[] { "Winter", "Spring", "Summer", "Autumn" });
-            SeasonComboBox.Location = new Point(25, 54);
-            SeasonComboBox.Name = "SeasonComboBox";
-            SeasonComboBox.Size = new Size(134, 23);
-            SeasonComboBox.TabIndex = 1;
-            // 
-            // labelInSeasonHandle
-            // 
-            labelInSeasonHandle.AutoSize = true;
-            labelInSeasonHandle.Location = new Point(25, 36);
-            labelInSeasonHandle.Name = "labelInSeasonHandle";
-            labelInSeasonHandle.Size = new Size(90, 15);
-            labelInSeasonHandle.TabIndex = 0;
-            labelInSeasonHandle.Text = "Choose Season:";
+            seasonHandle1.Location = new Point(6, 36);
+            seasonHandle1.Name = "seasonHandle1";
+            seasonHandle1.Size = new Size(235, 52);
+            seasonHandle1.TabIndex = 1;
             // 
             // WeekdayParsing
             // 
-            WeekdayParsing.Controls.Add(TextBoxParsing);
-            WeekdayParsing.Controls.Add(ParseButton);
-            WeekdayParsing.Controls.Add(labelParsing);
-            WeekdayParsing.Controls.Add(labelResultParsing);
+            WeekdayParsing.Controls.Add(weekdayParsing1);
             WeekdayParsing.Location = new Point(15, 249);
             WeekdayParsing.Name = "WeekdayParsing";
             WeekdayParsing.Size = new Size(344, 173);
@@ -172,98 +101,12 @@
             WeekdayParsing.TabStop = false;
             WeekdayParsing.Text = "Weekday Parsing";
             // 
-            // TextBoxParsing
+            // weekdayParsing1
             // 
-            TextBoxParsing.Location = new Point(16, 54);
-            TextBoxParsing.Name = "TextBoxParsing";
-            TextBoxParsing.Size = new Size(141, 23);
-            TextBoxParsing.TabIndex = 10;
-            TextBoxParsing.TextChanged += TextBoxParsing_TextChanged;
-            // 
-            // ParseButton
-            // 
-            ParseButton.Location = new Point(175, 53);
-            ParseButton.Name = "ParseButton";
-            ParseButton.Size = new Size(88, 23);
-            ParseButton.TabIndex = 9;
-            ParseButton.Text = "Parse";
-            ParseButton.UseVisualStyleBackColor = true;
-            ParseButton.Click += ParseButton_Click;
-            // 
-            // labelParsing
-            // 
-            labelParsing.AutoSize = true;
-            labelParsing.Location = new Point(16, 36);
-            labelParsing.Name = "labelParsing";
-            labelParsing.Size = new Size(125, 15);
-            labelParsing.TabIndex = 7;
-            labelParsing.Text = "Type value for parsing:";
-            // 
-            // labelResultParsing
-            // 
-            labelResultParsing.AutoSize = true;
-            labelResultParsing.Location = new Point(16, 92);
-            labelResultParsing.Name = "labelResultParsing";
-            labelResultParsing.Size = new Size(36, 15);
-            labelResultParsing.TabIndex = 8;
-            labelResultParsing.Text = "None";
-            // 
-            // ChooseValue
-            // 
-            ChooseValue.AutoSize = true;
-            ChooseValue.Location = new Point(209, 11);
-            ChooseValue.Name = "ChooseValue";
-            ChooseValue.Size = new Size(81, 15);
-            ChooseValue.TabIndex = 5;
-            ChooseValue.Text = "Choose value:";
-            ChooseValue.Click += ChooseValue_Click;
-            // 
-            // ChooseEnumeration
-            // 
-            ChooseEnumeration.AutoSize = true;
-            ChooseEnumeration.Location = new Point(19, 11);
-            ChooseEnumeration.Name = "ChooseEnumeration";
-            ChooseEnumeration.Size = new Size(121, 15);
-            ChooseEnumeration.TabIndex = 4;
-            ChooseEnumeration.Text = "Choose enumeration:";
-            ChooseEnumeration.Click += ChooseEnumeration_Click;
-            // 
-            // labelIntValue
-            // 
-            labelIntValue.AutoSize = true;
-            labelIntValue.Location = new Point(402, 11);
-            labelIntValue.Name = "labelIntValue";
-            labelIntValue.Size = new Size(52, 15);
-            labelIntValue.TabIndex = 3;
-            labelIntValue.Text = "int value";
-            labelIntValue.Click += labelIntValue_Click;
-            // 
-            // intValue
-            // 
-            intValue.Location = new Point(402, 29);
-            intValue.Name = "intValue";
-            intValue.Size = new Size(100, 23);
-            intValue.TabIndex = 2;
-            // 
-            // ValuesListBox
-            // 
-            ValuesListBox.ItemHeight = 15;
-            ValuesListBox.Location = new Point(209, 29);
-            ValuesListBox.Name = "ValuesListBox";
-            ValuesListBox.Size = new Size(147, 214);
-            ValuesListBox.TabIndex = 1;
-            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
-            // 
-            // EnumsListBox
-            // 
-            EnumsListBox.FormattingEnabled = true;
-            EnumsListBox.ItemHeight = 15;
-            EnumsListBox.Items.AddRange(new object[] { "Colour", "FormOfEducation", "Genre", "Season", "SmartphoneManufacturer", "Weekday" });
-            EnumsListBox.Location = new Point(19, 29);
-            EnumsListBox.Name = "EnumsListBox";
-            EnumsListBox.Size = new Size(147, 214);
-            EnumsListBox.TabIndex = 0;
-            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
+            weekdayParsing1.Location = new Point(6, 36);
+            weekdayParsing1.Name = "weekdayParsing1";
+            weekdayParsing1.Size = new Size(332, 129);
+            weekdayParsing1.TabIndex = 1;
             // 
             // tabControl1
             // 
@@ -291,18 +134,7 @@
             // 
             // FilmsGroupBox
             // 
-            FilmsGroupBox.Controls.Add(FilmFindButton);
-            FilmsGroupBox.Controls.Add(FilmRateLabel);
-            FilmsGroupBox.Controls.Add(ReleaseYearLabel);
-            FilmsGroupBox.Controls.Add(FilmDurationLabel);
-            FilmsGroupBox.Controls.Add(FilmGenreLabel);
-            FilmsGroupBox.Controls.Add(FilmNameLabel);
-            FilmsGroupBox.Controls.Add(FilmNameTextBox);
-            FilmsGroupBox.Controls.Add(FilmGenreTextBox);
-            FilmsGroupBox.Controls.Add(FilmDurationTextBox);
-            FilmsGroupBox.Controls.Add(ReleaseYearTextBox);
-            FilmsGroupBox.Controls.Add(FilmRateTextBox);
-            FilmsGroupBox.Controls.Add(FilmsListBox);
+            FilmsGroupBox.Controls.Add(movies1);
             FilmsGroupBox.Location = new Point(348, 6);
             FilmsGroupBox.Name = "FilmsGroupBox";
             FilmsGroupBox.Size = new Size(436, 224);
@@ -310,126 +142,17 @@
             FilmsGroupBox.TabStop = false;
             FilmsGroupBox.Text = "Films";
             // 
-            // FilmFindButton
+            // movies1
             // 
-            FilmFindButton.Location = new Point(312, 169);
-            FilmFindButton.Name = "FilmFindButton";
-            FilmFindButton.Size = new Size(109, 49);
-            FilmFindButton.TabIndex = 9;
-            FilmFindButton.Text = "Find";
-            FilmFindButton.UseVisualStyleBackColor = true;
-            FilmFindButton.Click += FilmFindButton_Click;
-            // 
-            // FilmRateLabel
-            // 
-            FilmRateLabel.AutoSize = true;
-            FilmRateLabel.Location = new Point(163, 165);
-            FilmRateLabel.Name = "FilmRateLabel";
-            FilmRateLabel.Size = new Size(33, 15);
-            FilmRateLabel.TabIndex = 18;
-            FilmRateLabel.Text = "Rate:";
-            // 
-            // ReleaseYearLabel
-            // 
-            ReleaseYearLabel.AutoSize = true;
-            ReleaseYearLabel.Location = new Point(312, 95);
-            ReleaseYearLabel.Name = "ReleaseYearLabel";
-            ReleaseYearLabel.Size = new Size(74, 15);
-            ReleaseYearLabel.TabIndex = 17;
-            ReleaseYearLabel.Text = "Release Year:";
-            // 
-            // FilmDurationLabel
-            // 
-            FilmDurationLabel.AutoSize = true;
-            FilmDurationLabel.Location = new Point(163, 95);
-            FilmDurationLabel.Name = "FilmDurationLabel";
-            FilmDurationLabel.Size = new Size(56, 15);
-            FilmDurationLabel.TabIndex = 16;
-            FilmDurationLabel.Text = "Duration:";
-            // 
-            // FilmGenreLabel
-            // 
-            FilmGenreLabel.AutoSize = true;
-            FilmGenreLabel.Location = new Point(312, 19);
-            FilmGenreLabel.Name = "FilmGenreLabel";
-            FilmGenreLabel.Size = new Size(41, 15);
-            FilmGenreLabel.TabIndex = 15;
-            FilmGenreLabel.Text = "Genre:";
-            // 
-            // FilmNameLabel
-            // 
-            FilmNameLabel.AutoSize = true;
-            FilmNameLabel.Location = new Point(163, 19);
-            FilmNameLabel.Name = "FilmNameLabel";
-            FilmNameLabel.Size = new Size(42, 15);
-            FilmNameLabel.TabIndex = 14;
-            FilmNameLabel.Text = "Name:";
-            // 
-            // FilmNameTextBox
-            // 
-            FilmNameTextBox.Location = new Point(163, 37);
-            FilmNameTextBox.Name = "FilmNameTextBox";
-            FilmNameTextBox.Size = new Size(109, 23);
-            FilmNameTextBox.TabIndex = 9;
-            FilmNameTextBox.TextChanged += FilmNameTextBox_TextChanged;
-            // 
-            // FilmGenreTextBox
-            // 
-            FilmGenreTextBox.Location = new Point(312, 37);
-            FilmGenreTextBox.Name = "FilmGenreTextBox";
-            FilmGenreTextBox.Size = new Size(109, 23);
-            FilmGenreTextBox.TabIndex = 10;
-            FilmGenreTextBox.TextChanged += FilmGenreTextBox_TextChanged;
-            // 
-            // FilmDurationTextBox
-            // 
-            FilmDurationTextBox.Location = new Point(163, 113);
-            FilmDurationTextBox.Name = "FilmDurationTextBox";
-            FilmDurationTextBox.Size = new Size(109, 23);
-            FilmDurationTextBox.TabIndex = 11;
-            FilmDurationTextBox.TextChanged += FilmDurationTextBox_TextChanged;
-            // 
-            // ReleaseYearTextBox
-            // 
-            ReleaseYearTextBox.Location = new Point(312, 113);
-            ReleaseYearTextBox.Name = "ReleaseYearTextBox";
-            ReleaseYearTextBox.Size = new Size(109, 23);
-            ReleaseYearTextBox.TabIndex = 12;
-            ReleaseYearTextBox.TextChanged += ReleaseYearTextBox_TextChanged;
-            // 
-            // FilmRateTextBox
-            // 
-            FilmRateTextBox.Location = new Point(163, 183);
-            FilmRateTextBox.Name = "FilmRateTextBox";
-            FilmRateTextBox.Size = new Size(109, 23);
-            FilmRateTextBox.TabIndex = 13;
-            FilmRateTextBox.TextChanged += FilmRateTextBox_TextChanged;
-            // 
-            // FilmsListBox
-            // 
-            FilmsListBox.FormattingEnabled = true;
-            FilmsListBox.ItemHeight = 15;
-            FilmsListBox.Location = new Point(6, 19);
-            FilmsListBox.Name = "FilmsListBox";
-            FilmsListBox.Size = new Size(146, 199);
-            FilmsListBox.TabIndex = 9;
-            FilmsListBox.SelectedIndexChanged += FilmsListBox_SelectedIndexChanged;
+            movies1.Dock = DockStyle.Fill;
+            movies1.Location = new Point(3, 19);
+            movies1.Name = "movies1";
+            movies1.Size = new Size(430, 202);
+            movies1.TabIndex = 9;
             // 
             // RectanglesGroupBox
             // 
-            RectanglesGroupBox.Controls.Add(RectangleIDLabel);
-            RectanglesGroupBox.Controls.Add(XCoordinateTextBox);
-            RectanglesGroupBox.Controls.Add(YCoordinateTextBox);
-            RectanglesGroupBox.Controls.Add(XCoordinateLabel);
-            RectanglesGroupBox.Controls.Add(YCoordinateLabel);
-            RectanglesGroupBox.Controls.Add(FindButton);
-            RectanglesGroupBox.Controls.Add(RectanglesListBox);
-            RectanglesGroupBox.Controls.Add(ColourTextBox);
-            RectanglesGroupBox.Controls.Add(LengthLabel);
-            RectanglesGroupBox.Controls.Add(ColourLabel);
-            RectanglesGroupBox.Controls.Add(WidthTextBox);
-            RectanglesGroupBox.Controls.Add(LengthTextBox);
-            RectanglesGroupBox.Controls.Add(WidthLabel);
+            RectanglesGroupBox.Controls.Add(rectanglesClasses1);
             RectanglesGroupBox.Location = new Point(8, 6);
             RectanglesGroupBox.Name = "RectanglesGroupBox";
             RectanglesGroupBox.Size = new Size(304, 338);
@@ -437,139 +160,17 @@
             RectanglesGroupBox.TabStop = false;
             RectanglesGroupBox.Text = "Rectangles";
             // 
-            // RectangleIDLabel
+            // rectanglesClasses1
             // 
-            RectangleIDLabel.AutoSize = true;
-            RectangleIDLabel.Location = new Point(156, 19);
-            RectangleIDLabel.Name = "RectangleIDLabel";
-            RectangleIDLabel.Size = new Size(75, 15);
-            RectangleIDLabel.TabIndex = 11;
-            RectangleIDLabel.Text = "Rectangle Id:";
-            // 
-            // XCoordinateTextBox
-            // 
-            XCoordinateTextBox.Location = new Point(10, 287);
-            XCoordinateTextBox.Name = "XCoordinateTextBox";
-            XCoordinateTextBox.ReadOnly = true;
-            XCoordinateTextBox.Size = new Size(117, 23);
-            XCoordinateTextBox.TabIndex = 9;
-            // 
-            // YCoordinateTextBox
-            // 
-            YCoordinateTextBox.Location = new Point(157, 287);
-            YCoordinateTextBox.Name = "YCoordinateTextBox";
-            YCoordinateTextBox.ReadOnly = true;
-            YCoordinateTextBox.Size = new Size(122, 23);
-            YCoordinateTextBox.TabIndex = 10;
-            // 
-            // XCoordinateLabel
-            // 
-            XCoordinateLabel.AutoSize = true;
-            XCoordinateLabel.Location = new Point(27, 269);
-            XCoordinateLabel.Name = "XCoordinateLabel";
-            XCoordinateLabel.Size = new Size(74, 15);
-            XCoordinateLabel.TabIndex = 9;
-            XCoordinateLabel.Text = "X coordinate";
-            // 
-            // YCoordinateLabel
-            // 
-            YCoordinateLabel.AutoSize = true;
-            YCoordinateLabel.Location = new Point(182, 269);
-            YCoordinateLabel.Name = "YCoordinateLabel";
-            YCoordinateLabel.Size = new Size(74, 15);
-            YCoordinateLabel.TabIndex = 10;
-            YCoordinateLabel.Text = "Y coordinate";
-            // 
-            // FindButton
-            // 
-            FindButton.BackColor = Color.Transparent;
-            FindButton.FlatStyle = FlatStyle.System;
-            FindButton.Location = new Point(157, 231);
-            FindButton.Name = "FindButton";
-            FindButton.Size = new Size(99, 23);
-            FindButton.TabIndex = 7;
-            FindButton.Text = "Find";
-            FindButton.UseVisualStyleBackColor = false;
-            FindButton.Click += FindButton_Click;
-            // 
-            // RectanglesListBox
-            // 
-            RectanglesListBox.FormattingEnabled = true;
-            RectanglesListBox.ItemHeight = 15;
-            RectanglesListBox.Location = new Point(3, 19);
-            RectanglesListBox.Name = "RectanglesListBox";
-            RectanglesListBox.Size = new Size(120, 244);
-            RectanglesListBox.TabIndex = 0;
-            RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
-            // 
-            // ColourTextBox
-            // 
-            ColourTextBox.Location = new Point(157, 181);
-            ColourTextBox.Name = "ColourTextBox";
-            ColourTextBox.Size = new Size(100, 23);
-            ColourTextBox.TabIndex = 6;
-            ColourTextBox.TextChanged += ColourListBox_TextChanged;
-            // 
-            // LengthLabel
-            // 
-            LengthLabel.AutoSize = true;
-            LengthLabel.Location = new Point(156, 55);
-            LengthLabel.Name = "LengthLabel";
-            LengthLabel.Size = new Size(47, 15);
-            LengthLabel.TabIndex = 1;
-            LengthLabel.Text = "Length:";
-            // 
-            // ColourLabel
-            // 
-            ColourLabel.AutoSize = true;
-            ColourLabel.Location = new Point(157, 163);
-            ColourLabel.Name = "ColourLabel";
-            ColourLabel.Size = new Size(46, 15);
-            ColourLabel.TabIndex = 3;
-            ColourLabel.Text = "Colour:";
-            // 
-            // WidthTextBox
-            // 
-            WidthTextBox.Location = new Point(156, 128);
-            WidthTextBox.Name = "WidthTextBox";
-            WidthTextBox.Size = new Size(100, 23);
-            WidthTextBox.TabIndex = 5;
-            WidthTextBox.TextChanged += WidthTextBox_TextChanged;
-            // 
-            // LengthTextBox
-            // 
-            LengthTextBox.Location = new Point(156, 73);
-            LengthTextBox.Name = "LengthTextBox";
-            LengthTextBox.Size = new Size(100, 23);
-            LengthTextBox.TabIndex = 4;
-            LengthTextBox.TextChanged += LengthTextBox_TextChanged;
-            // 
-            // WidthLabel
-            // 
-            WidthLabel.AutoSize = true;
-            WidthLabel.Location = new Point(156, 110);
-            WidthLabel.Name = "WidthLabel";
-            WidthLabel.Size = new Size(42, 15);
-            WidthLabel.TabIndex = 2;
-            WidthLabel.Text = "Width:";
+            rectanglesClasses1.Dock = DockStyle.Fill;
+            rectanglesClasses1.Location = new Point(3, 19);
+            rectanglesClasses1.Name = "rectanglesClasses1";
+            rectanglesClasses1.Size = new Size(298, 316);
+            rectanglesClasses1.TabIndex = 1;
             // 
             // tabRectangles
             // 
-            tabRectangles.Controls.Add(CanvasWidthTextBox);
-            tabRectangles.Controls.Add(CanvasLengthTextBox);
-            tabRectangles.Controls.Add(CanvasYTextBox);
-            tabRectangles.Controls.Add(CanvasXTextBox);
-            tabRectangles.Controls.Add(CanvasIdTextBox);
-            tabRectangles.Controls.Add(CanvasWidthLabel);
-            tabRectangles.Controls.Add(CanvasLengthLabel);
-            tabRectangles.Controls.Add(CanvasYLabel);
-            tabRectangles.Controls.Add(CanvasXLabel);
-            tabRectangles.Controls.Add(CanvasIdLabel);
-            tabRectangles.Controls.Add(SelectedRectangleLabel);
-            tabRectangles.Controls.Add(DeleteRectangleButton);
-            tabRectangles.Controls.Add(AddRectangleButton);
-            tabRectangles.Controls.Add(CanvasRectangleListBox);
-            tabRectangles.Controls.Add(Canvas);
+            tabRectangles.Controls.Add(rectanglesCollisionControl1);
             tabRectangles.Location = new Point(4, 24);
             tabRectangles.Name = "tabRectangles";
             tabRectangles.Padding = new Padding(3);
@@ -578,148 +179,18 @@
             tabRectangles.Text = "Rectangles";
             tabRectangles.UseVisualStyleBackColor = true;
             // 
-            // CanvasWidthTextBox
-            // 
-            CanvasWidthTextBox.Location = new Point(81, 380);
-            CanvasWidthTextBox.Name = "CanvasWidthTextBox";
-            CanvasWidthTextBox.Size = new Size(152, 23);
-            CanvasWidthTextBox.TabIndex = 14;
-            CanvasWidthTextBox.TextChanged += CanvasWidthTextBox_TextChanged;
-            // 
-            // CanvasLengthTextBox
-            // 
-            CanvasLengthTextBox.Location = new Point(81, 346);
-            CanvasLengthTextBox.Name = "CanvasLengthTextBox";
-            CanvasLengthTextBox.Size = new Size(152, 23);
-            CanvasLengthTextBox.TabIndex = 13;
-            CanvasLengthTextBox.TextChanged += CanvasLengthTextBox_TextChanged;
-            // 
-            // CanvasYTextBox
-            // 
-            CanvasYTextBox.Location = new Point(81, 313);
-            CanvasYTextBox.Name = "CanvasYTextBox";
-            CanvasYTextBox.Size = new Size(152, 23);
-            CanvasYTextBox.TabIndex = 12;
-            CanvasYTextBox.TextChanged += CanvasYTextBox_TextChanged;
-            // 
-            // CanvasXTextBox
-            // 
-            CanvasXTextBox.Location = new Point(81, 278);
-            CanvasXTextBox.Name = "CanvasXTextBox";
-            CanvasXTextBox.Size = new Size(152, 23);
-            CanvasXTextBox.TabIndex = 11;
-            CanvasXTextBox.TextChanged += CanvasXTextBox_TextChanged;
-            // 
-            // CanvasIdTextBox
-            // 
-            CanvasIdTextBox.Location = new Point(81, 244);
-            CanvasIdTextBox.Name = "CanvasIdTextBox";
-            CanvasIdTextBox.ReadOnly = true;
-            CanvasIdTextBox.Size = new Size(152, 23);
-            CanvasIdTextBox.TabIndex = 10;
-            // 
-            // CanvasWidthLabel
-            // 
-            CanvasWidthLabel.AutoSize = true;
-            CanvasWidthLabel.Location = new Point(16, 388);
-            CanvasWidthLabel.Name = "CanvasWidthLabel";
-            CanvasWidthLabel.Size = new Size(45, 15);
-            CanvasWidthLabel.TabIndex = 9;
-            CanvasWidthLabel.Text = "Width: ";
-            // 
-            // CanvasLengthLabel
-            // 
-            CanvasLengthLabel.AutoSize = true;
-            CanvasLengthLabel.Location = new Point(16, 354);
-            CanvasLengthLabel.Name = "CanvasLengthLabel";
-            CanvasLengthLabel.Size = new Size(50, 15);
-            CanvasLengthLabel.TabIndex = 8;
-            CanvasLengthLabel.Text = "Length: ";
-            // 
-            // CanvasYLabel
-            // 
-            CanvasYLabel.AutoSize = true;
-            CanvasYLabel.Location = new Point(16, 321);
-            CanvasYLabel.Name = "CanvasYLabel";
-            CanvasYLabel.Size = new Size(17, 15);
-            CanvasYLabel.TabIndex = 7;
-            CanvasYLabel.Text = "Y:";
-            // 
-            // CanvasXLabel
-            // 
-            CanvasXLabel.AutoSize = true;
-            CanvasXLabel.Location = new Point(16, 286);
-            CanvasXLabel.Name = "CanvasXLabel";
-            CanvasXLabel.Size = new Size(17, 15);
-            CanvasXLabel.TabIndex = 6;
-            CanvasXLabel.Text = "X:";
-            // 
-            // CanvasIdLabel
-            // 
-            CanvasIdLabel.AutoSize = true;
-            CanvasIdLabel.Location = new Point(16, 252);
-            CanvasIdLabel.Name = "CanvasIdLabel";
-            CanvasIdLabel.Size = new Size(20, 15);
-            CanvasIdLabel.TabIndex = 5;
-            CanvasIdLabel.Text = "Id:";
-            // 
-            // SelectedRectangleLabel
-            // 
-            SelectedRectangleLabel.AutoSize = true;
-            SelectedRectangleLabel.Location = new Point(8, 221);
-            SelectedRectangleLabel.Name = "SelectedRectangleLabel";
-            SelectedRectangleLabel.Size = new Size(109, 15);
-            SelectedRectangleLabel.TabIndex = 4;
-            SelectedRectangleLabel.Text = "Selected Rectangle:";
-            // 
-            // DeleteRectangleButton
-            // 
-            DeleteRectangleButton.BackColor = Color.Transparent;
-            DeleteRectangleButton.Cursor = Cursors.Hand;
-            DeleteRectangleButton.FlatStyle = FlatStyle.Flat;
-            DeleteRectangleButton.Location = new Point(158, 184);
-            DeleteRectangleButton.Name = "DeleteRectangleButton";
-            DeleteRectangleButton.Size = new Size(75, 23);
-            DeleteRectangleButton.TabIndex = 3;
-            DeleteRectangleButton.Text = "Delete";
-            DeleteRectangleButton.UseVisualStyleBackColor = false;
-            DeleteRectangleButton.Click += DeleteRectangleButton_Click;
-            // 
-            // AddRectangleButton
-            // 
-            AddRectangleButton.Cursor = Cursors.Hand;
-            AddRectangleButton.FlatStyle = FlatStyle.Flat;
-            AddRectangleButton.Location = new Point(34, 184);
-            AddRectangleButton.Name = "AddRectangleButton";
-            AddRectangleButton.Size = new Size(75, 23);
-            AddRectangleButton.TabIndex = 2;
-            AddRectangleButton.Text = "Add";
-            AddRectangleButton.UseVisualStyleBackColor = true;
-            AddRectangleButton.Click += AddRectangleButton_Click;
-            // 
-            // CanvasRectangleListBox
-            // 
-            CanvasRectangleListBox.FormattingEnabled = true;
-            CanvasRectangleListBox.ItemHeight = 15;
-            CanvasRectangleListBox.Location = new Point(8, 15);
-            CanvasRectangleListBox.Name = "CanvasRectangleListBox";
-            CanvasRectangleListBox.Size = new Size(258, 154);
-            CanvasRectangleListBox.TabIndex = 1;
-            CanvasRectangleListBox.SelectedIndexChanged += CanvasRectangleListBox_SelectedIndexChanged;
-            // 
-            // Canvas
-            // 
-            Canvas.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            Canvas.BorderStyle = BorderStyle.FixedSingle;
-            Canvas.Location = new Point(272, 0);
-            Canvas.Name = "Canvas";
-            Canvas.Size = new Size(524, 422);
-            Canvas.TabIndex = 0;
-            // 
             // contextMenuStrip1
             // 
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // rectanglesCollisionControl1
+            // 
+            rectanglesCollisionControl1.Dock = DockStyle.Fill;
+            rectanglesCollisionControl1.Location = new Point(3, 3);
+            rectanglesCollisionControl1.Name = "rectanglesCollisionControl1";
+            rectanglesCollisionControl1.Size = new Size(786, 416);
+            rectanglesCollisionControl1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -732,19 +203,13 @@
             Name = "MainForm";
             Text = "Form1";
             Enums.ResumeLayout(false);
-            Enums.PerformLayout();
             SeasonHandle.ResumeLayout(false);
-            SeasonHandle.PerformLayout();
             WeekdayParsing.ResumeLayout(false);
-            WeekdayParsing.PerformLayout();
             tabControl1.ResumeLayout(false);
             Classes.ResumeLayout(false);
             FilmsGroupBox.ResumeLayout(false);
-            FilmsGroupBox.PerformLayout();
             RectanglesGroupBox.ResumeLayout(false);
-            RectanglesGroupBox.PerformLayout();
             tabRectangles.ResumeLayout(false);
-            tabRectangles.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -752,65 +217,18 @@
 
         private TabPage Enums;
         private TabControl tabControl1;
-        private ListBox ValuesListBox;
-        private ListBox EnumsListBox;
-        private Label labelIntValue;
-        private TextBox intValue;
-        private Label ChooseEnumeration;
-        private Label ChooseValue;
         private GroupBox WeekdayParsing;
-        private TextBox TextBoxParsing;
-        private Button ParseButton;
-        private Label labelParsing;
-        private Label labelResultParsing;
         private GroupBox SeasonHandle;
-        private Button ChooseSeasonButton;
-        private ComboBox SeasonComboBox;
-        private Label labelInSeasonHandle;
         private TabPage Classes;
-        private Button FindButton;
-        private TextBox ColourTextBox;
-        private TextBox WidthTextBox;
-        private TextBox LengthTextBox;
-        private Label ColourLabel;
-        private Label WidthLabel;
-        private Label LengthLabel;
         private GroupBox RectanglesGroupBox;
-        private ListBox RectanglesListBox;
         private GroupBox FilmsGroupBox;
-        private ListBox FilmsListBox;
-        private Label FilmRateLabel;
-        private Label ReleaseYearLabel;
-        private Label FilmDurationLabel;
-        private Label FilmGenreLabel;
-        private Label FilmNameLabel;
-        private TextBox FilmNameTextBox;
-        private TextBox FilmGenreTextBox;
-        private TextBox FilmDurationTextBox;
-        private TextBox ReleaseYearTextBox;
-        private TextBox FilmRateTextBox;
-        private Button FilmFindButton;
-        private Label XCoordinateLabel;
-        private Label YCoordinateLabel;
-        private TextBox XCoordinateTextBox;
-        private TextBox YCoordinateTextBox;
-        private Label RectangleIDLabel;
         private TabPage tabRectangles;
-        private ListBox CanvasRectangleListBox;
-        private Panel Canvas;
-        private Button DeleteRectangleButton;
-        private Button AddRectangleButton;
-        private Label CanvasWidthLabel;
-        private Label CanvasLengthLabel;
-        private Label CanvasYLabel;
-        private Label CanvasXLabel;
-        private Label CanvasIdLabel;
-        private Label SelectedRectangleLabel;
-        private TextBox CanvasWidthTextBox;
-        private TextBox CanvasLengthTextBox;
-        private TextBox CanvasYTextBox;
-        private TextBox CanvasXTextBox;
-        private TextBox CanvasIdTextBox;
         private ContextMenuStrip contextMenuStrip1;
+        private View.Enumerations enumerations1;
+        private View.WeekdayParsing weekdayParsing1;
+        private View.SeasonHandle seasonHandle1;
+        private View.RectanglesClasses rectanglesClasses1;
+        private View.Movies movies1;
+        private View.RectanglesCollisionControl rectanglesCollisionControl1;
     }
 }
