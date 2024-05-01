@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Geometry
 {
     internal class Ring
     {
@@ -12,18 +12,18 @@ namespace Programming.Model
         private double _innerRadius;
         public Point2D Center { get; set; }
 
-        public double OuterRadius 
-        { 
-            get { return _outerRadius; } 
-            set 
-            { 
+        public double OuterRadius
+        {
+            get { return _outerRadius; }
+            set
+            {
                 Validator.AssertOnPositiveValue(value, nameof(OuterRadius));
                 if (OuterRadius < InnerRadius)
                 {
                     throw new ArgumentOutOfRangeException("The outer radius must be larger than inner one");
                 }
-                _outerRadius = value; 
-            } 
+                _outerRadius = value;
+            }
         }
         public double InnerRadius
         {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Enums = new TabPage();
             SeasonHandle = new GroupBox();
             ChooseSeasonButton = new Button();
@@ -89,6 +90,7 @@
             AddRectangleButton = new Button();
             CanvasRectangleListBox = new ListBox();
             Canvas = new Panel();
+            contextMenuStrip1 = new ContextMenuStrip(components);
             Enums.SuspendLayout();
             SeasonHandle.SuspendLayout();
             WeekdayParsing.SuspendLayout();
@@ -707,11 +709,17 @@
             // 
             // Canvas
             // 
+            Canvas.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Canvas.BorderStyle = BorderStyle.FixedSingle;
             Canvas.Location = new Point(272, 0);
             Canvas.Name = "Canvas";
-            Canvas.Size = new Size(524, 436);
+            Canvas.Size = new Size(524, 422);
             Canvas.TabIndex = 0;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
             // 
             // MainForm
             // 
@@ -803,5 +811,6 @@
         private TextBox CanvasYTextBox;
         private TextBox CanvasXTextBox;
         private TextBox CanvasIdTextBox;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

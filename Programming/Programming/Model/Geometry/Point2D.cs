@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Geometry
 {
     internal class Point2D
     {
@@ -16,7 +16,7 @@ namespace Programming.Model
             get { return _x; }
             set
             {
-                Validator.AssertValueInRange(_x, -100, 100, nameof(X));
+                Validator.AssertValueInRange(value, 0, 500, nameof(X));
                 _x = value;
             }
         }
@@ -25,7 +25,7 @@ namespace Programming.Model
             get { return _y; }
             set
             {
-                Validator.AssertValueInRange(_y, -100, 100, nameof(Y));
+                Validator.AssertValueInRange(value, 0, 400, nameof(Y));
                 _y = value;
             }
         }

@@ -1,7 +1,9 @@
-using Programming.Model;
 using Programming.Model.Classes;
+using Programming.Model.Geometry;
 using System;
 using System.Drawing;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Programming
 {
@@ -11,8 +13,7 @@ namespace Programming
         // Каждый элемент массива представляет собой объект типа Type, который представляет информацию о типе данных во время выполнения программы
         List<RectangleCustom> _rectangles = new List<RectangleCustom>();
         RectangleCustom _currentRectangle = new RectangleCustom();
-        Colour[] colors = (Colour[])Enum.GetValues(typeof(Colour));
-        Random random = new Random();
+        List<Panel> _rectanglePanels = new List<Panel>();
         Film _currentfilm = new Film();
         Film[] _films = new Film[]
         {
@@ -27,12 +28,19 @@ namespace Programming
             InitializeComponent();
             for (int i = 0; i < 5; i++)
             {
-                Point2D Center = new Point2D(random.Next(-100, 100), random.Next(-100, 100));
-                RectangleCustom rectangle = new RectangleCustom(random.Next(1, 50), random.Next(1, 50), colors[random.Next(colors.Length)], Center);
+                RectangleCustom rectangle = RectangleFactory.Randomize();
                 _rectangles.Add(rectangle);
                 RectanglesListBox.Items.Add(rectangle);
                 CanvasRectangleListBox.Items.Add(rectangle);
+                Panel panelRectangle = new Panel();
+                panelRectangle.Location = new Point((int)(rectangle.Center.X - rectangle.Width / 2), (int)(rectangle.Center.Y - rectangle.Length / 2));
+                panelRectangle.Width = (int)rectangle.Width;
+                panelRectangle.Height = (int)rectangle.Length;
+                panelRectangle.BackColor = Color.FromArgb(127, 127, 255, 127);
+                _rectanglePanels.Add(panelRectangle);
+                Canvas.Controls.Add(panelRectangle);
             }
+            FindCollisions();
             FilmsListBox.Items.AddRange(_films);
         }
 
@@ -323,11 +331,18 @@ namespace Programming
 
         private void AddRectangleButton_Click(object sender, EventArgs e)
         {
-            Point2D Center = new Point2D(random.Next(-100, 100), random.Next(-100, 100));
-            RectangleCustom rectangle = new RectangleCustom(random.Next(1, 50), random.Next(1, 50), colors[random.Next(colors.Length)], Center);
+            RectangleCustom rectangle = RectangleFactory.Randomize();
             _rectangles.Add(rectangle);
             RectanglesListBox.Items.Add(rectangle);
             CanvasRectangleListBox.Items.Add(rectangle);
+            Panel panelRectangle = new Panel();
+            panelRectangle.Location = new Point((int)(rectangle.Center.X - rectangle.Width / 2), (int)(rectangle.Center.Y - rectangle.Length / 2));
+            panelRectangle.Width = (int)rectangle.Width;
+            panelRectangle.Height = (int)rectangle.Length;
+            panelRectangle.BackColor = Color.FromArgb(127, 127, 255, 127);
+            Canvas.Controls.Add(panelRectangle);
+            _rectanglePanels.Add(panelRectangle);
+            FindCollisions();
         }
 
         private void DeleteRectangleButton_Click(object sender, EventArgs e)
@@ -337,11 +352,10 @@ namespace Programming
             _rectangles.RemoveAt(index);
             RectanglesListBox.Items.RemoveAt(index);
             CanvasRectangleListBox.Items.RemoveAt(index);
-            CanvasLengthTextBox.Clear();
-            CanvasWidthTextBox.Clear();
-            CanvasIdTextBox.Clear();
-            CanvasXTextBox.Clear();
-            CanvasYTextBox.Clear();
+            ClearRectangleInfo();
+            _rectanglePanels.RemoveAt(index);
+            Canvas.Controls.RemoveAt(index);
+            FindCollisions();
         }
 
         private void CanvasRectangleListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -366,14 +380,15 @@ namespace Programming
                 CanvasXTextBox.BackColor = System.Drawing.Color.White;
                 int x = int.Parse(CanvasXTextBox.Text);
                 _currentRectangle.Center.X = x;
+                RectangleCustom rectangle = (RectangleCustom)CanvasRectangleListBox.SelectedItem;
+                _rectanglePanels[index].Location = new Point((int)(x - rectangle.Width / 2), (int)(rectangle.Center.Y - rectangle.Length / 2));
+                UpdateRectangleInfo();
+                FindCollisions();
             }
             catch (Exception)
             {
                 CanvasXTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-            CanvasRectangleListBox.Items.RemoveAt(index);
-            CanvasRectangleListBox.Items.Insert(index, _currentRectangle);
-            CanvasRectangleListBox.SelectedIndex = index;
         }
 
         private void CanvasYTextBox_TextChanged(object sender, EventArgs e)
@@ -385,14 +400,15 @@ namespace Programming
                 CanvasYTextBox.BackColor = System.Drawing.Color.White;
                 int y = int.Parse(CanvasYTextBox.Text);
                 _currentRectangle.Center.Y = y;
+                RectangleCustom rectangle = (RectangleCustom)CanvasRectangleListBox.SelectedItem;
+                _rectanglePanels[index].Location = new Point((int)(rectangle.Center.X - rectangle.Width / 2), (int)(y - rectangle.Length / 2));
+                UpdateRectangleInfo();
+                FindCollisions();
             }
             catch (Exception)
             {
                 CanvasYTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-            CanvasRectangleListBox.Items.RemoveAt(index);
-            CanvasRectangleListBox.Items.Insert(index, _currentRectangle);
-            CanvasRectangleListBox.SelectedIndex = index;
         }
 
         private void CanvasLengthTextBox_TextChanged(object sender, EventArgs e)
@@ -404,14 +420,15 @@ namespace Programming
                 CanvasLengthTextBox.BackColor = System.Drawing.Color.White;
                 int length = int.Parse(CanvasLengthTextBox.Text);
                 _currentRectangle.Length = length;
+                RectangleCustom rectangle = (RectangleCustom)CanvasRectangleListBox.SelectedItem;
+                _rectanglePanels[index].Height = length;
+                UpdateRectangleInfo();
+                FindCollisions();
             }
             catch (Exception)
             {
                 CanvasLengthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-            CanvasRectangleListBox.Items.RemoveAt(index);
-            CanvasRectangleListBox.Items.Insert(index, _currentRectangle);
-            CanvasRectangleListBox.SelectedIndex = index;
         }
 
         private void CanvasWidthTextBox_TextChanged(object sender, EventArgs e)
@@ -423,14 +440,49 @@ namespace Programming
                 CanvasWidthTextBox.BackColor = System.Drawing.Color.White;
                 int width = int.Parse(CanvasWidthTextBox.Text);
                 _currentRectangle.Width = width;
+                RectangleCustom rectangle = (RectangleCustom)CanvasRectangleListBox.SelectedItem;
+                _rectanglePanels[index].Width = width;
+                UpdateRectangleInfo();
+                FindCollisions();
             }
             catch (Exception)
             {
                 CanvasWidthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
+        }
+        private void FindCollisions()
+        {
+            for (int i = 0; i < _rectanglePanels.Count; i++)
+            {
+                _rectanglePanels[i].BackColor = Color.FromArgb(127, 127, 255, 127);
+            }
+            for (int i = 0; i < _rectanglePanels.Count; i++)
+            {
+                for (int j = 0; j < _rectanglePanels.Count; j++)
+                {
+                    if (i != j && CollisionManager.IsCollision(_rectangles[i], _rectangles[j]) == true)
+                    {
+                        _rectanglePanels[i].BackColor = System.Drawing.Color.LightPink;
+                        _rectanglePanels[j].BackColor = System.Drawing.Color.LightPink;
+                    }
+                }
+            }
+        }
+        private void UpdateRectangleInfo()
+        {
+            int index = CanvasRectangleListBox.Items.IndexOf(_currentRectangle);
+            if (index == -1) return;
             CanvasRectangleListBox.Items.RemoveAt(index);
             CanvasRectangleListBox.Items.Insert(index, _currentRectangle);
             CanvasRectangleListBox.SelectedIndex = index;
+        }
+        private void ClearRectangleInfo()
+        {
+            CanvasLengthTextBox.Clear();
+            CanvasWidthTextBox.Clear();
+            CanvasIdTextBox.Clear();
+            CanvasXTextBox.Clear();
+            CanvasYTextBox.Clear();
         }
     }
 }
