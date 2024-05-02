@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Позволяет просчитывать коллизию между двумя объектами.
+    /// </summary>
     internal class CollisionManager
     {
+        /// <summary>
+        /// Просчитывает пересекает ли один прямоугольник другой.
+        /// </summary>
+        /// <param name="rectangle1">Первый прямоугольник.</param>
+        /// <param name="rectangle2">Второй прямоугольник.</param>
+        /// <returns>Возвращает true, если прямоугольники пересекаются. И false, если нет.</returns>
         public static bool IsCollision(RectangleCustom rectangle1, RectangleCustom rectangle2)
         {
             bool result = false;
@@ -27,6 +36,12 @@ namespace Programming.Model.Geometry
             }
             return result;
         }
+        /// <summary>
+        /// Просчитывает пересекает ли одно кольцо другое.
+        /// </summary>
+        /// <param name="ring1">Первое кольцо.</param>
+        /// <param name="ring2">Второе колько.</param>
+        /// <returns>Возвращает true, если кольца пересекаются. И false, если нет.</returns>
         public static bool IsCollision(Ring ring1, Ring ring2)
         {
             double dx = Math.Abs(ring2.Center.X - ring1.Center.X);

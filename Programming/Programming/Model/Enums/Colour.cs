@@ -1,3 +1,6 @@
+/// <summary>
+/// Хранит данные о цветах.
+/// </summary>
 public enum Colour
 {
 	White,

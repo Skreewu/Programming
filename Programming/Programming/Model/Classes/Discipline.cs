@@ -6,12 +6,27 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
+    /// <summary>
+    /// Хранит данные о дисциплине и оценке по ней.
+    /// </summary>
     internal class Discipline
     {
+        /// <summary>
+        /// Возвращает и задает название дисциплины.
+        /// </summary>
         public string DisciplineName { get; set; }
+        /// <summary>
+        /// Оценка по дисциплине.
+        /// </summary>
         private int _assessment;
+        /// <summary>
+        /// Пересдана дисциплина или нет.
+        /// </summary>
         private bool _retakenOrNot;
 
+        /// <summary>
+        /// Возвращает и задает оценку по дисциплине. Должна состоять из цифры от 1 до 5.
+        /// </summary>
         public int Assessment
         {
             get { return _assessment; }
@@ -21,6 +36,9 @@ namespace Programming.Model.Classes
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает пересдана ли дисциплина или нет. Должна быть типа данных bool.
+        /// </summary>
         public bool RetakenOrNot
         {
             get { return _retakenOrNot; }
@@ -33,6 +51,12 @@ namespace Programming.Model.Classes
                 _retakenOrNot = value;
             }
         }
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Discipline"/>.
+        /// </summary>
+        /// <param name="disciplinename">Название дисциплины.</param>
+        /// <param name="assessment">Оценка по дисциплине.</param>
+        /// <param name="retakenOrNot">Пересдана или нет. Должна быть типа данных bool.</param>
         public Discipline(string disciplinename, int assessment, bool retakenOrNot)
         {
             DisciplineName = disciplinename;

@@ -1,3 +1,6 @@
+/// <summary>
+/// Хранит данные о временах года.
+/// </summary>
 public enum Season
 {
     Winter,

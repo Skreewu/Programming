@@ -6,12 +6,27 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
+    /// <summary>
+    /// Хранит данные о времени в часах, минутах и секундах.
+    /// </summary>
     internal class Time
     {
+        /// <summary>
+        /// Поле, обозначающее часы.
+        /// </summary>
         private int _hours;
+        /// <summary>
+        /// Поле, обозначающее минуты.
+        /// </summary>
         private int _minutes;
+        /// <summary>
+        /// Поле, обозначающее секунды.
+        /// </summary>
         private int _seconds;
 
+        /// <summary>
+        /// Возвращает и задает час. Должен состоять только из чисел от 0 до 23.
+        /// </summary>
         public int Hours
         {
             get { return _hours; }
@@ -21,6 +36,9 @@ namespace Programming.Model.Classes
                 _hours = value;
             }
         }
+        /// <summary>
+        /// Возвращает и задает минуты. Должна состоять только из чисел от 0 до 60.
+        /// </summary>
         public int Minutes
         {
             get { return _minutes; }
@@ -30,6 +48,9 @@ namespace Programming.Model.Classes
                 _minutes = value;
             }
         }
+        /// <summary>
+        /// Возвращает и задает секунды. Должна состоять только из чисел от 0 до 60.
+        /// </summary>
         public int Seconds
         {
             get { return _seconds; }
@@ -39,6 +60,12 @@ namespace Programming.Model.Classes
                 _seconds = value;
             }
         }
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Time"/>.
+        /// </summary>
+        /// <param name="hours">Час. Должен состоять только чисел от 0 до 23.</param>
+        /// <param name="minutes">Минуты. Должны состоять только из чисел от 0 до 60.</param>
+        /// <param name="seconds">Секунды. Должны состоять только из числе от 0 до 60.</param>
         public Time(int hours, int minutes, int seconds)
         {
             Hours = hours;

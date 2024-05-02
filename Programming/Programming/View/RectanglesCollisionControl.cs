@@ -155,6 +155,9 @@ namespace Programming.View
                 CanvasWidthTextBox.BackColor = AppColors.errors;
             }
         }
+        /// <summary>
+        /// Метод, ищущий пересекающиеся прямоугольники, если такие нашлись, они оба окрашиваются в красный.
+        /// </summary>
         private void FindCollisions()
         {
             for (int i = 0; i < _rectanglePanels.Count; i++)
@@ -173,6 +176,9 @@ namespace Programming.View
                 }
             }
         }
+        /// <summary>
+        /// Метод, обновляющий информацию в ListBox.
+        /// </summary>
         private void UpdateRectangleInfo()
         {
             int index = CanvasRectangleListBox.Items.IndexOf(_currentRectangle);
@@ -181,6 +187,9 @@ namespace Programming.View
             CanvasRectangleListBox.Items.Insert(index, _currentRectangle);
             CanvasRectangleListBox.SelectedIndex = index;
         }
+        /// <summary>
+        /// Метод, очищающий информацию из нескольких TextBox.
+        /// </summary>
         private void ClearRectangleInfo()
         {
             CanvasLengthTextBox.Clear();

@@ -93,6 +93,11 @@ namespace Programming.View
                 ColourTextBox.BackColor = AppColors.errors;
             }
         }
+        /// <summary>
+        /// Находит прямоугольник с наибольшей шириной среди списка.
+        /// </summary>
+        /// <param name="rectangles">Список прямоугольников.</param>
+        /// <returns>Возвращает индекс прямоугольника с наибольшей шириной.</returns>
         private int FindRectangleWithMaxWidth(List<RectangleCustom> rectangles)
         {
             double maxWidth = Double.NegativeInfinity;

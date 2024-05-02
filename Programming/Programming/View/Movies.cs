@@ -129,6 +129,11 @@ namespace Programming.View
                 FilmRateTextBox.BackColor = AppColors.errors;
             }
         }
+        /// <summary>
+        /// Находит фильм с наибольшим рейтингом среди массива.
+        /// </summary>
+        /// <param name="films">Массив фильмов.</param>
+        /// <returns>Возвращает индекс фильма с максимальным рейтингом.</returns>
         private int FindFilmWithMaxRate(Film[] films)
         {
             double maxRate = Double.NegativeInfinity;

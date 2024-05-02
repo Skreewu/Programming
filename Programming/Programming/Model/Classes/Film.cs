@@ -6,14 +6,35 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
+    /// <summary>
+    /// Хранит данные о фильме.
+    /// </summary>
     internal class Film
     {
+        /// <summary>
+        /// Возвращает и задает название фильма.
+        /// </summary>
         public string FilmName { get; set; }
+        /// <summary>
+        /// Возвращает и задает жанр фильма.
+        /// </summary>
         public string Genre { get; set; }
+        /// <summary>
+        /// Продолжительность.
+        /// </summary>
         private int _filmDuration;
+        /// <summary>
+        /// Год выпуска.
+        /// </summary>
         private int _releaseYear;
+        /// <summary>
+        /// Оценка.
+        /// </summary>
         private double _rate;
 
+        /// <summary>
+        /// Возвращает и задает продолжительность фильма. Должна состоять только из цифр.
+        /// </summary>
         public int FilmDuration
         {
             get { return _filmDuration; }
@@ -23,6 +44,9 @@ namespace Programming.Model.Classes
                 _filmDuration = value;
             }
         }
+        /// <summary>
+        /// Возвращает и задает год выпуска. Должен состоять из числа от 1900 до 2024.
+        /// </summary>
         public int ReleaseYear
         {
             get { return _releaseYear; }
@@ -32,6 +56,9 @@ namespace Programming.Model.Classes
                 _releaseYear = value;
             }
         }
+        /// <summary>
+        /// Возвращает и задает оценку фильма. Должна состоять из числа от 0 до 10.
+        /// </summary>
         public double Rate
         {
             get { return _rate; }
@@ -41,6 +68,14 @@ namespace Programming.Model.Classes
                 _rate = value;
             }
         }
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Film"/>.
+        /// </summary>
+        /// <param name="filmName">Название фильма.</param>
+        /// <param name="genre">Жанр фильма.</param>
+        /// <param name="filmDuration">Продолжительность фильма. Доллжна состоять только из фильма.</param>
+        /// <param name="releaseYear">Год выпуска. Должен состоять из числа от 1900 до 2024.</param>
+        /// <param name="rate">Оценка фильма. Должна состоять из числа от 0 до 10.</param>
         public Film(string filmName, string genre, int filmDuration, int releaseYear, double rate)
         {
             FilmName = filmName;
@@ -57,6 +92,10 @@ namespace Programming.Model.Classes
             ReleaseYear = 1999;
             Rate = 8.7;
         }
+        /// <summary>
+        /// Позволяет выводить только название фильма.
+        /// </summary>
+        /// <returns>Возвращает название фильма.</returns>
         public override string ToString()
         {
             return $"{FilmName}";
