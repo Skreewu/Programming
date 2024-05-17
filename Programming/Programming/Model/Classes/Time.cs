@@ -25,7 +25,7 @@ namespace Programming.Model.Classes
         private int _seconds;
 
         /// <summary>
-        /// Возвращает и задает час. Должен состоять только из чисел от 0 до 23.
+        /// Возвращает и задает час. Должен состоять только из числа от 0 до 23.
         /// </summary>
         public int Hours
         {
@@ -37,7 +37,7 @@ namespace Programming.Model.Classes
             }
         }
         /// <summary>
-        /// Возвращает и задает минуты. Должна состоять только из чисел от 0 до 60.
+        /// Возвращает и задает минуты. Должна состоять только из числа от 0 до 60.
         /// </summary>
         public int Minutes
         {
@@ -49,7 +49,7 @@ namespace Programming.Model.Classes
             }
         }
         /// <summary>
-        /// Возвращает и задает секунды. Должна состоять только из чисел от 0 до 60.
+        /// Возвращает и задает секунды. Должна состоять только из числа от 0 до 60.
         /// </summary>
         public int Seconds
         {

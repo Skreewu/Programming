@@ -1,5 +1,5 @@
 /// <summary>
-/// Хранит данные о формах обучений.
+/// Хранит данные о формах обучения.
 /// </summary>
 public enum FormOfEducation
 {

@@ -16,7 +16,7 @@ namespace Programming.Model.Classes
         /// </summary>
         public string DeparturePoint { get; set; }
         /// <summary>
-        /// Задает и возвращает данные о пункте направления.
+        /// Задает и возвращает данные о пункте назначения.
         /// </summary>
         public string Destination { get; set; }
         /// <summary>
@@ -40,7 +40,7 @@ namespace Programming.Model.Classes
         /// Создаёт экземпляр класса <see cref="Flight"/>.
         /// </summary>
         /// <param name="departurePoint">Пункт направления.</param>
-        /// <param name="destination">Пункт Назначения.</param>
+        /// <param name="destination">Пункт назначения.</param>
         /// <param name="flightTime">Время полета. Должно состоять только из цифр.</param>
         public Flight(string departurePoint, string destination, int flightTime)
         {

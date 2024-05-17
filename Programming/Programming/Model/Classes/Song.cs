@@ -46,7 +46,7 @@ namespace Programming.Model.Classes
         /// <param name="artist">Имя артиста.</param>
         /// <param name="name">Название композиции.</param>
         /// <param name="genre">Жанр композиции.</param>
-        /// <param name="songDuration">Продрожительность композиции.</param>
+        /// <param name="songDuration">Продрожительность композиции. Должна состоять только из цифр.</param>
         public Song(string artist, string name, string genre, int songDuration)
         {
             Artist = artist;

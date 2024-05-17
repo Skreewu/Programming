@@ -73,7 +73,7 @@ namespace Programming.Model.Classes
         /// </summary>
         /// <param name="filmName">Название фильма.</param>
         /// <param name="genre">Жанр фильма.</param>
-        /// <param name="filmDuration">Продолжительность фильма. Доллжна состоять только из фильма.</param>
+        /// <param name="filmDuration">Продолжительность фильма. Должна состоять только из цифр.</param>
         /// <param name="releaseYear">Год выпуска. Должен состоять из числа от 1900 до 2024.</param>
         /// <param name="rate">Оценка фильма. Должна состоять из числа от 0 до 10.</param>
         public Film(string filmName, string genre, int filmDuration, int releaseYear, double rate)
