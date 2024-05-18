@@ -27,8 +27,8 @@ namespace AirTravelList
                     TypesOfFlight typeOfFlight = (TypesOfFlight)Enum.Parse(typeof(TypesOfFlight), TypeOfFlightComboBox.Text);
                     Flight flight = new Flight(DeparturePointTextBox.Text, DestinationTextBox.Text, int.Parse(FlightTimeTextBox.Text), departureTime, typeOfFlight);
                     _flights.Add(flight);
-                    FlightListBox.Items.Add(flight);
                     _flights.Sort();
+                    FlightListBox.Items.Add(flight);
                     UpdateInfo();
                     FlightListBox.SelectedIndex = -1;
                     ClearInfo();
@@ -169,6 +169,9 @@ namespace AirTravelList
                 }
             }
         }
+        /// <summary>
+        /// Обновляет информацию в ListBox.
+        /// </summary>
         private void UpdateInfo()
         {
             int index = FlightListBox.Items.IndexOf(_currentflight);
@@ -177,6 +180,9 @@ namespace AirTravelList
             FlightListBox.Items.AddRange(_flights.ToArray());
             FlightListBox.SelectedIndex = index;
         }
+        /// <summary>
+        /// Очищает поля.
+        /// </summary>
         private void ClearInfo()
         {
             DeparturePointTextBox.Clear();
@@ -184,6 +190,9 @@ namespace AirTravelList
             TypeOfFlightComboBox.SelectedIndex = -1;
             FlightTimeTextBox.Clear();
         }
+        /// <summary>
+        /// Записывает данные типа List<Flight> в JSON-файл.
+        /// </summary>
         private void WriteOnFile()
         {
             try
@@ -199,6 +208,9 @@ namespace AirTravelList
                 Console.WriteLine("Exception: " + e.Message);
             }
         }
+        /// <summary>
+        /// Считывает данные типа List<Flight> из JSON-файла.
+        /// </summary>
         private void ReadFile()
         {
             try
@@ -206,7 +218,6 @@ namespace AirTravelList
                 using (FileStream fs = new FileStream("flights.json", FileMode.Open))
                 {
                     DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Flight>));
-
                     // Десериализация JSON данных из файла в список
                     _flights = (List<Flight>)deserializer.ReadObject(fs);
                 }

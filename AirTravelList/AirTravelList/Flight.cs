@@ -31,11 +31,14 @@ namespace AirTravelList
         /// </summary>
         private int _flightTime;
         /// <summary>
-        /// Тип рейса.
+        /// Задает и возвращает тип рейса.
         /// </summary>
         [DataMember]
         public TypesOfFlight TypeOfFlight { get; set; }
 
+        /// <summary>
+        /// Задает и возвращает данные о пункте отправления. Не должно быть больше 100 символов.
+        /// </summary>
         [DataMember]
         public string DeparturePoint
         {
@@ -46,6 +49,9 @@ namespace AirTravelList
                 _departurePoint = value;
             }
         }
+        /// <summary>
+        /// Задает и возвращает данные о пункте назначения. Не должно быть больше 100 символов.
+        /// </summary>
         [DataMember]
         public string Destination
         {
@@ -56,6 +62,9 @@ namespace AirTravelList
                 _destination = value;
             }
         }
+        /// <summary>
+        /// Задает и возвращает данные о времени вылета.
+        /// </summary>
         [DataMember]
         public DateTime DepartureTime
         {
@@ -66,7 +75,7 @@ namespace AirTravelList
             }
         }
         /// <summary>
-        /// Задает и возвращает данные о времени полета. Должно состоять только из цифр.
+        /// Задает и возвращает данные о времени полета. Должно состоять из числа от 0 до 1000.
         /// </summary>
         [DataMember]
         public int FlightTime
@@ -83,7 +92,9 @@ namespace AirTravelList
         /// </summary>
         /// <param name="departurePoint">Пункт направления.</param>
         /// <param name="destination">Пункт назначения.</param>
-        /// <param name="flightTime">Время полета. Должно состоять только из цифр.</param>
+        /// <param name="flightTime">Время полета. Должно состоять из числа от 0 до 1000.</param>
+        /// <param name="departurePoint">Время вылета. Объект типа DateTime.</param>
+        /// <param name="typeOfFligth">Тип рейса.</param>
         public Flight(string departurePoint, string destination, int flightTime, DateTime departureTime, TypesOfFlight typeOfFligth)
         {
             DeparturePoint = departurePoint;
@@ -108,13 +119,13 @@ namespace AirTravelList
         {
             return $"{DepartureTime.Day}.{DepartureTime.Month}.{DepartureTime.Year}: {DeparturePoint} - {Destination}";
         }
+        /// <summary>
+        /// Задает критерий для сортировки.
+        /// </summary>
+        /// <returns>Возвращает либо -1, что означает, что текущий объект меньше другого, либо 1, что означает, что текущий объект больше другого, либо 0 когда объекты равны.</returns>
         public int CompareTo(Flight other)
         {
             return DepartureTime.CompareTo(other.DepartureTime);
-        }
-        public string ToStringForFile()
-        {
-            return $"{DeparturePoint},{Destination},{FlightTime},{DepartureTime},{TypeOfFlight}";
         }
     }
 }

@@ -39,6 +39,12 @@ namespace AirTravelList
                 throw new ArgumentOutOfRangeException($"Value must be in range from {min} to {max} in {propertyName}");
             }
         }
+        /// <summary>
+        /// Проверяет, что строка ограничена по количеству символов, если условие не выполняется, то выбрасывается ArgumentOutOfRangeException.
+        /// </summary>
+        /// <param name="value">Проверяемая строка.</param>
+        /// <param name="maxLength">Максимально допустимая длина строки.</param>
+        /// <param name="propertyName">Название свойства, в котором был вызван метод.</param>
         public static void MaximumStringLength(string value, int maxLength, string propertyName)
         {
             if (value.Length > maxLength)
