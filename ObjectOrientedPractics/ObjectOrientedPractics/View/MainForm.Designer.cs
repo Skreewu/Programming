@@ -28,12 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            tabControl1 = new TabControl();
+            ItemsTabControl = new TabPage();
+            itemsTab1 = new View.Tabs.ItemsTab();
+            tabControl1.SuspendLayout();
+            ItemsTabControl.SuspendLayout();
+            SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(ItemsTabControl);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(810, 533);
+            tabControl1.TabIndex = 0;
+            // 
+            // ItemsTabControl
+            // 
+            ItemsTabControl.Controls.Add(itemsTab1);
+            ItemsTabControl.Location = new Point(4, 24);
+            ItemsTabControl.Name = "ItemsTabControl";
+            ItemsTabControl.Padding = new Padding(3);
+            ItemsTabControl.Size = new Size(802, 505);
+            ItemsTabControl.TabIndex = 0;
+            ItemsTabControl.Text = "Items";
+            ItemsTabControl.UseVisualStyleBackColor = true;
+            // 
+            // itemsTab1
+            // 
+            itemsTab1.Dock = DockStyle.Fill;
+            itemsTab1.Location = new Point(3, 3);
+            itemsTab1.Name = "itemsTab1";
+            itemsTab1.Size = new Size(796, 499);
+            itemsTab1.TabIndex = 0;
+            // 
+            // MainForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(810, 533);
+            Controls.Add(tabControl1);
+            Name = "MainForm";
+            Text = "Form1";
+            tabControl1.ResumeLayout(false);
+            ItemsTabControl.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private TabControl tabControl1;
+        private TabPage ItemsTabControl;
+        private View.Tabs.ItemsTab itemsTab1;
     }
 }

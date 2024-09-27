@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Переменная, генерирующая id товара.
         /// </summary>
-        private static int idGeneration = 0;
+        private static int idGeneration = -1;
         /// <summary>
         /// id товара.
         /// </summary>
@@ -33,6 +33,13 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private double _cost;
 
+        /// <summary>
+        /// Возвращает ID товара.
+        /// </summary>
+        public int Id 
+        { 
+            get { return _id; } 
+        }
         /// <summary>
         /// Задает и возвращает данные о названии товара. Не больше 200 символов.
         /// </summary>
@@ -82,6 +89,18 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             Cost = cost;
             idGeneration++;
+        }
+        public Item()
+        {
+            _id = idGeneration;
+            Name = "Название";
+            Info = "Описание";
+            Cost = 0;
+            idGeneration++;
+        }
+        public override string ToString()
+        {
+            return $"{Name} - {Cost}р.";
         }
     }
 }
