@@ -19,5 +19,13 @@ namespace AirTravelList
         /// Белый цвет.
         /// </summary>
         public static Color basicWhite = Color.White;
+        /// <summary>
+        /// Зеленый цвет для кнопки.
+        /// </summary>
+        public static Color lightGreen = Color.LightGreen;
+        /// <summary>
+        /// Серый цвет для кнопки.
+        /// </summary>
+        public static Color lightGray = Color.LightGray;
     }
 }

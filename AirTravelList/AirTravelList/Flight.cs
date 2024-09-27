@@ -45,7 +45,7 @@ namespace AirTravelList
             get { return _departurePoint; }
             set
             {
-                Validator.MaximumStringLength(value, 100, nameof(DeparturePoint));
+                Validator.MaximumStringLenght(value, 100, nameof(DeparturePoint));
                 _departurePoint = value;
             }
         }
@@ -58,7 +58,7 @@ namespace AirTravelList
             get { return _destination; }
             set
             {
-                Validator.MaximumStringLength(value, 100, nameof(Destination));
+                Validator.MaximumStringLenght(value, 100, nameof(Destination));
                 _destination = value;
             }
         }
@@ -71,6 +71,7 @@ namespace AirTravelList
             get { return _departureTime; }
             set
             {
+                Validator.DateTimeValueValidator(value, nameof(DepartureTime));
                 _departureTime = value;
             }
         }
@@ -108,7 +109,7 @@ namespace AirTravelList
             DeparturePoint = "Пункт отправления";
             Destination = "Пункт назначения";
             FlightTime = 0;
-            DepartureTime = DateTime.Now;
+            DepartureTime = DateTime.MaxValue;
             TypeOfFlight = TypesOfFlight.International;
         }
         /// <summary>

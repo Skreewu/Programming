@@ -44,6 +44,7 @@
             AddFlightButton = new Button();
             DeleteFlightButton = new Button();
             EditButton = new Button();
+            testik = new ComboBox();
             SelectedFlightGroupBox.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,6 +60,7 @@
             // 
             // SelectedFlightGroupBox
             // 
+            SelectedFlightGroupBox.Controls.Add(testik);
             SelectedFlightGroupBox.Controls.Add(FlightTimeTextBox);
             SelectedFlightGroupBox.Controls.Add(DepartureTimeLabel);
             SelectedFlightGroupBox.Controls.Add(TypeOfFlightLabel);
@@ -145,6 +147,7 @@
             DepartureTimePicker.Name = "DepartureTimePicker";
             DepartureTimePicker.Size = new Size(145, 23);
             DepartureTimePicker.TabIndex = 3;
+            DepartureTimePicker.Value = new DateTime(2024, 5, 25, 23, 59, 59, 0);
             DepartureTimePicker.ValueChanged += DepartureTimePicker_ValueChanged;
             // 
             // DestinationTextBox
@@ -185,14 +188,22 @@
             // 
             // EditButton
             // 
-            EditButton.BackColor = Color.Transparent;
+            EditButton.BackColor = Color.LightGray;
             EditButton.Location = new Point(158, 246);
             EditButton.Name = "EditButton";
             EditButton.Size = new Size(146, 23);
             EditButton.TabIndex = 12;
-            EditButton.Text = "Режим добавления";
+            EditButton.Text = "Редактировать";
             EditButton.UseVisualStyleBackColor = false;
             EditButton.Click += EditButton_Click;
+            // 
+            // testik
+            // 
+            testik.FormattingEnabled = true;
+            testik.Location = new Point(215, 174);
+            testik.Name = "testik";
+            testik.Size = new Size(145, 23);
+            testik.TabIndex = 12;
             // 
             // MainForm
             // 
@@ -234,5 +245,6 @@
         private Button AddFlightButton;
         private Button DeleteFlightButton;
         private Button EditButton;
+        private ComboBox testik;
     }
 }

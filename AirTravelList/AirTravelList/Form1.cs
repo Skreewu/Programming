@@ -12,10 +12,10 @@ namespace AirTravelList
         List<Flight> _flights = new List<Flight>();
         Flight _currentflight = new Flight();
         bool edit = false;
-
         public MainForm()
         {
             InitializeComponent();
+            testik.DataSource = Enum.GetValues(typeof(TypesOfFlight));
         }
         private void AddFlightButton_Click(object sender, EventArgs e)
         {
@@ -33,9 +33,9 @@ namespace AirTravelList
                     FlightListBox.SelectedIndex = -1;
                     ClearInfo();
                 }
-                catch
+                catch(Exception x)
                 {
-                    MessageBox.Show("Пункты назначения и отправления не должны содержать больше 100 символов, а время полёта не должно превышать 1000.");
+                    throw new ArgumentException(x.Message);
                 }
             }
             else
@@ -218,7 +218,6 @@ namespace AirTravelList
                 using (FileStream fs = new FileStream("flights.json", FileMode.Open))
                 {
                     DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Flight>));
-                    // Десериализация JSON данных из файла в список
                     _flights = (List<Flight>)deserializer.ReadObject(fs);
                 }
             }
@@ -253,10 +252,7 @@ namespace AirTravelList
         private void MainForm_Load(object sender, EventArgs e)
         {
             ReadFile();
-            foreach (Flight flight in _flights)
-            {
-                FlightListBox.Items.Add(flight);
-            }
+            FlightListBox.Items.AddRange(_flights.ToArray());
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -264,17 +260,19 @@ namespace AirTravelList
             if (edit == false)
             {
                 edit = true;
-                EditButton.Text = "Режим редактирования";
+                EditButton.Text = "Редактировать";
+                EditButton.BackColor = AppColors.lightGreen;
                 SelectedFlightGroupBox.Text = "Выбранный рейс:";
+                AddFlightButton.Enabled = false;
             }
             else
             {
                 FlightListBox.SelectedIndex = -1;
                 edit = false;
-                EditButton.Text = "Режим добавления";
+                EditButton.BackColor = AppColors.lightGray;
                 SelectedFlightGroupBox.Text = "Введите данные о рейсе:";
+                AddFlightButton.Enabled = true;
             }
-
         }
     }
 }

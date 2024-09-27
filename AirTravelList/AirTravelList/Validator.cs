@@ -22,21 +22,7 @@ namespace AirTravelList
         {
             if ((value < min) || (value > max))
             {
-                throw new ArgumentOutOfRangeException($"Value must be in range from {min} to {max} in {propertyName}");
-            }
-        }
-        /// <summary>
-        /// Проверяет, что число принадлежит промежутку, если условие не выполняется, то выбрасывается ArgumentOutOfRangeException.
-        /// </summary>
-        /// <param name="value">Проверяемая строка.</param>
-        /// <param name="min">Левый предел промежутка.</param>
-        /// <param name="max">Правый предел промежутка.</param>
-        /// <param name="propertyName">Название свойства, в котором был вызван метод.</param>
-        public static void AssertValueInRange(double value, int min, int max, string propertyName)
-        {
-            if ((value < min) || (value > max))
-            {
-                throw new ArgumentOutOfRangeException($"Value must be in range from {min} to {max} in {propertyName}");
+                throw new ArgumentException($"Value must be in range from {min} to {max} in {propertyName}");
             }
         }
         /// <summary>
@@ -45,11 +31,23 @@ namespace AirTravelList
         /// <param name="value">Проверяемая строка.</param>
         /// <param name="maxLength">Максимально допустимая длина строки.</param>
         /// <param name="propertyName">Название свойства, в котором был вызван метод.</param>
-        public static void MaximumStringLength(string value, int maxLength, string propertyName)
+        public static void MaximumStringLenght(string value, int maxLength, string propertyName)
         {
             if (value.Length > maxLength)
             {
-                throw new ArgumentOutOfRangeException($"The value must contain less than {maxLength} characters per line");
+                throw new ArgumentException($"The value must contain less than {maxLength} characters per line");
+            }
+        }
+        /// <summary>
+        /// Проверяет, что некоторое значение типа DateTime не может быть установлено раньше сегодняшнего дня, если условие не выполняется, то выбрасывается ArgumentOutOfRangeException.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="propertyName">Название свойства, в котором был вызван метод.</param>
+        public static void DateTimeValueValidator(DateTime value, string propertyName)
+        {
+            if (value < DateTime.Now)
+            {
+                throw new ArgumentException("The departure time must be no earlier than today");
             }
         }
     }
