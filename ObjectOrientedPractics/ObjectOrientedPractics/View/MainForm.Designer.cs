@@ -31,13 +31,17 @@
             tabControl1 = new TabControl();
             ItemsTabControl = new TabPage();
             itemsTab1 = new View.Tabs.ItemsTab();
+            CustomersTab = new TabPage();
+            customersTab1 = new View.Tabs.CustomersTab();
             tabControl1.SuspendLayout();
             ItemsTabControl.SuspendLayout();
+            CustomersTab.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(ItemsTabControl);
+            tabControl1.Controls.Add(CustomersTab);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -60,9 +64,30 @@
             // 
             itemsTab1.Dock = DockStyle.Fill;
             itemsTab1.Location = new Point(3, 3);
+            itemsTab1.MaximumSize = new Size(800, 500);
+            itemsTab1.MinimumSize = new Size(800, 500);
             itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(796, 499);
+            itemsTab1.Size = new Size(800, 500);
             itemsTab1.TabIndex = 0;
+            // 
+            // CustomersTab
+            // 
+            CustomersTab.Controls.Add(customersTab1);
+            CustomersTab.Location = new Point(4, 24);
+            CustomersTab.Name = "CustomersTab";
+            CustomersTab.Padding = new Padding(3);
+            CustomersTab.Size = new Size(802, 505);
+            CustomersTab.TabIndex = 1;
+            CustomersTab.Text = "Customers";
+            CustomersTab.UseVisualStyleBackColor = true;
+            // 
+            // customersTab1
+            // 
+            customersTab1.Dock = DockStyle.Fill;
+            customersTab1.Location = new Point(3, 3);
+            customersTab1.Name = "customersTab1";
+            customersTab1.Size = new Size(796, 499);
+            customersTab1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -70,10 +95,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(810, 533);
             Controls.Add(tabControl1);
+            MaximumSize = new Size(826, 572);
+            MinimumSize = new Size(826, 572);
             Name = "MainForm";
             Text = "Form1";
             tabControl1.ResumeLayout(false);
             ItemsTabControl.ResumeLayout(false);
+            CustomersTab.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -82,5 +110,7 @@
         private TabControl tabControl1;
         private TabPage ItemsTabControl;
         private View.Tabs.ItemsTab itemsTab1;
+        private TabPage CustomersTab;
+        private View.Tabs.CustomersTab customersTab1;
     }
 }

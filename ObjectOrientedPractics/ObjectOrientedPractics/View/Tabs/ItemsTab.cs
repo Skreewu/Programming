@@ -105,6 +105,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 DescriptionTextBox.BackColor = AppColors.errors;
             }
         }
+        /// <summary>
+        /// Обновляет информацию в списке.
+        /// </summary>
         private void UpdateInfo()
         {
             int index = ItemsListBox.Items.IndexOf(_currentItem);
@@ -113,6 +116,9 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.AddRange(_items.ToArray());
             ItemsListBox.SelectedIndex = index;
         }
+        /// <summary>
+        /// Очищает поля.
+        /// </summary>
         private void ClearInfo()
         {
             NameTextBox.Clear();

@@ -90,6 +90,9 @@ namespace ObjectOrientedPractics.Model
             Cost = cost;
             idGeneration++;
         }
+        /// <summary>
+        /// Конструктор по умолчанию, создает экземпляр класса <see cref="Item"/>
+        /// </summary>
         public Item()
         {
             _id = idGeneration;
@@ -98,6 +101,10 @@ namespace ObjectOrientedPractics.Model
             Cost = 0;
             idGeneration++;
         }
+        /// <summary>
+        /// Позволяет выводить информацию об объекте класса в более удобной форме.
+        /// </summary>
+        /// <returns>Возвращает преобразование в строку.</returns>
         public override string ToString()
         {
             return $"{Name} - {Cost}р.";

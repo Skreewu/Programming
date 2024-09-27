@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Переменная, генерирующая id товара.
         /// </summary>
-        private static int idGeneration;
+        private static int idGeneration = -1;
         /// <summary>
         /// id товара.
         /// </summary>
@@ -29,6 +29,13 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private string _address;
 
+        /// <summary>
+        /// Возвращает id покупателя
+        /// </summary>
+        public int ID
+        {
+            get { return _id; }
+        }
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
         /// </summary>
@@ -61,9 +68,27 @@ namespace ObjectOrientedPractics.Model
         public Customer(string fullname, string address)
         {
             _id = idGeneration;
-            _fullname = fullname;
+            FullName = fullname;
             Address = address;
             idGeneration++;
+        }
+        /// <summary>
+        /// Конструктор по умолчанию. Создает экзепляр класса <see cref="Customer"/>
+        /// </summary>
+        public Customer()
+        {
+            _id = idGeneration;
+            FullName = "Фамилия Имя";
+            Address = "Адрес";
+            idGeneration++;
+        }
+        /// <summary>
+        /// Предоставляет экземпляр класса в более удобной форме.
+        /// </summary>
+        /// <returns>Возвращает преобразование в строку</returns>
+        public override string ToString()
+        {
+            return FullName;
         }
     }
 }
