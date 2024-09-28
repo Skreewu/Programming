@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Переменная, генерирующая id товара.
         /// </summary>
-        private static int idGeneration = -1;
+        private static int _idGeneration = -1;
         /// <summary>
         /// id товара.
         /// </summary>
@@ -84,22 +84,22 @@ namespace ObjectOrientedPractics.Model
         /// <param name="cost">Стоимость. От 0 до 100 000.</param>
         public Item(string name, string info, double cost)
         {
-            _id = idGeneration;
+            _id = _idGeneration;
             Name = name;
             Info = info;
             Cost = cost;
-            idGeneration++;
+            _idGeneration++;
         }
         /// <summary>
         /// Конструктор по умолчанию, создает экземпляр класса <see cref="Item"/>
         /// </summary>
         public Item()
         {
-            _id = idGeneration;
+            _id = _idGeneration;
             Name = "Название";
             Info = "Описание";
             Cost = 0;
-            idGeneration++;
+            _idGeneration++;
         }
         /// <summary>
         /// Позволяет выводить информацию об объекте класса в более удобной форме.

@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Переменная, генерирующая id товара.
         /// </summary>
-        private static int idGeneration = -1;
+        private static int _idGeneration = -1;
         /// <summary>
         /// id товара.
         /// </summary>
@@ -67,20 +67,20 @@ namespace ObjectOrientedPractics.Model
         /// <param name="address">Адресс покупателя. Не больше 500 символов</param>
         public Customer(string fullname, string address)
         {
-            _id = idGeneration;
+            _id = _idGeneration;
             FullName = fullname;
             Address = address;
-            idGeneration++;
+            _idGeneration++;
         }
         /// <summary>
         /// Конструктор по умолчанию. Создает экзепляр класса <see cref="Customer"/>
         /// </summary>
         public Customer()
         {
-            _id = idGeneration;
+            _id = _idGeneration;
             FullName = "Фамилия Имя";
             Address = "Адрес";
-            idGeneration++;
+            _idGeneration++;
         }
         /// <summary>
         /// Предоставляет экземпляр класса в более удобной форме.
