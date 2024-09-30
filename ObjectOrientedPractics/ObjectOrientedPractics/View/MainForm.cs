@@ -9,5 +9,11 @@ namespace ObjectOrientedPractics
         {
             InitializeComponent();
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ItemsTab.OnFormClosing(sender, e);
+            CustomersTab.OnFormClosing(sender, e);
+        }
     }
 }

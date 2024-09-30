@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Хранит данные о товаре.
     /// </summary>
+    [DataContract]
     internal class Item
     {
         /// <summary>
@@ -36,6 +38,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает ID товара.
         /// </summary>
+        [DataMember]
         public int Id 
         { 
             get { return _id; } 
@@ -43,6 +46,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Задает и возвращает данные о названии товара. Не больше 200 символов.
         /// </summary>
+        [DataMember]
         public string Name
         {
             get { return _name; }
@@ -55,6 +59,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Задает и возвращает информацию о товаре. Не больше 1000 символов.
         /// </summary>
+        [DataMember]
         public string Info
         {
             get { return _info; }
@@ -67,6 +72,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Задает и возвращает стоимость товара. От 0 до 100 000.
         /// </summary>
+        [DataMember]
         public double Cost
         {
             get { return _cost; }

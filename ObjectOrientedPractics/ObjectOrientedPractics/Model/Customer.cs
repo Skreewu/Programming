@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Хранит информацию о покупателе.
     /// </summary>
+    [DataContract]
     internal class Customer
     {
         /// <summary>
@@ -32,6 +34,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает id покупателя
         /// </summary>
+        [DataMember]
         public int ID
         {
             get { return _id; }
@@ -39,6 +42,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
         /// </summary>
+        [DataMember]
         public string FullName
         {
             get { return _fullname; }
@@ -51,6 +55,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Задает и возвращает адремм покупателя. Не больше 500 символов.
         /// </summary>
+        [DataMember]
         public string Address
         {
             get { return _address; }

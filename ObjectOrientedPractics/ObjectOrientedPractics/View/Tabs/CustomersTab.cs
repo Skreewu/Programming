@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomersTab : UserControl
     {
-        List<Customer> _customers = new List<Customer>();
+        static List<Customer> _customers = new List<Customer>();
         Customer _currentCustomer = new Customer();
         public CustomersTab()
         {
@@ -116,6 +117,52 @@ namespace ObjectOrientedPractics.View.Tabs
             IdTextBox.Clear();
             FullNameTextBox.Clear();
             AddressTextBox.Clear();
+        }
+        private static void WriteOnFile()
+        {
+            try
+            {
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Customer>));
+                using (FileStream fs = new FileStream("customers.json", FileMode.OpenOrCreate))
+                {
+                    serializer.WriteObject(fs, _customers);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+        }
+        public static void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customers.json");
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Ошибка при удалении файла");
+            }
+            WriteOnFile();
+        }
+        public static void ReadFile()
+        {
+            try
+            {
+                using (FileStream fs = new FileStream("customers.json", FileMode.Open))
+                {
+                    DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
+                    _customers = (List<Customer>)deserializer.ReadObject(fs);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
         }
     }
 }

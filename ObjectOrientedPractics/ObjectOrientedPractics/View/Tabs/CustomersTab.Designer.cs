@@ -45,6 +45,7 @@
             // 
             // CustomersListGroupBox
             // 
+            CustomersListGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             CustomersListGroupBox.Controls.Add(RemoveButton);
             CustomersListGroupBox.Controls.Add(AddButton);
             CustomersListGroupBox.Controls.Add(CustomersListBox);
@@ -57,6 +58,7 @@
             // 
             // RemoveButton
             // 
+            RemoveButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             RemoveButton.Cursor = Cursors.Hand;
             RemoveButton.Location = new Point(100, 452);
             RemoveButton.Name = "RemoveButton";
@@ -68,6 +70,7 @@
             // 
             // AddButton
             // 
+            AddButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             AddButton.Cursor = Cursors.Hand;
             AddButton.Location = new Point(6, 452);
             AddButton.Name = "AddButton";
@@ -89,6 +92,7 @@
             // 
             // CustomersInfoGroupBox
             // 
+            CustomersInfoGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CustomersInfoGroupBox.Controls.Add(AddressLabel);
             CustomersInfoGroupBox.Controls.Add(FullNameLabel);
             CustomersInfoGroupBox.Controls.Add(IdLabel);
@@ -97,7 +101,7 @@
             CustomersInfoGroupBox.Controls.Add(AddressTextBox);
             CustomersInfoGroupBox.Location = new Point(357, 3);
             CustomersInfoGroupBox.Name = "CustomersInfoGroupBox";
-            CustomersInfoGroupBox.Size = new Size(440, 180);
+            CustomersInfoGroupBox.Size = new Size(440, 497);
             CustomersInfoGroupBox.TabIndex = 0;
             CustomersInfoGroupBox.TabStop = false;
             CustomersInfoGroupBox.Text = "SelectedCustomer";
@@ -132,6 +136,7 @@
             // 
             // IdTextBox
             // 
+            IdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             IdTextBox.BorderStyle = BorderStyle.FixedSingle;
             IdTextBox.Location = new Point(79, 28);
             IdTextBox.Name = "IdTextBox";
@@ -142,6 +147,7 @@
             // 
             // FullNameTextBox
             // 
+            FullNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             FullNameTextBox.BorderStyle = BorderStyle.FixedSingle;
             FullNameTextBox.Location = new Point(79, 56);
             FullNameTextBox.Name = "FullNameTextBox";
@@ -151,6 +157,7 @@
             // 
             // AddressTextBox
             // 
+            AddressTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             AddressTextBox.BorderStyle = BorderStyle.FixedSingle;
             AddressTextBox.Location = new Point(79, 85);
             AddressTextBox.Multiline = true;
