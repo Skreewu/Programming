@@ -30,8 +30,8 @@
         {
             tabControl1 = new TabControl();
             ItemsTabControl = new TabPage();
-            CustomersTabControl = new TabPage();
             itemsTab1 = new View.Tabs.ItemsTab();
+            CustomersTabControl = new TabPage();
             customersTab1 = new View.Tabs.CustomersTab();
             tabControl1.SuspendLayout();
             ItemsTabControl.SuspendLayout();
@@ -60,6 +60,14 @@
             ItemsTabControl.Text = "Items";
             ItemsTabControl.UseVisualStyleBackColor = true;
             // 
+            // itemsTab1
+            // 
+            itemsTab1.Dock = DockStyle.Fill;
+            itemsTab1.Location = new Point(3, 3);
+            itemsTab1.Name = "itemsTab1";
+            itemsTab1.Size = new Size(796, 499);
+            itemsTab1.TabIndex = 0;
+            // 
             // CustomersTabControl
             // 
             CustomersTabControl.Controls.Add(customersTab1);
@@ -70,14 +78,6 @@
             CustomersTabControl.TabIndex = 1;
             CustomersTabControl.Text = "Customers";
             CustomersTabControl.UseVisualStyleBackColor = true;
-            // 
-            // itemsTab1
-            // 
-            itemsTab1.Dock = DockStyle.Fill;
-            itemsTab1.Location = new Point(3, 3);
-            itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(796, 499);
-            itemsTab1.TabIndex = 0;
             // 
             // customersTab1
             // 
@@ -96,6 +96,7 @@
             Name = "MainForm";
             Text = "Form1";
             FormClosing += MainForm_FormClosing;
+            Load += MainForm_Load;
             tabControl1.ResumeLayout(false);
             ItemsTabControl.ResumeLayout(false);
             CustomersTabControl.ResumeLayout(false);

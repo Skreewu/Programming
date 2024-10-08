@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             ItemsListGroupBox = new GroupBox();
+            ReadDataButton = new Button();
             RemoveButton = new Button();
             AddButton = new Button();
             ItemsListBox = new ListBox();
@@ -48,6 +49,7 @@
             // ItemsListGroupBox
             // 
             ItemsListGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ItemsListGroupBox.Controls.Add(ReadDataButton);
             ItemsListGroupBox.Controls.Add(RemoveButton);
             ItemsListGroupBox.Controls.Add(AddButton);
             ItemsListGroupBox.Controls.Add(ItemsListBox);
@@ -57,6 +59,17 @@
             ItemsListGroupBox.TabIndex = 0;
             ItemsListGroupBox.TabStop = false;
             ItemsListGroupBox.Text = "Items";
+            // 
+            // ReadDataButton
+            // 
+            ReadDataButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ReadDataButton.Location = new Point(217, 441);
+            ReadDataButton.Name = "ReadDataButton";
+            ReadDataButton.Size = new Size(102, 47);
+            ReadDataButton.TabIndex = 8;
+            ReadDataButton.Text = "Read Data";
+            ReadDataButton.UseVisualStyleBackColor = true;
+            ReadDataButton.Click += ReadDataButton_Click;
             // 
             // RemoveButton
             // 
@@ -218,5 +231,6 @@
         private Label NameLabel;
         private Label CostLabel;
         private Label IdLabel;
+        private Button ReadDataButton;
     }
 }

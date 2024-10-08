@@ -14,14 +14,12 @@ namespace ObjectOrientedPractics.Model
     [DataContract]
     internal class Item
     {
+        private static IdGenerator idGenerator = new IdGenerator();
         /// <summary>
-        /// Переменная, генерирующая id товара.
+        /// Возвращает ID товара.
         /// </summary>
-        private static int _idGeneration = -1;
-        /// <summary>
-        /// id товара.
-        /// </summary>
-        private readonly int _id;
+        [DataMember]
+        public int Id { get; private set; }
         /// <summary>
         /// Название товара.
         /// </summary>
@@ -35,14 +33,6 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private double _cost;
 
-        /// <summary>
-        /// Возвращает ID товара.
-        /// </summary>
-        [DataMember]
-        public int Id 
-        { 
-            get { return _id; } 
-        }
         /// <summary>
         /// Задает и возвращает данные о названии товара. Не больше 200 символов.
         /// </summary>
@@ -90,22 +80,20 @@ namespace ObjectOrientedPractics.Model
         /// <param name="cost">Стоимость. От 0 до 100 000.</param>
         public Item(string name, string info, double cost)
         {
-            _id = _idGeneration;
+            Id = idGenerator.GetNextId();
             Name = name;
             Info = info;
-            Cost = cost;
-            _idGeneration++;
+            Cost = cost;;
         }
         /// <summary>
         /// Конструктор по умолчанию, создает экземпляр класса <see cref="Item"/>
         /// </summary>
         public Item()
         {
-            _id = _idGeneration;
+            Id = idGenerator.GetNextId();
             Name = "Название";
             Info = "Описание";
             Cost = 0;
-            _idGeneration++;
         }
         /// <summary>
         /// Позволяет выводить информацию об объекте класса в более удобной форме.
@@ -114,6 +102,10 @@ namespace ObjectOrientedPractics.Model
         public override string ToString()
         {
             return $"{Name} - {Cost}р.";
+        }
+        public static void SetId(int value)
+        {
+            idGenerator.SetId(value);
         }
     }
 }

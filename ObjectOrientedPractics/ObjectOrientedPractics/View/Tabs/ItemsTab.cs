@@ -10,25 +10,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using System.Text.Json;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
+        IdGenerator idGenerator = new IdGenerator();
         static List<Item> _items = new List<Item>();
         Item _currentItem = new Item();
         public ItemsTab()
         {
             InitializeComponent();
-            Item item1 = new Item("Молоко", "Отборное, пастеризованное", 79.99);
-            Item item2 = new Item("Сыр пармезан", "34% 200 грамм", 458);
-            Item item3 = new Item("Лазанья", "Макаронные изделия Лазанья, 250 грамм", 90.50);
-            _items.Add(item1);
-            _items.Add(item2);
-            _items.Add(item3);
-            ItemsListBox.Items.AddRange(_items.ToArray());
         }
-
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex == -1) return;
@@ -39,7 +33,6 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Text = item.Name.ToString();
             DescriptionTextBox.Text = item.Info.ToString();
         }
-
         private void AddButton_Click(object sender, EventArgs e)
         {
             Item item = new Item();
@@ -139,11 +132,12 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception: " + e.Message);
+                throw new Exception(e.Message);
             }
         }
         public static void OnFormClosing(object sender, FormClosingEventArgs e)
         {
+            if (_items.Count == 0) return;
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "items.json");
             try
             {
@@ -154,24 +148,37 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch (Exception)
             {
-                Console.WriteLine("Ошибка при удалении файла");
+                throw new Exception("Ошибка при удалении файла");
             }
             WriteOnFile();
         }
-        public static void ReadFile()
+        private static void ReadFile()
         {
             try
             {
                 using (FileStream fs = new FileStream("items.json", FileMode.Open))
                 {
                     DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
-                    _items = (List<Item>)deserializer.ReadObject(fs);
+                    _items.AddRange((List<Item>)deserializer.ReadObject(fs));
+                    Item.SetId(_items[_items.Count - 1].Id + 1);
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception: " + e.Message);
+                throw new Exception(e.Message);
             }
+        }
+        public static void OnFormLoad(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ReadDataButton_Click(object sender, EventArgs e)
+        {
+            ReadFile();
+            ItemsListBox.Items.Clear();
+            ItemsListBox.Items.AddRange(_items.ToArray());
+            ReadDataButton.Enabled = false;
         }
     }
 }

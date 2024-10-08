@@ -1,5 +1,6 @@
 using System;
 using ObjectOrientedPractics.View.Tabs;
+using System.Runtime.Serialization.Json;
 
 namespace ObjectOrientedPractics
 {
@@ -14,6 +15,11 @@ namespace ObjectOrientedPractics
         {
             ItemsTab.OnFormClosing(sender, e);
             CustomersTab.OnFormClosing(sender, e);
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            ItemsTab.OnFormLoad(sender, e);
+            CustomersTab.OnFormLoad(sender, e);
         }
     }
 }

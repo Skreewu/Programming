@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Reflection.Emit;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -14,14 +15,12 @@ namespace ObjectOrientedPractics.Model
     [DataContract]
     internal class Customer
     {
+        private static IdGenerator idGenerator = new IdGenerator();
         /// <summary>
-        /// Переменная, генерирующая id товара.
+        /// Возвращает id покупателя
         /// </summary>
-        private static int _idGeneration = -1;
-        /// <summary>
-        /// id товара.
-        /// </summary>
-        private readonly int _id;
+        [DataMember]
+        public int Id { get; private set; }
         /// <summary>
         /// Имя и фамилия покупателя.
         /// </summary>
@@ -31,14 +30,6 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private string _address;
 
-        /// <summary>
-        /// Возвращает id покупателя
-        /// </summary>
-        [DataMember]
-        public int ID
-        {
-            get { return _id; }
-        }
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
         /// </summary>
@@ -72,20 +63,18 @@ namespace ObjectOrientedPractics.Model
         /// <param name="address">Адресс покупателя. Не больше 500 символов</param>
         public Customer(string fullname, string address)
         {
-            _id = _idGeneration;
+            Id = idGenerator.GetNextId();
             FullName = fullname;
             Address = address;
-            _idGeneration++;
         }
         /// <summary>
         /// Конструктор по умолчанию. Создает экзепляр класса <see cref="Customer"/>
         /// </summary>
         public Customer()
         {
-            _id = _idGeneration;
+            Id = idGenerator.GetNextId();
             FullName = "Фамилия Имя";
             Address = "Адрес";
-            _idGeneration++;
         }
         /// <summary>
         /// Предоставляет экземпляр класса в более удобной форме.
@@ -94,6 +83,10 @@ namespace ObjectOrientedPractics.Model
         public override string ToString()
         {
             return FullName;
+        }
+        public static void SetId(int value)
+        {
+            idGenerator.SetId(value);
         }
     }
 }

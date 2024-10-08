@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             CustomersListGroupBox = new GroupBox();
+            ReadDataButton = new Button();
             RemoveButton = new Button();
             AddButton = new Button();
             CustomersListBox = new ListBox();
@@ -46,6 +47,7 @@
             // CustomersListGroupBox
             // 
             CustomersListGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            CustomersListGroupBox.Controls.Add(ReadDataButton);
             CustomersListGroupBox.Controls.Add(RemoveButton);
             CustomersListGroupBox.Controls.Add(AddButton);
             CustomersListGroupBox.Controls.Add(CustomersListBox);
@@ -56,13 +58,24 @@
             CustomersListGroupBox.TabStop = false;
             CustomersListGroupBox.Text = "Customers";
             // 
+            // ReadDataButton
+            // 
+            ReadDataButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ReadDataButton.Location = new Point(232, 452);
+            ReadDataButton.Name = "ReadDataButton";
+            ReadDataButton.Size = new Size(109, 36);
+            ReadDataButton.TabIndex = 3;
+            ReadDataButton.Text = "Read Data";
+            ReadDataButton.UseVisualStyleBackColor = true;
+            ReadDataButton.Click += ReadDataButton_Click;
+            // 
             // RemoveButton
             // 
             RemoveButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             RemoveButton.Cursor = Cursors.Hand;
-            RemoveButton.Location = new Point(100, 452);
+            RemoveButton.Location = new Point(121, 452);
             RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(88, 36);
+            RemoveButton.Size = new Size(109, 36);
             RemoveButton.TabIndex = 2;
             RemoveButton.Text = "Remove";
             RemoveButton.UseVisualStyleBackColor = true;
@@ -74,7 +87,7 @@
             AddButton.Cursor = Cursors.Hand;
             AddButton.Location = new Point(6, 452);
             AddButton.Name = "AddButton";
-            AddButton.Size = new Size(88, 36);
+            AddButton.Size = new Size(109, 36);
             AddButton.TabIndex = 1;
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = true;
@@ -193,5 +206,6 @@
         private TextBox IdTextBox;
         private TextBox FullNameTextBox;
         private TextBox AddressTextBox;
+        private Button ReadDataButton;
     }
 }

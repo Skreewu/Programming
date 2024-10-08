@@ -20,13 +20,6 @@ namespace ObjectOrientedPractics.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
-            Customer customer1 = new Customer("Василий Петров", "г. Санкт-Петербург, ул. Ленина 43");
-            Customer customer2 = new Customer("Екатерина Михайлова", "г.Томск, ул. Ф.Лыткина 18");
-            Customer customer3 = new Customer("Алексей Иванов", "г.Красноярск, ул. Молокова 10");
-            _customers.Add(customer1);
-            _customers.Add(customer2);
-            _customers.Add(customer3);
-            CustomersListBox.Items.AddRange(_customers.ToArray());
         }
 
         private void AddressLabel_Click(object sender, EventArgs e)
@@ -39,7 +32,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CustomersListBox.SelectedIndex == -1) return;
             _currentCustomer = _customers[CustomersListBox.SelectedIndex];
             Customer customer = (Customer)CustomersListBox.SelectedItem;
-            IdTextBox.Text = customer.ID.ToString();
+            IdTextBox.Text = customer.Id.ToString();
             FullNameTextBox.Text = customer.FullName.ToString();
             AddressTextBox.Text = customer.Address.ToString();
         }
@@ -95,7 +88,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch
             {
-                AddressTextBox.BackColor= AppColors.errors;
+                AddressTextBox.BackColor = AppColors.errors;
             }
         }
         /// <summary>
@@ -135,6 +128,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         public static void OnFormClosing(object sender, FormClosingEventArgs e)
         {
+            if (_customers.Count == 0) return;
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customers.json");
             try
             {
@@ -149,20 +143,32 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             WriteOnFile();
         }
-        public static void ReadFile()
+        private static void ReadFile()
         {
             try
             {
                 using (FileStream fs = new FileStream("customers.json", FileMode.Open))
                 {
-                    DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
+                    DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Customer>));
                     _customers = (List<Customer>)deserializer.ReadObject(fs);
+                    Customer.SetId(_customers[_customers.Count - 1].Id + 1);
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception: " + e.Message);
+                throw new Exception(e.Message);
             }
+        }
+        public static void OnFormLoad(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ReadDataButton_Click(object sender, EventArgs e)
+        {
+            ReadFile();
+            CustomersListBox.Items.AddRange(_customers.ToArray());
+            ReadDataButton.Enabled = false;
         }
     }
 }
