@@ -22,6 +22,8 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+            ReadFile();
+            ItemsListBox.Items.AddRange(_items.ToArray());
         }
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -167,18 +169,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 throw new Exception(e.Message);
             }
-        }
-        public static void OnFormLoad(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ReadDataButton_Click(object sender, EventArgs e)
-        {
-            ReadFile();
-            ItemsListBox.Items.Clear();
-            ItemsListBox.Items.AddRange(_items.ToArray());
-            ReadDataButton.Enabled = false;
         }
     }
 }

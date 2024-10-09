@@ -20,6 +20,8 @@ namespace ObjectOrientedPractics.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
+            ReadFile();
+            CustomersListBox.Items.AddRange(_customers.ToArray());
         }
 
         private void AddressLabel_Click(object sender, EventArgs e)
@@ -158,17 +160,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 throw new Exception(e.Message);
             }
-        }
-        public static void OnFormLoad(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ReadDataButton_Click(object sender, EventArgs e)
-        {
-            ReadFile();
-            CustomersListBox.Items.AddRange(_customers.ToArray());
-            ReadDataButton.Enabled = false;
         }
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             ItemsListGroupBox = new GroupBox();
-            ReadDataButton = new Button();
             RemoveButton = new Button();
             AddButton = new Button();
             ItemsListBox = new ListBox();
@@ -49,7 +48,6 @@
             // ItemsListGroupBox
             // 
             ItemsListGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            ItemsListGroupBox.Controls.Add(ReadDataButton);
             ItemsListGroupBox.Controls.Add(RemoveButton);
             ItemsListGroupBox.Controls.Add(AddButton);
             ItemsListGroupBox.Controls.Add(ItemsListBox);
@@ -60,22 +58,11 @@
             ItemsListGroupBox.TabStop = false;
             ItemsListGroupBox.Text = "Items";
             // 
-            // ReadDataButton
-            // 
-            ReadDataButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ReadDataButton.Location = new Point(217, 441);
-            ReadDataButton.Name = "ReadDataButton";
-            ReadDataButton.Size = new Size(102, 47);
-            ReadDataButton.TabIndex = 8;
-            ReadDataButton.Text = "Read Data";
-            ReadDataButton.UseVisualStyleBackColor = true;
-            ReadDataButton.Click += ReadDataButton_Click;
-            // 
             // RemoveButton
             // 
-            RemoveButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            RemoveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             RemoveButton.Cursor = Cursors.Hand;
-            RemoveButton.Location = new Point(110, 441);
+            RemoveButton.Location = new Point(218, 441);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(101, 47);
             RemoveButton.TabIndex = 2;
@@ -85,7 +72,7 @@
             // 
             // AddButton
             // 
-            AddButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            AddButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             AddButton.Cursor = Cursors.Hand;
             AddButton.Location = new Point(3, 441);
             AddButton.Name = "AddButton";
@@ -97,6 +84,7 @@
             // 
             // ItemsListBox
             // 
+            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.ItemHeight = 15;
             ItemsListBox.Location = new Point(3, 19);
@@ -231,6 +219,5 @@
         private Label NameLabel;
         private Label CostLabel;
         private Label IdLabel;
-        private Button ReadDataButton;
     }
 }

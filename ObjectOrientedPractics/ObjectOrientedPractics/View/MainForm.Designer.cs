@@ -96,7 +96,6 @@
             Name = "MainForm";
             Text = "Form1";
             FormClosing += MainForm_FormClosing;
-            Load += MainForm_Load;
             tabControl1.ResumeLayout(false);
             ItemsTabControl.ResumeLayout(false);
             CustomersTabControl.ResumeLayout(false);
