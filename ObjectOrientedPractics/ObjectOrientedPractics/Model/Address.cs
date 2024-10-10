@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные об адресе.
     /// </summary>
-    internal class Address
+    public class Address
     {
         /// <summary>
         /// Почтовый индекс.
