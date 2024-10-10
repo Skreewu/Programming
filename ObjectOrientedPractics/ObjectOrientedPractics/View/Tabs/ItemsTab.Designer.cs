@@ -127,6 +127,7 @@
             // 
             // CategoryComboBox
             // 
+            CategoryComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CategoryComboBox.FormattingEnabled = true;
             CategoryComboBox.Location = new Point(83, 109);
             CategoryComboBox.Name = "CategoryComboBox";

@@ -33,7 +33,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private double _cost;
         /// <summary>
-        /// Возвращает и задает категорию товара.
+        /// Задает и возвращает категорию товара.
         /// </summary>
         [DataMember]
         public Category Category { get; set; }
@@ -83,6 +83,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название товара. Не больше 200 символов.</param>
         /// <param name="info">Инфорация о товаре. Не больше 1000 символов.</param>
         /// <param name="cost">Стоимость. От 0 до 100 000.</param>
+        /// <param name="category">Категория товара.</param>
         public Item(string name, string info, double cost, Category category)
         {
             Id = idGenerator.GetNextId();
