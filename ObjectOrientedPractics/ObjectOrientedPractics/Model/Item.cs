@@ -32,6 +32,11 @@ namespace ObjectOrientedPractics.Model
         /// Стоимость.
         /// </summary>
         private double _cost;
+        /// <summary>
+        /// Возвращает и задает категорию товара.
+        /// </summary>
+        [DataMember]
+        public Category Category { get; set; }
 
         /// <summary>
         /// Задает и возвращает данные о названии товара. Не больше 200 символов.
@@ -78,12 +83,13 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название товара. Не больше 200 символов.</param>
         /// <param name="info">Инфорация о товаре. Не больше 1000 символов.</param>
         /// <param name="cost">Стоимость. От 0 до 100 000.</param>
-        public Item(string name, string info, double cost)
+        public Item(string name, string info, double cost, Category category)
         {
             Id = idGenerator.GetNextId();
             Name = name;
             Info = info;
             Cost = cost;;
+            Category = category;
         }
         /// <summary>
         /// Конструктор по умолчанию, создает экземпляр класса <see cref="Item"/>
@@ -94,6 +100,7 @@ namespace ObjectOrientedPractics.Model
             Name = "Название";
             Info = "Описание";
             Cost = 0;
+            Category = Category.Food;
         }
         /// <summary>
         /// Позволяет выводить информацию об объекте класса в более удобной форме.

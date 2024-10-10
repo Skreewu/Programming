@@ -22,6 +22,11 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+            var categories = Enum.GetValues(typeof(Category));
+            foreach (var category in categories)
+            {
+                CategoryComboBox.Items.Add(category);
+            }
             ReadFile();
             ItemsListBox.Items.AddRange(_items.ToArray());
         }
@@ -34,6 +39,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Text = item.Cost.ToString();
             NameTextBox.Text = item.Name.ToString();
             DescriptionTextBox.Text = item.Info.ToString();
+            CategoryComboBox.SelectedIndex = (int)item.Category;
         }
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -156,18 +162,39 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         private static void ReadFile()
         {
-            try
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "items.json");
+            if (File.Exists(filePath))
             {
-                using (FileStream fs = new FileStream("items.json", FileMode.Open))
+                try
                 {
-                    DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
-                    _items.AddRange((List<Item>)deserializer.ReadObject(fs));
-                    Item.SetId(_items[_items.Count - 1].Id + 1);
+                    using (FileStream fs = new FileStream("items.json", FileMode.Open))
+                    {
+                        DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
+                        _items.AddRange((List<Item>)deserializer.ReadObject(fs));
+                        Item.SetId(_items[_items.Count - 1].Id + 1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
                 }
             }
-            catch (Exception e)
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.Items.IndexOf(_currentItem);
+            if (index == -1) return;
+            try
             {
-                throw new Exception(e.Message);
+                CategoryComboBox.BackColor = AppColors.basicWhite;
+                Category category = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
+                _currentItem.Category = category;
+                UpdateInfo();
+            }
+            catch
+            {
+                CategoryComboBox.BackColor = AppColors.errors;
             }
         }
     }

@@ -33,6 +33,8 @@
             AddButton = new Button();
             ItemsListBox = new ListBox();
             ItemsInfoGroupBox = new GroupBox();
+            CategoryLabel = new Label();
+            CategoryComboBox = new ComboBox();
             DescriptionLabel = new Label();
             NameLabel = new Label();
             CostLabel = new Label();
@@ -97,6 +99,8 @@
             // 
             ItemsInfoGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ItemsInfoGroupBox.BackgroundImageLayout = ImageLayout.Zoom;
+            ItemsInfoGroupBox.Controls.Add(CategoryLabel);
+            ItemsInfoGroupBox.Controls.Add(CategoryComboBox);
             ItemsInfoGroupBox.Controls.Add(DescriptionLabel);
             ItemsInfoGroupBox.Controls.Add(NameLabel);
             ItemsInfoGroupBox.Controls.Add(CostLabel);
@@ -112,10 +116,28 @@
             ItemsInfoGroupBox.TabStop = false;
             ItemsInfoGroupBox.Text = "Selected Item";
             // 
+            // CategoryLabel
+            // 
+            CategoryLabel.AutoSize = true;
+            CategoryLabel.Location = new Point(6, 112);
+            CategoryLabel.Name = "CategoryLabel";
+            CategoryLabel.Size = new Size(61, 15);
+            CategoryLabel.TabIndex = 9;
+            CategoryLabel.Text = "Category: ";
+            // 
+            // CategoryComboBox
+            // 
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(83, 109);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(127, 23);
+            CategoryComboBox.TabIndex = 8;
+            CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
+            // 
             // DescriptionLabel
             // 
             DescriptionLabel.AutoSize = true;
-            DescriptionLabel.Location = new Point(6, 257);
+            DescriptionLabel.Location = new Point(6, 287);
             DescriptionLabel.Name = "DescriptionLabel";
             DescriptionLabel.Size = new Size(73, 15);
             DescriptionLabel.TabIndex = 7;
@@ -124,7 +146,7 @@
             // NameLabel
             // 
             NameLabel.AutoSize = true;
-            NameLabel.Location = new Point(6, 126);
+            NameLabel.Location = new Point(6, 156);
             NameLabel.Name = "NameLabel";
             NameLabel.Size = new Size(42, 15);
             NameLabel.TabIndex = 6;
@@ -133,7 +155,7 @@
             // CostLabel
             // 
             CostLabel.AutoSize = true;
-            CostLabel.Location = new Point(6, 82);
+            CostLabel.Location = new Point(6, 81);
             CostLabel.Name = "CostLabel";
             CostLabel.Size = new Size(34, 15);
             CostLabel.TabIndex = 5;
@@ -152,7 +174,7 @@
             // 
             DescriptionTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DescriptionTextBox.BorderStyle = BorderStyle.FixedSingle;
-            DescriptionTextBox.Location = new Point(6, 275);
+            DescriptionTextBox.Location = new Point(6, 305);
             DescriptionTextBox.Multiline = true;
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.Size = new Size(454, 122);
@@ -163,7 +185,7 @@
             // 
             NameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             NameTextBox.BorderStyle = BorderStyle.FixedSingle;
-            NameTextBox.Location = new Point(6, 144);
+            NameTextBox.Location = new Point(6, 174);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
             NameTextBox.Size = new Size(454, 94);
@@ -174,7 +196,7 @@
             // 
             CostTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CostTextBox.BorderStyle = BorderStyle.FixedSingle;
-            CostTextBox.Location = new Point(67, 79);
+            CostTextBox.Location = new Point(83, 80);
             CostTextBox.Name = "CostTextBox";
             CostTextBox.Size = new Size(127, 23);
             CostTextBox.TabIndex = 1;
@@ -184,7 +206,7 @@
             // 
             IdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             IdTextBox.BorderStyle = BorderStyle.FixedSingle;
-            IdTextBox.Location = new Point(67, 50);
+            IdTextBox.Location = new Point(83, 51);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(127, 23);
@@ -219,5 +241,7 @@
         private Label NameLabel;
         private Label CostLabel;
         private Label IdLabel;
+        private Label CategoryLabel;
+        private ComboBox CategoryComboBox;
     }
 }

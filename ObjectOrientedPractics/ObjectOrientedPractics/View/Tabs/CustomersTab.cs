@@ -147,18 +147,22 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         private static void ReadFile()
         {
-            try
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customers.json");
+            if (File.Exists(filePath))
             {
-                using (FileStream fs = new FileStream("customers.json", FileMode.Open))
+                try
                 {
-                    DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Customer>));
-                    _customers = (List<Customer>)deserializer.ReadObject(fs);
-                    Customer.SetId(_customers[_customers.Count - 1].Id + 1);
+                    using (FileStream fs = new FileStream("customers.json", FileMode.Open))
+                    {
+                        DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Customer>));
+                        _customers = (List<Customer>)deserializer.ReadObject(fs);
+                        Customer.SetId(_customers[_customers.Count - 1].Id + 1);
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
             }
         }
     }
