@@ -14,11 +14,22 @@ using System.Text.Json;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    public partial class ItemsTab : UserControl
+    internal partial class ItemsTab : UserControl
     {
-        IdGenerator idGenerator = new IdGenerator();
         static List<Item> _items = new List<Item>();
         Item _currentItem = new Item();
+        public List<Item> Items
+        {
+            get 
+            { 
+                return _items; 
+            }
+            set 
+            { 
+                _items = value; 
+                UpdateInfo();
+            }
+        }
         public ItemsTab()
         {
             InitializeComponent();

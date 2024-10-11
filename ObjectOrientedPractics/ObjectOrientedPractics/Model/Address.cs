@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Почтовый индекс.
         /// </summary>
-        private int _index;
+        private int _index; 
         /// <summary>
         /// Страна.
         /// </summary>
@@ -138,14 +138,6 @@ namespace ObjectOrientedPractics.Model
             Street = "Улица";
             Building = "0";
             Apartment = "0";
-        }
-        /// <summary>
-        /// Позволяет выводить информацию об объекте класса в более удобной форме.
-        /// </summary>
-        /// <returns>Возвращает преобразование в строку.</returns>
-        public override string ToString()
-        {
-            return $"ул. {Street}, д.{Building}, кв.{Apartment}, г.{City}";
         }
     }
 }

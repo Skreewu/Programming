@@ -14,10 +14,22 @@ using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    public partial class CustomersTab : UserControl
+    internal partial class CustomersTab : UserControl
     {
         static List<Customer> _customers = new List<Customer>();
         Customer _currentCustomer = new Customer();
+        public List<Customer> Customers
+        {
+            get 
+            { 
+                return _customers; 
+            }
+            set
+            {
+                _customers = value;
+                UpdateInfo();
+            }
+        }
         public CustomersTab()
         {
             InitializeComponent();

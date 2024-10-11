@@ -120,6 +120,9 @@ namespace ObjectOrientedPractics.View.Controls
                 ApartmentTextBox.BackColor = AppColors.errors;
             }
         }
+        /// <summary>
+        /// Очищает поля.
+        /// </summary>
         public void ClearInfo()
         {
             IndexTextBox.Clear();
