@@ -28,7 +28,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес покупателя.
         /// </summary>
-        private string _address;
+        private Address _address;
 
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
@@ -44,15 +44,14 @@ namespace ObjectOrientedPractics.Model
             }
         }
         /// <summary>
-        /// Задает и возвращает адремм покупателя. Не больше 500 символов.
+        /// Задает и возвращает адреса покупателя.
         /// </summary>
         [DataMember]
-        public string Address
+        public Address Address
         {
             get { return _address; }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 500, nameof(Address));
                 _address = value;
             }
         }
@@ -60,8 +59,8 @@ namespace ObjectOrientedPractics.Model
         /// Создает экземпляр класса <see cref="Customer">
         /// </summary>
         /// <param name="fullname">Имя и фамилия покупателя. Не больше 200 символов. </param>
-        /// <param name="address">Адресс покупателя. Не больше 500 символов</param>
-        public Customer(string fullname, string address)
+        /// <param name="address">Адрес покупателя. Не больше 500 символов</param>
+        public Customer(string fullname, Address address)
         {
             Id = idGenerator.GetNextId();
             FullName = fullname;
@@ -74,7 +73,7 @@ namespace ObjectOrientedPractics.Model
         {
             Id = idGenerator.GetNextId();
             FullName = "Фамилия Имя";
-            Address = "Адрес";
+            Address = new Address();
         }
         /// <summary>
         /// Предоставляет экземпляр класса в более удобной форме.

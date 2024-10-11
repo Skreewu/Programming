@@ -120,5 +120,14 @@ namespace ObjectOrientedPractics.View.Controls
                 ApartmentTextBox.BackColor = AppColors.errors;
             }
         }
+        public void ClearInfo()
+        {
+            IndexTextBox.Clear();
+            CountryTextBox.Clear();
+            CityTextBox.Clear();
+            StreetTextBox.Clear();
+            BuildingTextBox.Clear();
+            ApartmentTextBox.Clear();
+        }
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -36,7 +37,7 @@ namespace ObjectOrientedPractics.View.Tabs
             Customer customer = (Customer)CustomersListBox.SelectedItem;
             IdTextBox.Text = customer.Id.ToString();
             FullNameTextBox.Text = customer.FullName.ToString();
-            AddressTextBox.Text = customer.Address.ToString();
+            addressControl1.Address = customer.Address;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -77,22 +78,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int index = CustomersListBox.Items.IndexOf(_currentCustomer);
-            if (index == -1) return;
-            try
-            {
-                AddressTextBox.BackColor = AppColors.basicWhite;
-                string address = AddressTextBox.Text.ToString();
-                _currentCustomer.Address = address;
-                UpdateInfo();
-            }
-            catch
-            {
-                AddressTextBox.BackColor = AppColors.errors;
-            }
-        }
         /// <summary>
         /// Обновляет информацию в списке
         /// </summary>
@@ -111,7 +96,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             IdTextBox.Clear();
             FullNameTextBox.Clear();
-            AddressTextBox.Clear();
+            addressControl1.ClearInfo();
         }
         private static void WriteOnFile()
         {
