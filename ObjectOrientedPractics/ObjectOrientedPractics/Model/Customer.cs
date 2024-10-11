@@ -24,7 +24,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Имя и фамилия покупателя.
         /// </summary>
-        private string _fullname;
+        private string _fullName;
         /// <summary>
         /// Адрес покупателя.
         /// </summary>
@@ -36,14 +36,14 @@ namespace ObjectOrientedPractics.Model
         [DataMember]
         public string FullName
         {
-            get { return _fullname; }
+            get { return _fullName; }
             set
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
-                _fullname = value;
+                _fullName = value;
             }
         }
-        /// <summary>
+        /// <summary>   
         /// Задает и возвращает адреса покупателя.
         /// </summary>
         [DataMember]
