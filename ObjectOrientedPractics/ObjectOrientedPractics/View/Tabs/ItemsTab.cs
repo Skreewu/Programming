@@ -26,7 +26,8 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             set 
             { 
-                _items = value; 
+                _items = value;
+                ItemsListBox.Items.AddRange(_items.ToArray());
                 UpdateInfo();
             }
         }
@@ -38,7 +39,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CategoryComboBox.Items.Add(category);
             }
-            ReadFile();
             ItemsListBox.Items.AddRange(_items.ToArray());
         }
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -138,58 +138,6 @@ namespace ObjectOrientedPractics.View.Tabs
             DescriptionTextBox.Clear();
             CostTextBox.Clear();
             IdTextBox.Clear();
-        }
-        private static void WriteOnFile()
-        {
-            try
-            {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Item>));
-                using (FileStream fs = new FileStream("items.json", FileMode.OpenOrCreate))
-                {
-                    serializer.WriteObject(fs, _items);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-        public static void OnFormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_items.Count == 0) return;
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "items.json");
-            try
-            {
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-            }
-            catch (Exception)
-            {
-                throw new Exception("Ошибка при удалении файла");
-            }
-            WriteOnFile();
-        }
-        private static void ReadFile()
-        {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "items.json");
-            if (File.Exists(filePath))
-            {
-                try
-                {
-                    using (FileStream fs = new FileStream("items.json", FileMode.Open))
-                    {
-                        DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
-                        _items.AddRange((List<Item>)deserializer.ReadObject(fs));
-                        Item.SetId(_items[_items.Count - 1].Id + 1);
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(e.Message);
-                }
-            }
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -27,19 +27,13 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _customers = value;
+                CustomersListBox.Items.AddRange(_customers.ToArray());
                 UpdateInfo();
             }
         }
         public CustomersTab()
         {
             InitializeComponent();
-            ReadFile();
-            CustomersListBox.Items.AddRange(_customers.ToArray());
-        }
-
-        private void AddressLabel_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,58 +103,6 @@ namespace ObjectOrientedPractics.View.Tabs
             IdTextBox.Clear();
             FullNameTextBox.Clear();
             addressControl1.ClearInfo();
-        }
-        private static void WriteOnFile()
-        {
-            try
-            {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Customer>));
-                using (FileStream fs = new FileStream("customers.json", FileMode.OpenOrCreate))
-                {
-                    serializer.WriteObject(fs, _customers);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-        }
-        public static void OnFormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_customers.Count == 0) return;
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customers.json");
-            try
-            {
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Ошибка при удалении файла");
-            }
-            WriteOnFile();
-        }
-        private static void ReadFile()
-        {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customers.json");
-            if (File.Exists(filePath))
-            {
-                try
-                {
-                    using (FileStream fs = new FileStream("customers.json", FileMode.Open))
-                    {
-                        DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Customer>));
-                        _customers = (List<Customer>)deserializer.ReadObject(fs);
-                        Customer.SetId(_customers[_customers.Count - 1].Id + 1);
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(e.Message);
-                }
-            }
-        }
+        } 
     }
 }
