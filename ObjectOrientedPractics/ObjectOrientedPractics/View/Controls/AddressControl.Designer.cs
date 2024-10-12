@@ -125,6 +125,7 @@
             // 
             // CityTextBox
             // 
+            CityTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CityTextBox.Location = new Point(287, 73);
             CityTextBox.Name = "CityTextBox";
             CityTextBox.Size = new Size(140, 23);
@@ -133,6 +134,7 @@
             // 
             // StreetTextBox
             // 
+            StreetTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             StreetTextBox.Location = new Point(79, 115);
             StreetTextBox.Name = "StreetTextBox";
             StreetTextBox.Size = new Size(348, 23);
@@ -149,6 +151,7 @@
             // 
             // ApartmentTextBox
             // 
+            ApartmentTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             ApartmentTextBox.Location = new Point(253, 158);
             ApartmentTextBox.Name = "ApartmentTextBox";
             ApartmentTextBox.Size = new Size(83, 23);

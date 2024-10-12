@@ -16,7 +16,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     internal partial class ItemsTab : UserControl
     {
-        static List<Item> _items = new List<Item>();
+        List<Item> _items = new List<Item>();
         Item _currentItem = new Item();
         public List<Item> Items
         {

@@ -34,11 +34,11 @@
             AddButton = new Button();
             CustomersListBox = new ListBox();
             CustomersInfoGroupBox = new GroupBox();
+            addressControl1 = new Controls.AddressControl();
             FullNameLabel = new Label();
             IdLabel = new Label();
             IdTextBox = new TextBox();
             FullNameTextBox = new TextBox();
-            addressControl1 = new Controls.AddressControl();
             CustomersListGroupBox.SuspendLayout();
             CustomersInfoGroupBox.SuspendLayout();
             SuspendLayout();
@@ -106,6 +106,21 @@
             CustomersInfoGroupBox.TabStop = false;
             CustomersInfoGroupBox.Text = "SelectedCustomer";
             // 
+            // addressControl1
+            // 
+            address1.Apartment = "0";
+            address1.Building = "0";
+            address1.City = "Город";
+            address1.Country = "Страна";
+            address1.Index = 100000;
+            address1.Street = "Улица";
+            addressControl1.Address = address1;
+            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            addressControl1.Location = new Point(0, 85);
+            addressControl1.Name = "addressControl1";
+            addressControl1.Size = new Size(430, 190);
+            addressControl1.TabIndex = 6;
+            // 
             // FullNameLabel
             // 
             FullNameLabel.AutoSize = true;
@@ -144,20 +159,6 @@
             FullNameTextBox.Size = new Size(355, 23);
             FullNameTextBox.TabIndex = 2;
             FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
-            // 
-            // addressControl1
-            // 
-            address1.Apartment = "0";
-            address1.Building = "0";
-            address1.City = "Город";
-            address1.Country = "Страна";
-            address1.Index = 100000;
-            address1.Street = "Улица";
-            addressControl1.Address = address1;
-            addressControl1.Location = new Point(0, 85);
-            addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(430, 190);
-            addressControl1.TabIndex = 6;
             // 
             // CustomersTab
             // 
