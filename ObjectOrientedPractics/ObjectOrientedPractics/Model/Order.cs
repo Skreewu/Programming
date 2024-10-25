@@ -42,6 +42,7 @@ namespace ObjectOrientedPractics.Model
         {
             get
             {
+                _amount = 0;
                 if (_items == null || _items.Count == 0) return 0;
                 for (int i = 0; i < _items.Count; i++)
                 {
@@ -56,6 +57,13 @@ namespace ObjectOrientedPractics.Model
             OrderCreationDate = DateTime.Now;
             Items = new List<Item>();
             Address = new Address();
+        }
+        public Order(Address address, List<Item> items)
+        {
+            Id = idGenerator.GetNextId();
+            OrderCreationDate = DateTime.Now;
+            Items = items;
+            Address = address;
         }
     }
 }
