@@ -2,21 +2,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    [DataContract]
     internal class Order
     {
         private static IdGenerator idGenerator = new IdGenerator();
+        [DataMember]
         public int Id {  get; private set; }
-        public DateTime OrderCreationDate { get; }
+        [DataMember]
+        public DateTime OrderCreationDate { get; private set; }
+        [DataMember]
         public OrderStatus Status { get; set; }
         private Address _adress;
         private List<Item> _items;
         private double _amount;
 
+        [DataMember]
         public Address Address
         {
             get 
@@ -28,6 +34,7 @@ namespace ObjectOrientedPractics.Model
                 _adress = value; 
             }
         }
+        [DataMember]
         public List<Item> Items
         {
             get

@@ -15,8 +15,8 @@ namespace ObjectOrientedPractics
             _store.Items = new List<Item>();
             _store.Customers = new List<Customer>();
 
-            //ReadFileCustomers();
-            //ReadFileItems();
+            ReadFileCustomers();
+            ReadFileItems();
 
             itemsTab1.Items = _store.Items;
             customersTab1.Customers = _store.Customers;
@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /*if (_store.Items.Count == 0 && _store.Customers.Count == 0) return;
+            if (_store.Items.Count == 0 && _store.Customers.Count == 0) return;
             string filePathItems = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "items.json");
             try
             {
@@ -55,7 +55,7 @@ namespace ObjectOrientedPractics
             {
                 Console.WriteLine("Ошибка при удалении файла");
             }
-            WriteOnFileCustomers();*/
+            WriteOnFileCustomers();
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace ObjectOrientedPractics
                 ordersTab1.UpdateOrders();
             }
         }
-        /*private void WriteOnFileItems()
+        private void WriteOnFileItems()
         {
            try
            {
@@ -138,6 +138,6 @@ namespace ObjectOrientedPractics
                    throw new Exception(e.Message);
                }
            }
-        }*/
+        }
     }
 }

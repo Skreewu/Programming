@@ -44,6 +44,7 @@ namespace ObjectOrientedPractics.Model
                 _fullName = value;
             }
         }
+        [DataMember]
         public Cart Cart
         {
             get 
@@ -67,6 +68,7 @@ namespace ObjectOrientedPractics.Model
                 _address = value;
             }
         }
+        [DataMember]
         public List<Order> Orders
         {
             get { return _orders; }

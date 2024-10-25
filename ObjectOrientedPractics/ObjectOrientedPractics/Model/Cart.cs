@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    [DataContract]
     internal class Cart
     {
         private List<Item> _items;
         private double _amount;
 
+        [DataMember]
         public List<Item> Items
         {
             get { return _items; }
