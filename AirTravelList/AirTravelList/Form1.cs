@@ -15,7 +15,6 @@ namespace AirTravelList
         public MainForm()
         {
             InitializeComponent();
-            testik.DataSource = Enum.GetValues(typeof(TypesOfFlight));
         }
         private void AddFlightButton_Click(object sender, EventArgs e)
         {

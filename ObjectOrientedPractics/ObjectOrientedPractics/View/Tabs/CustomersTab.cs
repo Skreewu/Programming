@@ -10,23 +10,30 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    public partial class CustomersTab : UserControl
+    internal partial class CustomersTab : UserControl
     {
         static List<Customer> _customers = new List<Customer>();
         Customer _currentCustomer = new Customer();
+        public List<Customer> Customers
+        {
+            get 
+            { 
+                return _customers; 
+            }
+            set
+            {
+                _customers = value;
+                CustomersListBox.Items.AddRange(_customers.ToArray());
+                UpdateInfo();
+            }
+        }
         public CustomersTab()
         {
             InitializeComponent();
-            ReadFile();
-            CustomersListBox.Items.AddRange(_customers.ToArray());
-        }
-
-        private void AddressLabel_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -36,7 +43,7 @@ namespace ObjectOrientedPractics.View.Tabs
             Customer customer = (Customer)CustomersListBox.SelectedItem;
             IdTextBox.Text = customer.Id.ToString();
             FullNameTextBox.Text = customer.FullName.ToString();
-            AddressTextBox.Text = customer.Address.ToString();
+            addressControl1.Address = customer.Address;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -77,22 +84,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int index = CustomersListBox.Items.IndexOf(_currentCustomer);
-            if (index == -1) return;
-            try
-            {
-                AddressTextBox.BackColor = AppColors.basicWhite;
-                string address = AddressTextBox.Text.ToString();
-                _currentCustomer.Address = address;
-                UpdateInfo();
-            }
-            catch
-            {
-                AddressTextBox.BackColor = AppColors.errors;
-            }
-        }
         /// <summary>
         /// Обновляет информацию в списке
         /// </summary>
@@ -111,55 +102,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             IdTextBox.Clear();
             FullNameTextBox.Clear();
-            AddressTextBox.Clear();
-        }
-        private static void WriteOnFile()
-        {
-            try
-            {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Customer>));
-                using (FileStream fs = new FileStream("customers.json", FileMode.OpenOrCreate))
-                {
-                    serializer.WriteObject(fs, _customers);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-        }
-        public static void OnFormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_customers.Count == 0) return;
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customers.json");
-            try
-            {
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Ошибка при удалении файла");
-            }
-            WriteOnFile();
-        }
-        private static void ReadFile()
-        {
-            try
-            {
-                using (FileStream fs = new FileStream("customers.json", FileMode.Open))
-                {
-                    DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Customer>));
-                    _customers = (List<Customer>)deserializer.ReadObject(fs);
-                    Customer.SetId(_customers[_customers.Count - 1].Id + 1);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
+            addressControl1.ClearInfo();
+        } 
     }
 }

@@ -59,25 +59,5 @@ namespace ObjectOrientedPractics.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap лекса_в_ахуе {
-            get {
-                object obj = ResourceManager.GetObject("лекса в ахуе", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Лекса_в_ахуе_поменьше {
-            get {
-                object obj = ResourceManager.GetObject("Лекса в ахуе поменьше", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

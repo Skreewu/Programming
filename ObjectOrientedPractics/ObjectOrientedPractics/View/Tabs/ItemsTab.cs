@@ -14,15 +14,31 @@ using System.Text.Json;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    public partial class ItemsTab : UserControl
+    internal partial class ItemsTab : UserControl
     {
-        IdGenerator idGenerator = new IdGenerator();
-        static List<Item> _items = new List<Item>();
+        List<Item> _items = new List<Item>();
         Item _currentItem = new Item();
+        public List<Item> Items
+        {
+            get 
+            { 
+                return _items; 
+            }
+            set 
+            { 
+                _items = value;
+                ItemsListBox.Items.AddRange(_items.ToArray());
+                UpdateInfo();
+            }
+        }
         public ItemsTab()
         {
             InitializeComponent();
-            ReadFile();
+            var categories = Enum.GetValues(typeof(Category));
+            foreach (var category in categories)
+            {
+                CategoryComboBox.Items.Add(category);
+            }
             ItemsListBox.Items.AddRange(_items.ToArray());
         }
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -34,6 +50,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Text = item.Cost.ToString();
             NameTextBox.Text = item.Name.ToString();
             DescriptionTextBox.Text = item.Info.ToString();
+            CategoryComboBox.SelectedIndex = (int)item.Category;
         }
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -122,52 +139,21 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Clear();
             IdTextBox.Clear();
         }
-        private static void WriteOnFile()
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int index = ItemsListBox.Items.IndexOf(_currentItem);
+            if (index == -1) return;
             try
             {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Item>));
-                using (FileStream fs = new FileStream("items.json", FileMode.OpenOrCreate))
-                {
-                    serializer.WriteObject(fs, _items);
-                }
+                CategoryComboBox.BackColor = AppColors.basicWhite;
+                Category category = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
+                _currentItem.Category = category;
+                UpdateInfo();
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.Message);
-            }
-        }
-        public static void OnFormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_items.Count == 0) return;
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "items.json");
-            try
-            {
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-            }
-            catch (Exception)
-            {
-                throw new Exception("Ошибка при удалении файла");
-            }
-            WriteOnFile();
-        }
-        private static void ReadFile()
-        {
-            try
-            {
-                using (FileStream fs = new FileStream("items.json", FileMode.Open))
-                {
-                    DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
-                    _items.AddRange((List<Item>)deserializer.ReadObject(fs));
-                    Item.SetId(_items[_items.Count - 1].Id + 1);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
+                CategoryComboBox.BackColor = AppColors.errors;
             }
         }
     }

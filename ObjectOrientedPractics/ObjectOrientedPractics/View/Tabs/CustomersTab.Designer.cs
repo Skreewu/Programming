@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Model.Address address1 = new Model.Address();
             CustomersListGroupBox = new GroupBox();
             RemoveButton = new Button();
             AddButton = new Button();
             CustomersListBox = new ListBox();
             CustomersInfoGroupBox = new GroupBox();
-            AddressLabel = new Label();
+            addressControl1 = new Controls.AddressControl();
             FullNameLabel = new Label();
             IdLabel = new Label();
             IdTextBox = new TextBox();
             FullNameTextBox = new TextBox();
-            AddressTextBox = new TextBox();
             CustomersListGroupBox.SuspendLayout();
             CustomersInfoGroupBox.SuspendLayout();
             SuspendLayout();
@@ -94,12 +94,11 @@
             // CustomersInfoGroupBox
             // 
             CustomersInfoGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            CustomersInfoGroupBox.Controls.Add(AddressLabel);
+            CustomersInfoGroupBox.Controls.Add(addressControl1);
             CustomersInfoGroupBox.Controls.Add(FullNameLabel);
             CustomersInfoGroupBox.Controls.Add(IdLabel);
             CustomersInfoGroupBox.Controls.Add(IdTextBox);
             CustomersInfoGroupBox.Controls.Add(FullNameTextBox);
-            CustomersInfoGroupBox.Controls.Add(AddressTextBox);
             CustomersInfoGroupBox.Location = new Point(357, 3);
             CustomersInfoGroupBox.Name = "CustomersInfoGroupBox";
             CustomersInfoGroupBox.Size = new Size(440, 497);
@@ -107,15 +106,20 @@
             CustomersInfoGroupBox.TabStop = false;
             CustomersInfoGroupBox.Text = "SelectedCustomer";
             // 
-            // AddressLabel
+            // addressControl1
             // 
-            AddressLabel.AutoSize = true;
-            AddressLabel.Location = new Point(6, 85);
-            AddressLabel.Name = "AddressLabel";
-            AddressLabel.Size = new Size(52, 15);
-            AddressLabel.TabIndex = 6;
-            AddressLabel.Text = "Address:";
-            AddressLabel.Click += AddressLabel_Click;
+            address1.Apartment = "0";
+            address1.Building = "0";
+            address1.City = "Город";
+            address1.Country = "Страна";
+            address1.Index = 100000;
+            address1.Street = "Улица";
+            addressControl1.Address = address1;
+            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            addressControl1.Location = new Point(0, 85);
+            addressControl1.Name = "addressControl1";
+            addressControl1.Size = new Size(430, 190);
+            addressControl1.TabIndex = 6;
             // 
             // FullNameLabel
             // 
@@ -156,17 +160,6 @@
             FullNameTextBox.TabIndex = 2;
             FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
             // 
-            // AddressTextBox
-            // 
-            AddressTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            AddressTextBox.BorderStyle = BorderStyle.FixedSingle;
-            AddressTextBox.Location = new Point(79, 85);
-            AddressTextBox.Multiline = true;
-            AddressTextBox.Name = "AddressTextBox";
-            AddressTextBox.Size = new Size(355, 85);
-            AddressTextBox.TabIndex = 3;
-            AddressTextBox.TextChanged += AddressTextBox_TextChanged;
-            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -188,11 +181,10 @@
         private Button RemoveButton;
         private Button AddButton;
         private ListBox CustomersListBox;
-        private Label AddressLabel;
         private Label FullNameLabel;
         private Label IdLabel;
         private TextBox IdTextBox;
         private TextBox FullNameTextBox;
-        private TextBox AddressTextBox;
+        private Controls.AddressControl addressControl1;
     }
 }
