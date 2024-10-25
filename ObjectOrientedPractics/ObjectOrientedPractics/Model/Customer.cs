@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics.Model
         /// Адрес покупателя.
         /// </summary>
         private Address _address;
-
+        private Cart _cart;
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
         /// </summary>
@@ -41,6 +41,17 @@ namespace ObjectOrientedPractics.Model
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
                 _fullName = value;
+            }
+        }
+        public Cart Cart
+        {
+            get 
+            { 
+                return _cart; 
+            }
+            set 
+            { 
+                _cart = value; 
             }
         }
         /// <summary>   
@@ -74,6 +85,7 @@ namespace ObjectOrientedPractics.Model
             Id = idGenerator.GetNextId();
             FullName = "Фамилия Имя";
             Address = new Address();
+            Cart = new Cart();
         }
         /// <summary>
         /// Предоставляет экземпляр класса в более удобной форме.
