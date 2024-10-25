@@ -87,10 +87,17 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            Order order = new Order(_currentCustomer.Address, _currentCustomer.Cart.Items);
+            Order order = new Order(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items));
+            _currentCustomer.Orders.Add(order);
             _currentCustomer.Cart.Items.Clear();
             CartListBox.Items.Clear();
-            _currentCustomer.Orders.Add(order);
+            AmountLabel.Text = "0";
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            _currentCustomer.Cart.Items.Clear();
+            CartListBox.Items.Clear();
             AmountLabel.Text = "0";
         }
     }

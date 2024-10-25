@@ -23,6 +23,8 @@ namespace ObjectOrientedPractics
 
             cartsTab1.Items = _store.Items;
             cartsTab1.Customers = _store.Customers;
+
+            ordersTab1.Customers = _store.Customers;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,76 +64,80 @@ namespace ObjectOrientedPractics
             {
                 cartsTab1.RefreshData();
             }
+            else if (tabControl1.SelectedIndex == 3)
+            {
+                ordersTab1.UpdateOrders();
+            }
         }
         /*private void WriteOnFileItems()
-{
-   try
-   {
-       DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Item>));
-       using (FileStream fs = new FileStream("items.json", FileMode.OpenOrCreate))
-       {
-           serializer.WriteObject(fs, _store.Items);
-       }
-   }
-   catch (Exception e)
-   {
-       throw new Exception(e.Message);
-   }
-}
-private void ReadFileItems()
-{
-   string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "items.json");
-   if (File.Exists(filePath))
-   {
-       try
-       {
-           using (FileStream fs = new FileStream("items.json", FileMode.Open))
+        {
+           try
            {
-               DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
-               _store.Items.AddRange((List<Item>)deserializer.ReadObject(fs));
-               Item.SetId(_store.Items[_store.Items.Count - 1].Id + 1);
+               DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Item>));
+               using (FileStream fs = new FileStream("items.json", FileMode.OpenOrCreate))
+               {
+                   serializer.WriteObject(fs, _store.Items);
+               }
            }
-       }
-       catch (Exception e)
-       {
-           throw new Exception(e.Message);
-       }
-   }
-}
-private void WriteOnFileCustomers()
-{
-   try
-   {
-       DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Customer>));
-       using (FileStream fs = new FileStream("customers.json", FileMode.OpenOrCreate))
-       {
-           serializer.WriteObject(fs, _store.Customers);
-       }
-   }
-   catch (Exception e)
-   {
-       Console.WriteLine("Exception: " + e.Message);
-   }
-}
-private void ReadFileCustomers()
-{
-   string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customers.json");
-   if (File.Exists(filePath))
-   {
-       try
-       {
-           using (FileStream fs = new FileStream("customers.json", FileMode.Open))
+           catch (Exception e)
            {
-               DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Customer>));
-               _store.Customers = (List<Customer>)deserializer.ReadObject(fs);
-               Customer.SetId(_store.Customers[_store.Customers.Count - 1].Id + 1);
+               throw new Exception(e.Message);
            }
-       }
-       catch (Exception e)
-       {
-           throw new Exception(e.Message);
-       }
-   }
-}*/
+        }
+        private void ReadFileItems()
+        {
+           string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "items.json");
+           if (File.Exists(filePath))
+           {
+               try
+               {
+                   using (FileStream fs = new FileStream("items.json", FileMode.Open))
+                   {
+                       DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
+                       _store.Items.AddRange((List<Item>)deserializer.ReadObject(fs));
+                       Item.SetId(_store.Items[_store.Items.Count - 1].Id + 1);
+                   }
+               }
+               catch (Exception e)
+               {
+                   throw new Exception(e.Message);
+               }
+           }
+        }
+        private void WriteOnFileCustomers()
+        {
+           try
+           {
+               DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Customer>));
+               using (FileStream fs = new FileStream("customers.json", FileMode.OpenOrCreate))
+               {
+                   serializer.WriteObject(fs, _store.Customers);
+               }
+           }
+           catch (Exception e)
+           {
+               Console.WriteLine("Exception: " + e.Message);
+           }
+        }
+        private void ReadFileCustomers()
+        {
+           string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customers.json");
+           if (File.Exists(filePath))
+           {
+               try
+               {
+                   using (FileStream fs = new FileStream("customers.json", FileMode.Open))
+                   {
+                       DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Customer>));
+                       _store.Customers = (List<Customer>)deserializer.ReadObject(fs);
+                       Customer.SetId(_store.Customers[_store.Customers.Count - 1].Id + 1);
+                   }
+               }
+               catch (Exception e)
+               {
+                   throw new Exception(e.Message);
+               }
+           }
+        }*/
     }
 }

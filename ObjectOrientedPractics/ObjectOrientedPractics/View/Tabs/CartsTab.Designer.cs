@@ -147,6 +147,7 @@
             ClearButton.TabIndex = 11;
             ClearButton.Text = "Clear Cart";
             ClearButton.UseVisualStyleBackColor = true;
+            ClearButton.Click += ClearButton_Click;
             // 
             // CartListBox
             // 

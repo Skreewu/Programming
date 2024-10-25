@@ -12,6 +12,7 @@ namespace ObjectOrientedPractics.Model
         private static IdGenerator idGenerator = new IdGenerator();
         public int Id {  get; private set; }
         public DateTime OrderCreationDate { get; }
+        public OrderStatus Status { get; set; }
         private Address _adress;
         private List<Item> _items;
         private double _amount;
@@ -57,6 +58,7 @@ namespace ObjectOrientedPractics.Model
             OrderCreationDate = DateTime.Now;
             Items = new List<Item>();
             Address = new Address();
+            Status = 0;  
         }
         public Order(Address address, List<Item> items)
         {
@@ -64,6 +66,7 @@ namespace ObjectOrientedPractics.Model
             OrderCreationDate = DateTime.Now;
             Items = items;
             Address = address;
+            Status = 0;
         }
     }
 }
