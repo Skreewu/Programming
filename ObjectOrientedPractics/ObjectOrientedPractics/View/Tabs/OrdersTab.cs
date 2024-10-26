@@ -34,6 +34,9 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Обновляет данные в таблице.
+        /// </summary>
         public void UpdateOrders()
         {
             _orders.Clear();

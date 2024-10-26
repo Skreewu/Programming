@@ -8,32 +8,59 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит данные о заказе пользователя.
+    /// </summary>
     [DataContract]
     internal class Order
     {
         private static IdGenerator idGenerator = new IdGenerator();
+        /// <summary>
+        /// ID заказа.
+        /// </summary>
         [DataMember]
         public int Id {  get; private set; }
+        /// <summary>
+        /// Возвращает дату создания заказа.
+        /// </summary>
         [DataMember]
         public DateTime OrderCreationDate { get; private set; }
+        /// <summary>
+        /// Задает и возвращает статус заказа.
+        /// </summary>  
         [DataMember]
         public OrderStatus Status { get; set; }
-        private Address _adress;
+        /// <summary>
+        /// Адрес доставки.
+        /// </summary>
+        private Address _address;
+        /// <summary>
+        /// Список товаров.
+        /// </summary>
         private List<Item> _items;
+        /// <summary>
+        /// Общая стоимость товаров.
+        /// </summary>
         private double _amount;
 
+        /// <summary>
+        /// Задает и возвращает адрес доставки.
+        /// </summary>
         [DataMember]
         public Address Address
         {
             get 
             { 
-                return _adress; 
+                return _address; 
             }
             set 
             { 
-                _adress = value; 
+                _address = value; 
             }
         }
+        /// <summary>
+        /// Задает и возвращает список товаров.
+        /// </summary>
         [DataMember]
         public List<Item> Items
         {
@@ -46,6 +73,9 @@ namespace ObjectOrientedPractics.Model
                 _items = value;
             }
         }
+        /// <summary>
+        /// Задает и возвращает общую стоимость товаров.
+        /// </summary>
         public double Amount
         {
             get
@@ -59,6 +89,9 @@ namespace ObjectOrientedPractics.Model
                 return _amount;
             }
         }
+        /// <summary>
+        /// Конструктор без параметров. Создает экземпляр класса <see cref="Order"/>
+        /// </summary>
         public Order()
         {
             Id = idGenerator.GetNextId();
@@ -67,6 +100,11 @@ namespace ObjectOrientedPractics.Model
             Address = new Address();
             Status = 0;  
         }
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Order"/>
+        /// </summary>
+        /// <param name="address">Адрес доставки.</param>
+        /// <param name="items">Список товаров.</param>
         public Order(Address address, List<Item> items)
         {
             Id = idGenerator.GetNextId();

@@ -44,8 +44,8 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Store()
         {
-            List<Item> Items = new List<Item>();
-            List<Customer> Customers = new List<Customer>();
+            Items = new List<Item>();
+            Customers = new List<Customer>();
         }
     }
 }
