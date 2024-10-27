@@ -139,5 +139,9 @@ namespace ObjectOrientedPractics.Model
             Building = "0";
             Apartment = "0";
         }
+        public override string ToString()
+        {
+            return $"{Country} г.{City}, ул.{Street} {Building}";
+        }
     }
 }

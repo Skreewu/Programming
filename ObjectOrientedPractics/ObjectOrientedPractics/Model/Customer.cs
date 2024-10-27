@@ -29,7 +29,14 @@ namespace ObjectOrientedPractics.Model
         /// Адрес покупателя.
         /// </summary>
         private Address _address;
-
+        /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        private Cart _cart;
+        /// <summary>
+        /// Список заказов покупателя.
+        /// </summary>
+        private List<Order> _orders;
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
         /// </summary>
@@ -43,6 +50,21 @@ namespace ObjectOrientedPractics.Model
                 _fullName = value;
             }
         }
+        /// <summary>
+        /// Задает и возвращает корзину покупателя
+        /// </summary>
+        [DataMember]
+        public Cart Cart
+        {
+            get 
+            { 
+                return _cart; 
+            }
+            set 
+            { 
+                _cart = value; 
+            }
+        }
         /// <summary>   
         /// Задает и возвращает адреса покупателя.
         /// </summary>
@@ -54,6 +76,15 @@ namespace ObjectOrientedPractics.Model
             {
                 _address = value;
             }
+        }
+        /// <summary>
+        /// Задает и возвращает список заказов покупателя
+        /// </summary>
+        [DataMember]
+        public List<Order> Orders
+        {
+            get { return _orders; }
+            set { _orders = value; }
         }
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer">
@@ -74,6 +105,8 @@ namespace ObjectOrientedPractics.Model
             Id = idGenerator.GetNextId();
             FullName = "Фамилия Имя";
             Address = new Address();
+            Cart = new Cart();
+            Orders = new List<Order>();
         }
         /// <summary>
         /// Предоставляет экземпляр класса в более удобной форме.

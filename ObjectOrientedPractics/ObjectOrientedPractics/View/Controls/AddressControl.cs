@@ -32,6 +32,36 @@ namespace ObjectOrientedPractics.View.Controls
                 ApartmentTextBox.Text = _address.Apartment;
             }
         }
+        public string IndexTextBoxValue
+        {
+            get { return IndexTextBox.Text; }
+            set { IndexTextBox.Text = value; }
+        }
+        public string CountryTextBoxValue
+        {
+            get { return CountryTextBox.Text; }
+            set { CountryTextBox.Text = value; }
+        }
+        public string CityTextBoxValue
+        {
+            get { return CityTextBox.Text; }
+            set { CityTextBox.Text = value; }
+        }
+        public string StreetTextBoxValue
+        {
+            get { return StreetTextBox.Text; }
+            set { StreetTextBox.Text = value; }
+        }
+        public string BuildingTextBoxValue
+        {
+            get { return BuildingTextBox.Text; }
+            set { BuildingTextBox.Text = value; }
+        }
+        public string ApartmentTextBoxValue
+        {
+            get { return ApartmentTextBox.Text; }
+            set { ApartmentTextBox.Text = value; }
+        }
         public AddressControl()
         {
             InitializeComponent();
@@ -131,6 +161,15 @@ namespace ObjectOrientedPractics.View.Controls
             StreetTextBox.Clear();
             BuildingTextBox.Clear();
             ApartmentTextBox.Clear();
+        }
+        public void ReadOnly()
+        {
+            IndexTextBox.ReadOnly = true;
+            CountryTextBox.ReadOnly = true;
+            CityTextBox.ReadOnly = true;
+            StreetTextBox.ReadOnly = true;
+            BuildingTextBox.ReadOnly = true;
+            ApartmentTextBox.ReadOnly = true;
         }
     }
 }
