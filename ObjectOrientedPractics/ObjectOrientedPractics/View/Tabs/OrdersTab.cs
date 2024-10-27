@@ -79,5 +79,15 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             addressControl1.ReadOnly();
         }
+
+        private void AmountTextLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

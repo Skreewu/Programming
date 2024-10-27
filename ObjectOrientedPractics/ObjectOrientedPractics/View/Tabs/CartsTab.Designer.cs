@@ -44,6 +44,7 @@
             // 
             // ItemsListBox
             // 
+            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.ItemHeight = 15;
             ItemsListBox.Location = new Point(0, 18);
@@ -83,6 +84,7 @@
             // 
             // AmountTextLabel
             // 
+            AmountTextLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             AmountTextLabel.AutoSize = true;
             AmountTextLabel.Location = new Point(712, 266);
             AmountTextLabel.Name = "AmountTextLabel";
@@ -92,6 +94,7 @@
             // 
             // AmountLabel
             // 
+            AmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
             AmountLabel.Location = new Point(712, 281);
@@ -102,6 +105,7 @@
             // 
             // CustomerComboBox
             // 
+            CustomerComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CustomerComboBox.FormattingEnabled = true;
             CustomerComboBox.Location = new Point(362, 15);
             CustomerComboBox.Name = "CustomerComboBox";
@@ -111,6 +115,7 @@
             // 
             // AddButton
             // 
+            AddButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             AddButton.Location = new Point(0, 448);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(108, 38);
@@ -121,9 +126,11 @@
             // 
             // CreateOrderButton
             // 
-            CreateOrderButton.Location = new Point(294, 317);
+            CreateOrderButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            CreateOrderButton.AutoSize = true;
+            CreateOrderButton.Location = new Point(294, 318);
             CreateOrderButton.Name = "CreateOrderButton";
-            CreateOrderButton.Size = new Size(108, 38);
+            CreateOrderButton.Size = new Size(108, 37);
             CreateOrderButton.TabIndex = 9;
             CreateOrderButton.Text = "Create Order";
             CreateOrderButton.UseVisualStyleBackColor = true;
@@ -131,6 +138,8 @@
             // 
             // RemoveButton
             // 
+            RemoveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            RemoveButton.AutoSize = true;
             RemoveButton.Location = new Point(544, 318);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(108, 37);
@@ -141,6 +150,9 @@
             // 
             // ClearButton
             // 
+            ClearButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            ClearButton.AutoEllipsis = true;
+            ClearButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClearButton.Location = new Point(658, 318);
             ClearButton.Name = "ClearButton";
             ClearButton.Size = new Size(108, 37);
@@ -151,6 +163,7 @@
             // 
             // CartListBox
             // 
+            CartListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CartListBox.FormattingEnabled = true;
             CartListBox.ItemHeight = 15;
             CartListBox.Location = new Point(294, 79);

@@ -141,6 +141,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(810, 533);
             Controls.Add(tabControl1);
+            MinimumSize = new Size(826, 572);
             Name = "MainForm";
             Text = "Form1";
             FormClosing += MainForm_FormClosing;
