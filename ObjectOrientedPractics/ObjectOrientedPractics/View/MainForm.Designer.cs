@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            tabControl1 = new TabControl();
+            TabControl = new TabControl();
             ItemsTabControl = new TabPage();
             itemsTab1 = new View.Tabs.ItemsTab();
             CustomersTabControl = new TabPage();
@@ -38,26 +38,30 @@
             cartsTab1 = new View.Tabs.CartsTab();
             OrderControl = new TabPage();
             ordersTab1 = new View.Tabs.OrdersTab();
-            tabControl1.SuspendLayout();
+            PriorityOrdersPage = new TabPage();
+            priorityOrdersTab1 = new View.Tabs.PriorityOrdersTab();
+            TabControl.SuspendLayout();
             ItemsTabControl.SuspendLayout();
             CustomersTabControl.SuspendLayout();
             CartsControl.SuspendLayout();
             OrderControl.SuspendLayout();
+            PriorityOrdersPage.SuspendLayout();
             SuspendLayout();
             // 
-            // tabControl1
+            // TabControl
             // 
-            tabControl1.Controls.Add(ItemsTabControl);
-            tabControl1.Controls.Add(CustomersTabControl);
-            tabControl1.Controls.Add(CartsControl);
-            tabControl1.Controls.Add(OrderControl);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(810, 533);
-            tabControl1.TabIndex = 0;
-            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+            TabControl.Controls.Add(ItemsTabControl);
+            TabControl.Controls.Add(CustomersTabControl);
+            TabControl.Controls.Add(CartsControl);
+            TabControl.Controls.Add(OrderControl);
+            TabControl.Controls.Add(PriorityOrdersPage);
+            TabControl.Dock = DockStyle.Fill;
+            TabControl.Location = new Point(0, 0);
+            TabControl.Name = "TabControl";
+            TabControl.SelectedIndex = 0;
+            TabControl.Size = new Size(810, 533);
+            TabControl.TabIndex = 0;
+            TabControl.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // ItemsTabControl
             // 
@@ -135,27 +139,47 @@
             ordersTab1.Size = new Size(796, 499);
             ordersTab1.TabIndex = 0;
             // 
+            // PriorityOrdersPage
+            // 
+            PriorityOrdersPage.Controls.Add(priorityOrdersTab1);
+            PriorityOrdersPage.Location = new Point(4, 24);
+            PriorityOrdersPage.Name = "PriorityOrdersPage";
+            PriorityOrdersPage.Padding = new Padding(3);
+            PriorityOrdersPage.Size = new Size(802, 505);
+            PriorityOrdersPage.TabIndex = 4;
+            PriorityOrdersPage.Text = "Priority Orders";
+            PriorityOrdersPage.UseVisualStyleBackColor = true;
+            // 
+            // priorityOrdersTab1
+            // 
+            priorityOrdersTab1.Dock = DockStyle.Fill;
+            priorityOrdersTab1.Location = new Point(3, 3);
+            priorityOrdersTab1.Name = "priorityOrdersTab1";
+            priorityOrdersTab1.Size = new Size(796, 499);
+            priorityOrdersTab1.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(810, 533);
-            Controls.Add(tabControl1);
+            Controls.Add(TabControl);
             MinimumSize = new Size(826, 572);
             Name = "MainForm";
             Text = "Form1";
             FormClosing += MainForm_FormClosing;
-            tabControl1.ResumeLayout(false);
+            TabControl.ResumeLayout(false);
             ItemsTabControl.ResumeLayout(false);
             CustomersTabControl.ResumeLayout(false);
             CartsControl.ResumeLayout(false);
             OrderControl.ResumeLayout(false);
+            PriorityOrdersPage.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TabControl tabControl1;
+        private TabControl TabControl;
         private TabPage ItemsTabControl;
         private TabPage CustomersTabControl;
         private View.Tabs.ItemsTab itemsTab1;
@@ -164,5 +188,7 @@
         private View.Tabs.CartsTab cartsTab1;
         private TabPage OrderControl;
         private View.Tabs.OrdersTab ordersTab1;
+        private TabPage PriorityOrdersPage;
+        private View.Tabs.PriorityOrdersTab priorityOrdersTab1;
     }
 }

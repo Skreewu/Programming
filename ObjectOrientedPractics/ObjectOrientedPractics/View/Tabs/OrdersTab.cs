@@ -33,6 +33,11 @@ namespace ObjectOrientedPractics.View.Tabs
         public OrdersTab()
         {
             InitializeComponent();
+            var orderStatuses = Enum.GetValues(typeof(OrderStatus));
+            foreach (var status in orderStatuses)
+            {
+                StatusComboBox.Items.Add(status);
+            }
         }
         /// <summary>
         /// Обновляет данные в таблице.

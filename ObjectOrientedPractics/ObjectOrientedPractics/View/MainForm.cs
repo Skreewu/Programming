@@ -25,6 +25,8 @@ namespace ObjectOrientedPractics
             cartsTab1.Customers = _store.Customers;
 
             ordersTab1.Customers = _store.Customers;
+
+            priorityOrdersTab1.Items = _store.Items;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,11 +62,11 @@ namespace ObjectOrientedPractics
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 2)
+            if (TabControl.SelectedIndex == 2)
             {
                 cartsTab1.RefreshData();
             }
-            else if (tabControl1.SelectedIndex == 3)
+            else if (TabControl.SelectedIndex == 3)
             {
                 ordersTab1.UpdateOrders();
             }
