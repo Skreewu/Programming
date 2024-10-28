@@ -120,7 +120,7 @@
             // 
             AmountTextLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             AmountTextLabel.AutoSize = true;
-            AmountTextLabel.Location = new Point(367, 744);
+            AmountTextLabel.Location = new Point(367, 1224);
             AmountTextLabel.Name = "AmountTextLabel";
             AmountTextLabel.Size = new Size(54, 15);
             AmountTextLabel.TabIndex = 6;
@@ -132,7 +132,7 @@
             AmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(398, 759);
+            AmountLabel.Location = new Point(398, 1239);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.RightToLeft = RightToLeft.Yes;
             AmountLabel.Size = new Size(23, 25);
@@ -157,7 +157,7 @@
             addressControl1.IndexTextBoxValue = "100000";
             addressControl1.Location = new Point(-1, 112);
             addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(418, 487);
+            addressControl1.Size = new Size(418, 967);
             addressControl1.StreetTextBoxValue = "Улица";
             addressControl1.TabIndex = 8;
             addressControl1.Load += addressControl1_Load;
@@ -197,7 +197,7 @@
             ItemsListBox.ItemHeight = 15;
             ItemsListBox.Location = new Point(5, 316);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(413, 409);
+            ItemsListBox.Size = new Size(413, 859);
             ItemsListBox.TabIndex = 12;
             // 
             // OrdersDataGrid
@@ -269,7 +269,7 @@
             GroupBox.Controls.Add(IdTextBox);
             GroupBox.Location = new Point(346, 0);
             GroupBox.Name = "GroupBox";
-            GroupBox.Size = new Size(424, 784);
+            GroupBox.Size = new Size(424, 1264);
             GroupBox.TabIndex = 14;
             GroupBox.TabStop = false;
             GroupBox.Enter += GroupBox_Enter;
