@@ -39,6 +39,7 @@
             IdLabel = new Label();
             IdTextBox = new TextBox();
             FullNameTextBox = new TextBox();
+            IsPriorityCheckBox = new CheckBox();
             CustomersListGroupBox.SuspendLayout();
             CustomersInfoGroupBox.SuspendLayout();
             SuspendLayout();
@@ -94,6 +95,7 @@
             // CustomersInfoGroupBox
             // 
             CustomersInfoGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CustomersInfoGroupBox.Controls.Add(IsPriorityCheckBox);
             CustomersInfoGroupBox.Controls.Add(addressControl1);
             CustomersInfoGroupBox.Controls.Add(FullNameLabel);
             CustomersInfoGroupBox.Controls.Add(IdLabel);
@@ -116,9 +118,15 @@
             address1.Street = "Улица";
             addressControl1.Address = address1;
             addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl1.Location = new Point(0, 85);
+            addressControl1.ApartmentTextBoxValue = "0";
+            addressControl1.BuildingTextBoxValue = "0";
+            addressControl1.CityTextBoxValue = "Город";
+            addressControl1.CountryTextBoxValue = "Страна";
+            addressControl1.IndexTextBoxValue = "100000";
+            addressControl1.Location = new Point(0, 117);
             addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(430, 190);
+            addressControl1.Size = new Size(434, 193);
+            addressControl1.StreetTextBoxValue = "Улица";
             addressControl1.TabIndex = 6;
             // 
             // FullNameLabel
@@ -160,6 +168,17 @@
             FullNameTextBox.TabIndex = 2;
             FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
             // 
+            // IsPriorityCheckBox
+            // 
+            IsPriorityCheckBox.AutoSize = true;
+            IsPriorityCheckBox.Location = new Point(79, 92);
+            IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            IsPriorityCheckBox.Size = new Size(75, 19);
+            IsPriorityCheckBox.TabIndex = 7;
+            IsPriorityCheckBox.Text = "Is Priority";
+            IsPriorityCheckBox.UseVisualStyleBackColor = true;
+            IsPriorityCheckBox.CheckedChanged += IsPriorityCheckBox_CheckedChanged;
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -186,5 +205,6 @@
         private TextBox IdTextBox;
         private TextBox FullNameTextBox;
         private Controls.AddressControl addressControl1;
+        private CheckBox IsPriorityCheckBox;
     }
 }

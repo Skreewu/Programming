@@ -17,11 +17,6 @@ namespace ObjectOrientedPractics.Model
     {
         private static IdGenerator idGenerator = new IdGenerator();
         /// <summary>
-        /// Возвращает id покупателя
-        /// </summary>
-        [DataMember]
-        public int Id { get; private set; }
-        /// <summary>
         /// Имя и фамилия покупателя.
         /// </summary>
         private string _fullName;
@@ -37,6 +32,16 @@ namespace ObjectOrientedPractics.Model
         /// Список заказов покупателя.
         /// </summary>
         private List<Order> _orders;
+        /// <summary>
+        /// Возвращает id покупателя
+        /// </summary>
+        [DataMember]
+        public int Id { get; private set; }
+        /// <summary>
+        /// Задает и возвращает, является ли покупатель приоритетным
+        /// </summary>
+        [DataMember]
+        public bool IsPriority { get; set; }
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
         /// </summary>
@@ -96,6 +101,7 @@ namespace ObjectOrientedPractics.Model
             Id = idGenerator.GetNextId();
             FullName = fullname;
             Address = address;
+            IsPriority = false;
         }
         /// <summary>
         /// Конструктор по умолчанию. Создает экзепляр класса <see cref="Customer"/>
@@ -107,6 +113,7 @@ namespace ObjectOrientedPractics.Model
             Address = new Address();
             Cart = new Cart();
             Orders = new List<Order>();
+            IsPriority = false;
         }
         /// <summary>
         /// Предоставляет экземпляр класса в более удобной форме.

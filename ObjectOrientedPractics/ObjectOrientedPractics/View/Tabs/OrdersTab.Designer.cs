@@ -28,20 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address1 = new Model.Address();
+            Model.Address address2 = new Model.Address();
             OrdersLabel = new Label();
-            SelectedOrderLabel = new Label();
-            IdLabel = new Label();
-            DateLabel = new Label();
-            StatusLabel = new Label();
-            OrderItemsLabel = new Label();
-            AmountTextLabel = new Label();
-            AmountLabel = new Label();
-            addressControl1 = new Controls.AddressControl();
-            IdTextBox = new TextBox();
-            DateTextBox = new TextBox();
-            StatusComboBox = new ComboBox();
-            ItemsListBox = new ListBox();
             OrdersDataGrid = new DataGridView();
             IdColumn = new DataGridViewTextBoxColumn();
             DateColumn = new DataGridViewTextBoxColumn();
@@ -49,9 +37,24 @@
             AddressColumn = new DataGridViewTextBoxColumn();
             AmountColumn = new DataGridViewTextBoxColumn();
             StatusColumn = new DataGridViewTextBoxColumn();
-            GroupBox = new GroupBox();
+            IdTextBox = new TextBox();
+            DateTextBox = new TextBox();
+            StatusLabel = new Label();
+            StatusComboBox = new ComboBox();
+            addressControl1 = new Controls.AddressControl();
+            DateLabel = new Label();
+            ItemsListBox = new ListBox();
+            OrderItemsLabel = new Label();
+            IdLabel = new Label();
+            SelectedOrderLabel = new Label();
+            DeliveryTimeLabel = new Label();
+            PriorityOptionsLabel = new Label();
+            DeliveryTimeComboBox = new ComboBox();
+            AmountTextLabel = new Label();
+            AmountLabel = new Label();
+            PriorityOptionsPanel = new Panel();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGrid).BeginInit();
-            GroupBox.SuspendLayout();
+            PriorityOptionsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // OrdersLabel
@@ -64,141 +67,6 @@
             OrdersLabel.TabIndex = 0;
             OrdersLabel.Text = "Orders";
             // 
-            // SelectedOrderLabel
-            // 
-            SelectedOrderLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            SelectedOrderLabel.AutoSize = true;
-            SelectedOrderLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            SelectedOrderLabel.Location = new Point(5, 10);
-            SelectedOrderLabel.Name = "SelectedOrderLabel";
-            SelectedOrderLabel.Size = new Size(95, 15);
-            SelectedOrderLabel.TabIndex = 1;
-            SelectedOrderLabel.Text = "Selected Order";
-            // 
-            // IdLabel
-            // 
-            IdLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            IdLabel.AutoSize = true;
-            IdLabel.Location = new Point(5, 28);
-            IdLabel.Name = "IdLabel";
-            IdLabel.Size = new Size(24, 15);
-            IdLabel.TabIndex = 2;
-            IdLabel.Text = "ID: ";
-            // 
-            // DateLabel
-            // 
-            DateLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            DateLabel.AutoSize = true;
-            DateLabel.Location = new Point(5, 57);
-            DateLabel.Name = "DateLabel";
-            DateLabel.Size = new Size(51, 15);
-            DateLabel.TabIndex = 3;
-            DateLabel.Text = "Created:";
-            // 
-            // StatusLabel
-            // 
-            StatusLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            StatusLabel.AutoSize = true;
-            StatusLabel.Location = new Point(5, 86);
-            StatusLabel.Name = "StatusLabel";
-            StatusLabel.Size = new Size(42, 15);
-            StatusLabel.TabIndex = 4;
-            StatusLabel.Text = "Status:";
-            // 
-            // OrderItemsLabel
-            // 
-            OrderItemsLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            OrderItemsLabel.AutoSize = true;
-            OrderItemsLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            OrderItemsLabel.Location = new Point(5, 298);
-            OrderItemsLabel.Name = "OrderItemsLabel";
-            OrderItemsLabel.Size = new Size(77, 15);
-            OrderItemsLabel.TabIndex = 5;
-            OrderItemsLabel.Text = "Order Items";
-            // 
-            // AmountTextLabel
-            // 
-            AmountTextLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            AmountTextLabel.AutoSize = true;
-            AmountTextLabel.Location = new Point(367, 3592);
-            AmountTextLabel.Name = "AmountTextLabel";
-            AmountTextLabel.Size = new Size(54, 15);
-            AmountTextLabel.TabIndex = 6;
-            AmountTextLabel.Text = "Amount:";
-            AmountTextLabel.Click += AmountTextLabel_Click;
-            // 
-            // AmountLabel
-            // 
-            AmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            AmountLabel.AutoSize = true;
-            AmountLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(398, 3607);
-            AmountLabel.Name = "AmountLabel";
-            AmountLabel.RightToLeft = RightToLeft.Yes;
-            AmountLabel.Size = new Size(23, 25);
-            AmountLabel.TabIndex = 7;
-            AmountLabel.Text = "0";
-            // 
-            // addressControl1
-            // 
-            address1.Apartment = "0";
-            address1.Building = "0";
-            address1.City = "Город";
-            address1.Country = "Страна";
-            address1.Index = 100000;
-            address1.Street = "Улица";
-            addressControl1.Address = address1;
-            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            addressControl1.ApartmentTextBoxValue = "0";
-            addressControl1.BuildingTextBoxValue = "0";
-            addressControl1.CityTextBoxValue = "Город";
-            addressControl1.CountryTextBoxValue = "Страна";
-            addressControl1.ImeMode = ImeMode.NoControl;
-            addressControl1.IndexTextBoxValue = "100000";
-            addressControl1.Location = new Point(-1, 112);
-            addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(418, 3335);
-            addressControl1.StreetTextBoxValue = "Улица";
-            addressControl1.TabIndex = 8;
-            addressControl1.Load += addressControl1_Load;
-            // 
-            // IdTextBox
-            // 
-            IdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            IdTextBox.Location = new Point(80, 28);
-            IdTextBox.Name = "IdTextBox";
-            IdTextBox.ReadOnly = true;
-            IdTextBox.Size = new Size(138, 23);
-            IdTextBox.TabIndex = 9;
-            // 
-            // DateTextBox
-            // 
-            DateTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            DateTextBox.Location = new Point(80, 54);
-            DateTextBox.Name = "DateTextBox";
-            DateTextBox.ReadOnly = true;
-            DateTextBox.Size = new Size(138, 23);
-            DateTextBox.TabIndex = 10;
-            // 
-            // StatusComboBox
-            // 
-            StatusComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            StatusComboBox.FormattingEnabled = true;
-            StatusComboBox.Location = new Point(80, 83);
-            StatusComboBox.Name = "StatusComboBox";
-            StatusComboBox.Size = new Size(138, 23);
-            StatusComboBox.TabIndex = 11;
-            // 
-            // ItemsListBox
-            // 
-            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            ItemsListBox.FormattingEnabled = true;
-            ItemsListBox.ItemHeight = 15;
-            ItemsListBox.Location = new Point(5, 316);
-            ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(413, 3079);
-            ItemsListBox.TabIndex = 12;
-            // 
             // OrdersDataGrid
             // 
             OrdersDataGrid.AllowUserToAddRows = false;
@@ -207,10 +75,10 @@
             OrdersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             OrdersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OrdersDataGrid.Columns.AddRange(new DataGridViewColumn[] { IdColumn, DateColumn, NameColumn, AddressColumn, AmountColumn, StatusColumn });
-            OrdersDataGrid.Location = new Point(3, 18);
+            OrdersDataGrid.Location = new Point(3, 21);
             OrdersDataGrid.MultiSelect = false;
             OrdersDataGrid.Name = "OrdersDataGrid";
-            OrdersDataGrid.Size = new Size(340, 459);
+            OrdersDataGrid.Size = new Size(641, 603);
             OrdersDataGrid.TabIndex = 13;
             OrdersDataGrid.RowHeaderMouseClick += OrdersDataGrid_RowHeaderMouseClick;
             // 
@@ -250,41 +118,208 @@
             StatusColumn.Name = "StatusColumn";
             StatusColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // GroupBox
+            // IdTextBox
             // 
-            GroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            GroupBox.AutoSize = true;
-            GroupBox.Controls.Add(SelectedOrderLabel);
-            GroupBox.Controls.Add(IdLabel);
-            GroupBox.Controls.Add(OrderItemsLabel);
-            GroupBox.Controls.Add(ItemsListBox);
-            GroupBox.Controls.Add(AmountLabel);
-            GroupBox.Controls.Add(DateLabel);
-            GroupBox.Controls.Add(AmountTextLabel);
-            GroupBox.Controls.Add(addressControl1);
-            GroupBox.Controls.Add(StatusComboBox);
-            GroupBox.Controls.Add(StatusLabel);
-            GroupBox.Controls.Add(DateTextBox);
-            GroupBox.Controls.Add(IdTextBox);
-            GroupBox.Location = new Point(346, 0);
-            GroupBox.Name = "GroupBox";
-            GroupBox.Size = new Size(424, 3632);
-            GroupBox.TabIndex = 14;
-            GroupBox.TabStop = false;
-            GroupBox.Enter += GroupBox_Enter;
+            IdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            IdTextBox.Location = new Point(734, 28);
+            IdTextBox.Name = "IdTextBox";
+            IdTextBox.ReadOnly = true;
+            IdTextBox.Size = new Size(138, 23);
+            IdTextBox.TabIndex = 9;
+            // 
+            // DateTextBox
+            // 
+            DateTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            DateTextBox.Location = new Point(734, 54);
+            DateTextBox.Name = "DateTextBox";
+            DateTextBox.ReadOnly = true;
+            DateTextBox.Size = new Size(138, 23);
+            DateTextBox.TabIndex = 10;
+            // 
+            // StatusLabel
+            // 
+            StatusLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            StatusLabel.AutoSize = true;
+            StatusLabel.Location = new Point(659, 86);
+            StatusLabel.Name = "StatusLabel";
+            StatusLabel.Size = new Size(42, 15);
+            StatusLabel.TabIndex = 4;
+            StatusLabel.Text = "Status:";
+            // 
+            // StatusComboBox
+            // 
+            StatusComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            StatusComboBox.FormattingEnabled = true;
+            StatusComboBox.Location = new Point(734, 83);
+            StatusComboBox.Name = "StatusComboBox";
+            StatusComboBox.Size = new Size(138, 23);
+            StatusComboBox.TabIndex = 11;
+            // 
+            // addressControl1
+            // 
+            address2.Apartment = "0";
+            address2.Building = "0";
+            address2.City = "Город";
+            address2.Country = "Страна";
+            address2.Index = 100000;
+            address2.Street = "Улица";
+            addressControl1.Address = address2;
+            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            addressControl1.ApartmentTextBoxValue = "0";
+            addressControl1.BuildingTextBoxValue = "0";
+            addressControl1.CityTextBoxValue = "Город";
+            addressControl1.CountryTextBoxValue = "Страна";
+            addressControl1.ImeMode = ImeMode.NoControl;
+            addressControl1.IndexTextBoxValue = "100000";
+            addressControl1.Location = new Point(650, 105);
+            addressControl1.Name = "addressControl1";
+            addressControl1.Size = new Size(517, 183);
+            addressControl1.StreetTextBoxValue = "Улица";
+            addressControl1.TabIndex = 8;
+            addressControl1.Load += addressControl1_Load;
+            // 
+            // DateLabel
+            // 
+            DateLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            DateLabel.AutoSize = true;
+            DateLabel.Location = new Point(659, 57);
+            DateLabel.Name = "DateLabel";
+            DateLabel.Size = new Size(51, 15);
+            DateLabel.TabIndex = 3;
+            DateLabel.Text = "Created:";
+            // 
+            // ItemsListBox
+            // 
+            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            ItemsListBox.FormattingEnabled = true;
+            ItemsListBox.ItemHeight = 15;
+            ItemsListBox.Location = new Point(656, 314);
+            ItemsListBox.Name = "ItemsListBox";
+            ItemsListBox.Size = new Size(511, 184);
+            ItemsListBox.TabIndex = 12;
+            // 
+            // OrderItemsLabel
+            // 
+            OrderItemsLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            OrderItemsLabel.AutoSize = true;
+            OrderItemsLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            OrderItemsLabel.Location = new Point(656, 291);
+            OrderItemsLabel.Name = "OrderItemsLabel";
+            OrderItemsLabel.Size = new Size(77, 15);
+            OrderItemsLabel.TabIndex = 5;
+            OrderItemsLabel.Text = "Order Items";
+            // 
+            // IdLabel
+            // 
+            IdLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            IdLabel.AutoSize = true;
+            IdLabel.Location = new Point(659, 28);
+            IdLabel.Name = "IdLabel";
+            IdLabel.Size = new Size(24, 15);
+            IdLabel.TabIndex = 2;
+            IdLabel.Text = "ID: ";
+            // 
+            // SelectedOrderLabel
+            // 
+            SelectedOrderLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            SelectedOrderLabel.AutoSize = true;
+            SelectedOrderLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            SelectedOrderLabel.Location = new Point(659, 10);
+            SelectedOrderLabel.Name = "SelectedOrderLabel";
+            SelectedOrderLabel.Size = new Size(95, 15);
+            SelectedOrderLabel.TabIndex = 1;
+            SelectedOrderLabel.Text = "Selected Order";
+            // 
+            // DeliveryTimeLabel
+            // 
+            DeliveryTimeLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            DeliveryTimeLabel.AutoSize = true;
+            DeliveryTimeLabel.Location = new Point(0, 21);
+            DeliveryTimeLabel.Name = "DeliveryTimeLabel";
+            DeliveryTimeLabel.Size = new Size(81, 15);
+            DeliveryTimeLabel.TabIndex = 16;
+            DeliveryTimeLabel.Text = "Delivery Time:";
+            // 
+            // PriorityOptionsLabel
+            // 
+            PriorityOptionsLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            PriorityOptionsLabel.AutoSize = true;
+            PriorityOptionsLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            PriorityOptionsLabel.Location = new Point(0, 0);
+            PriorityOptionsLabel.Name = "PriorityOptionsLabel";
+            PriorityOptionsLabel.Size = new Size(104, 15);
+            PriorityOptionsLabel.TabIndex = 15;
+            PriorityOptionsLabel.Text = "Priority Options";
+            // 
+            // DeliveryTimeComboBox
+            // 
+            DeliveryTimeComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            DeliveryTimeComboBox.FormattingEnabled = true;
+            DeliveryTimeComboBox.Items.AddRange(new object[] { "9:00 – 11:00", "11:00 – 13:00", "13:00 – 15:00", "15:00 – 17:00", "17:00 – 19:00", "19:00 – 21:00" });
+            DeliveryTimeComboBox.Location = new Point(87, 18);
+            DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            DeliveryTimeComboBox.Size = new Size(121, 23);
+            DeliveryTimeComboBox.TabIndex = 17;
+            DeliveryTimeComboBox.SelectedIndexChanged += DeliveryTimeComboBox_SelectedIndexChanged;
+            // 
+            // AmountTextLabel
+            // 
+            AmountTextLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            AmountTextLabel.AutoSize = true;
+            AmountTextLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            AmountTextLabel.Location = new Point(1086, 501);
+            AmountTextLabel.Name = "AmountTextLabel";
+            AmountTextLabel.Size = new Size(60, 15);
+            AmountTextLabel.TabIndex = 18;
+            AmountTextLabel.Text = "Amount:";
+            // 
+            // AmountLabel
+            // 
+            AmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            AmountLabel.AutoSize = true;
+            AmountLabel.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            AmountLabel.Location = new Point(1086, 516);
+            AmountLabel.Name = "AmountLabel";
+            AmountLabel.Size = new Size(23, 25);
+            AmountLabel.TabIndex = 19;
+            AmountLabel.Text = "0";
+            // 
+            // PriorityOptionsPanel
+            // 
+            PriorityOptionsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PriorityOptionsPanel.Controls.Add(PriorityOptionsLabel);
+            PriorityOptionsPanel.Controls.Add(DeliveryTimeLabel);
+            PriorityOptionsPanel.Controls.Add(DeliveryTimeComboBox);
+            PriorityOptionsPanel.Location = new Point(949, 10);
+            PriorityOptionsPanel.Name = "PriorityOptionsPanel";
+            PriorityOptionsPanel.Size = new Size(208, 41);
+            PriorityOptionsPanel.TabIndex = 20;
+            PriorityOptionsPanel.Visible = false;
             // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(GroupBox);
+            Controls.Add(PriorityOptionsPanel);
+            Controls.Add(AmountLabel);
+            Controls.Add(AmountTextLabel);
             Controls.Add(OrdersDataGrid);
+            Controls.Add(SelectedOrderLabel);
             Controls.Add(OrdersLabel);
+            Controls.Add(IdLabel);
+            Controls.Add(IdTextBox);
+            Controls.Add(OrderItemsLabel);
+            Controls.Add(DateTextBox);
+            Controls.Add(ItemsListBox);
+            Controls.Add(StatusLabel);
+            Controls.Add(StatusComboBox);
+            Controls.Add(DateLabel);
+            Controls.Add(addressControl1);
             Name = "OrdersTab";
-            Size = new Size(770, 480);
+            Size = new Size(1170, 627);
             ((System.ComponentModel.ISupportInitialize)OrdersDataGrid).EndInit();
-            GroupBox.ResumeLayout(false);
-            GroupBox.PerformLayout();
+            PriorityOptionsPanel.ResumeLayout(false);
+            PriorityOptionsPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -292,18 +327,6 @@
         #endregion
 
         private Label OrdersLabel;
-        private Label SelectedOrderLabel;
-        private Label IdLabel;
-        private Label DateLabel;
-        private Label StatusLabel;
-        private Label OrderItemsLabel;
-        private Label AmountTextLabel;
-        private Label AmountLabel;
-        private Controls.AddressControl addressControl1;
-        private TextBox IdTextBox;
-        private TextBox DateTextBox;
-        private ComboBox StatusComboBox;
-        private ListBox ItemsListBox;
         private DataGridView OrdersDataGrid;
         private DataGridViewTextBoxColumn IdColumn;
         private DataGridViewTextBoxColumn DateColumn;
@@ -311,6 +334,21 @@
         private DataGridViewTextBoxColumn AddressColumn;
         private DataGridViewTextBoxColumn AmountColumn;
         private DataGridViewTextBoxColumn StatusColumn;
-        private GroupBox GroupBox;
+        private TextBox IdTextBox;
+        private TextBox DateTextBox;
+        private Label StatusLabel;
+        private ComboBox StatusComboBox;
+        private Controls.AddressControl addressControl1;
+        private Label DateLabel;
+        private ListBox ItemsListBox;
+        private Label OrderItemsLabel;
+        private Label IdLabel;
+        private Label SelectedOrderLabel;
+        private Label DeliveryTimeLabel;
+        private Label PriorityOptionsLabel;
+        private ComboBox DeliveryTimeComboBox;
+        private Label AmountTextLabel;
+        private Label AmountLabel;
+        private Panel PriorityOptionsPanel;
     }
 }

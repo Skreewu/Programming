@@ -20,9 +20,9 @@ namespace ObjectOrientedPractics.View.Tabs
         Customer _currentCustomer = new Customer();
         public List<Customer> Customers
         {
-            get 
-            { 
-                return _customers; 
+            get
+            {
+                return _customers;
             }
             set
             {
@@ -40,10 +40,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CustomersListBox.SelectedIndex == -1) return;
             _currentCustomer = _customers[CustomersListBox.SelectedIndex];
-            Customer customer = (Customer)CustomersListBox.SelectedItem;
-            IdTextBox.Text = customer.Id.ToString();
-            FullNameTextBox.Text = customer.FullName.ToString();
-            addressControl1.Address = customer.Address;
+            IdTextBox.Text = _currentCustomer.Id.ToString();
+            FullNameTextBox.Text = _currentCustomer.FullName.ToString();
+            addressControl1.Address = _currentCustomer.Address;
+            IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -103,6 +103,18 @@ namespace ObjectOrientedPractics.View.Tabs
             IdTextBox.Clear();
             FullNameTextBox.Clear();
             addressControl1.ClearInfo();
-        } 
+        }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (IsPriorityCheckBox.Checked == true)
+            {
+                _currentCustomer.IsPriority = true;
+            }
+            else
+            {
+                _currentCustomer.IsPriority = false;
+            }
+        }
     }
 }

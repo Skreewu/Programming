@@ -23,10 +23,10 @@ namespace ObjectOrientedPractics.Model
         {
         }
 
-        public PriorityOrder(Address address, List<Item> items, DateTime desiredDeliveryDate, DeliveryTimeSlot desiredDeliveryTimeSlot) : base(address, items)
+        public PriorityOrder(Address address, List<Item> items) : base(address, items)
         {
-            DesiredDeliveryDate = desiredDeliveryDate;
-            DesiredDeliveryTimeSlot = desiredDeliveryTimeSlot;
+            DesiredDeliveryDate = DateTime.MaxValue;
+            DesiredDeliveryTimeSlot = 0;
         }
     }
 }

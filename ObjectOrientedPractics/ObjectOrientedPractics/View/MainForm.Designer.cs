@@ -59,7 +59,7 @@
             TabControl.Location = new Point(0, 0);
             TabControl.Name = "TabControl";
             TabControl.SelectedIndex = 0;
-            TabControl.Size = new Size(810, 533);
+            TabControl.Size = new Size(1184, 661);
             TabControl.TabIndex = 0;
             TabControl.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
@@ -69,7 +69,7 @@
             ItemsTabControl.Location = new Point(4, 24);
             ItemsTabControl.Name = "ItemsTabControl";
             ItemsTabControl.Padding = new Padding(3);
-            ItemsTabControl.Size = new Size(802, 505);
+            ItemsTabControl.Size = new Size(1176, 633);
             ItemsTabControl.TabIndex = 0;
             ItemsTabControl.Text = "Items";
             ItemsTabControl.UseVisualStyleBackColor = true;
@@ -79,7 +79,7 @@
             itemsTab1.Dock = DockStyle.Fill;
             itemsTab1.Location = new Point(3, 3);
             itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(796, 499);
+            itemsTab1.Size = new Size(1170, 627);
             itemsTab1.TabIndex = 0;
             // 
             // CustomersTabControl
@@ -126,7 +126,7 @@
             OrderControl.Location = new Point(4, 24);
             OrderControl.Name = "OrderControl";
             OrderControl.Padding = new Padding(3);
-            OrderControl.Size = new Size(802, 505);
+            OrderControl.Size = new Size(1176, 633);
             OrderControl.TabIndex = 3;
             OrderControl.Text = "Orders";
             OrderControl.UseVisualStyleBackColor = true;
@@ -136,7 +136,7 @@
             ordersTab1.Dock = DockStyle.Fill;
             ordersTab1.Location = new Point(3, 3);
             ordersTab1.Name = "ordersTab1";
-            ordersTab1.Size = new Size(796, 499);
+            ordersTab1.Size = new Size(1170, 627);
             ordersTab1.TabIndex = 0;
             // 
             // PriorityOrdersPage
@@ -145,7 +145,7 @@
             PriorityOrdersPage.Location = new Point(4, 24);
             PriorityOrdersPage.Name = "PriorityOrdersPage";
             PriorityOrdersPage.Padding = new Padding(3);
-            PriorityOrdersPage.Size = new Size(802, 505);
+            PriorityOrdersPage.Size = new Size(1176, 633);
             PriorityOrdersPage.TabIndex = 4;
             PriorityOrdersPage.Text = "Priority Orders";
             PriorityOrdersPage.UseVisualStyleBackColor = true;
@@ -155,16 +155,16 @@
             priorityOrdersTab1.Dock = DockStyle.Fill;
             priorityOrdersTab1.Location = new Point(3, 3);
             priorityOrdersTab1.Name = "priorityOrdersTab1";
-            priorityOrdersTab1.Size = new Size(796, 499);
+            priorityOrdersTab1.Size = new Size(1170, 627);
             priorityOrdersTab1.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(810, 533);
+            ClientSize = new Size(1184, 661);
             Controls.Add(TabControl);
-            MinimumSize = new Size(826, 572);
+            MinimumSize = new Size(1200, 700);
             Name = "MainForm";
             Text = "Form1";
             FormClosing += MainForm_FormClosing;

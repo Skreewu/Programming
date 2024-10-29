@@ -18,6 +18,7 @@ namespace ObjectOrientedPractics.View.Tabs
         List<Customer> _customers = new List<Customer>();
         List<Order> _orders = new List<Order>();
         Order _currentOrder = new Order();
+        PriorityOrder _currentPriorityOrder = new PriorityOrder();
         public List<Customer> Customers
         {
             get
@@ -33,8 +34,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public OrdersTab()
         {
             InitializeComponent();
-            var orderStatuses = Enum.GetValues(typeof(OrderStatus));
-            foreach (var status in orderStatuses)
+            foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
             {
                 StatusComboBox.Items.Add(status);
             }
@@ -65,19 +65,33 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void OrdersDataGrid_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            _currentOrder = _orders[OrdersDataGrid.SelectedCells[0].RowIndex];
-            IdTextBox.Text = _currentOrder.Id.ToString();
-            DateTextBox.Text = $"{_currentOrder.OrderCreationDate.Day}:{_currentOrder.OrderCreationDate.Month}:{_currentOrder.OrderCreationDate.Year}";
-            StatusComboBox.SelectedIndex = (int)_currentOrder.Status;
-            addressControl1.IndexTextBoxValue = _currentOrder.Address.Index.ToString();
-            addressControl1.CountryTextBoxValue = _currentOrder.Address.Country.ToString();
-            addressControl1.CityTextBoxValue = _currentOrder.Address.City.ToString();
-            addressControl1.StreetTextBoxValue = _currentOrder.Address.Street.ToString();
-            addressControl1.BuildingTextBoxValue = _currentOrder.Address.Building.ToString();
-            addressControl1.ApartmentTextBoxValue = _currentOrder.Address.Apartment.ToString();
-            ItemsListBox.Items.Clear();
-            ItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
-            AmountLabel.Text = _currentOrder.Amount.ToString();
+            if (_orders[OrdersDataGrid.SelectedCells[0].RowIndex] is PriorityOrder)
+            {
+                _currentOrder = _orders[OrdersDataGrid.SelectedCells[0].RowIndex];
+                _currentPriorityOrder = (PriorityOrder)_orders[OrdersDataGrid.SelectedCells[0].RowIndex];
+                IdTextBox.Text = _currentOrder.Id.ToString();
+                DateTextBox.Text = $"{_currentOrder.OrderCreationDate.Day}:{_currentOrder.OrderCreationDate.Month}:{_currentOrder.OrderCreationDate.Year}";
+                StatusComboBox.SelectedIndex = (int)_currentOrder.Status;
+                addressControl1.Address = _currentOrder.Address;
+                ItemsListBox.Items.Clear();
+                ItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
+                AmountLabel.Text = _currentOrder.Amount.ToString();
+                PriorityOptionsPanel.Visible = true;
+                DeliveryTimeComboBox.SelectedIndex = (int)_currentPriorityOrder.DesiredDeliveryTimeSlot;
+            }
+            else
+            {
+                _currentOrder = _orders[OrdersDataGrid.SelectedCells[0].RowIndex];
+                _currentPriorityOrder = null;
+                IdTextBox.Text = _currentOrder.Id.ToString();
+                DateTextBox.Text = $"{_currentOrder.OrderCreationDate.Day}:{_currentOrder.OrderCreationDate.Month}:{_currentOrder.OrderCreationDate.Year}";
+                StatusComboBox.SelectedIndex = (int)_currentOrder.Status;
+                addressControl1.Address = _currentOrder.Address;
+                ItemsListBox.Items.Clear();
+                ItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
+                AmountLabel.Text = _currentOrder.Amount.ToString();
+                PriorityOptionsPanel.Visible = false;
+            }
         }
 
         private void addressControl1_Load(object sender, EventArgs e)
@@ -93,6 +107,13 @@ namespace ObjectOrientedPractics.View.Tabs
         private void GroupBox_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DeliveryTimeComboBox.SelectedIndex == -1) return;
+            Array deliveryTime = Enum.GetValues(typeof(DeliveryTimeSlot));
+            _currentPriorityOrder.DesiredDeliveryTimeSlot = (DeliveryTimeSlot)deliveryTime.GetValue(DeliveryTimeComboBox.SelectedIndex);
         }
     }
 }

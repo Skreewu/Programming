@@ -38,12 +38,7 @@ namespace ObjectOrientedPractics.View.Tabs
             IdTextBox.Text = _priorityOrder.Id.ToString();
             CreationTimeTextBox.Text = _priorityOrder.OrderCreationDate.ToString();
             StatusComboBox.SelectedItem = _priorityOrder.Status;
-            addressControl1.IndexTextBoxValue = _priorityOrder.Address.Index.ToString();
-            addressControl1.CountryTextBoxValue = _priorityOrder.Address.Country.ToString();
-            addressControl1.CityTextBoxValue = _priorityOrder.Address.City.ToString();
-            addressControl1.StreetTextBoxValue = _priorityOrder.Address.Street.ToString();
-            addressControl1.BuildingTextBoxValue = _priorityOrder.Address.Building.ToString();
-            addressControl1.ApartmentTextBoxValue = _priorityOrder.Address.Apartment.ToString();
+            addressControl1.Address = _priorityOrder.Address;
             OrderItemsListBox.Items.AddRange(_priorityOrder.Items.ToArray());
 
         }
@@ -79,12 +74,6 @@ namespace ObjectOrientedPractics.View.Tabs
             IdTextBox.Text = _priorityOrder.Id.ToString();
             CreationTimeTextBox.Text = _priorityOrder.OrderCreationDate.ToString();
             StatusComboBox.SelectedItem = _priorityOrder.Status;
-            addressControl1.IndexTextBoxValue = _priorityOrder.Address.Index.ToString();
-            addressControl1.CountryTextBoxValue = _priorityOrder.Address.Country.ToString();
-            addressControl1.CityTextBoxValue = _priorityOrder.Address.City.ToString();
-            addressControl1.StreetTextBoxValue = _priorityOrder.Address.Street.ToString();
-            addressControl1.BuildingTextBoxValue = _priorityOrder.Address.Building.ToString();
-            addressControl1.ApartmentTextBoxValue = _priorityOrder.Address.Apartment.ToString();
         }
         private void UpdateInfo()
         {
