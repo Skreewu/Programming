@@ -92,9 +92,12 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Конструктор без параметров. Создает экземпляр класса <see cref="Order"/>
         /// </summary>
-        public Order()
+        public Order(bool isId)
         {
-            Id = idGenerator.GetNextId();
+            if (isId)
+            {
+                Id = idGenerator.GetNextId();
+            }
             OrderCreationDate = DateTime.Now;
             Items = new List<Item>();
             Address = new Address();
@@ -105,9 +108,12 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="address">Адрес доставки.</param>
         /// <param name="items">Список товаров.</param>
-        public Order(Address address, List<Item> items)
+        public Order(Address address, List<Item> items, bool isId)
         {
-            Id = idGenerator.GetNextId();
+            if (isId)
+            {
+                Id = idGenerator.GetNextId();
+            }
             OrderCreationDate = DateTime.Now;
             Items = items;
             Address = address;

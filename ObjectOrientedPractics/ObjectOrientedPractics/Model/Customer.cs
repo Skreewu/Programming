@@ -96,8 +96,12 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullname">Имя и фамилия покупателя. Не больше 200 символов. </param>
         /// <param name="address">Адрес покупателя. Не больше 500 символов</param>
-        public Customer(string fullname, Address address)
+        public Customer(string fullname, Address address, bool isId)
         {
+            if (isId)
+            {
+                Id = idGenerator.GetNextId();
+            }
             Id = idGenerator.GetNextId();
             FullName = fullname;
             Address = address;
@@ -106,9 +110,12 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Конструктор по умолчанию. Создает экзепляр класса <see cref="Customer"/>
         /// </summary>
-        public Customer()
+        public Customer(bool isId)
         {
-            Id = idGenerator.GetNextId();
+            if (isId)
+            {
+                Id = idGenerator.GetNextId();
+            }
             FullName = "Фамилия Имя";
             Address = new Address();
             Cart = new Cart();

@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Services
 
         public IdGenerator()
         {
-            _currentId = -1;
+            _currentId = 0;
         }
 
         public int GetNextId()

@@ -17,7 +17,7 @@ namespace ObjectOrientedPractics.View.Tabs
     internal partial class CustomersTab : UserControl
     {
         static List<Customer> _customers = new List<Customer>();
-        Customer _currentCustomer = new Customer();
+        Customer _currentCustomer = new Customer(false);
         public List<Customer> Customers
         {
             get
@@ -48,7 +48,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Customer customer = new Customer();
+            Customer customer = new Customer(true);
             _customers.Add(customer);
             CustomersListBox.Items.Add(customer);
         }

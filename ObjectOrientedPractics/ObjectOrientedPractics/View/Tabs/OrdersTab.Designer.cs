@@ -28,15 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address2 = new Model.Address();
+            Model.Address address1 = new Model.Address();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             OrdersLabel = new Label();
             OrdersDataGrid = new DataGridView();
-            IdColumn = new DataGridViewTextBoxColumn();
-            DateColumn = new DataGridViewTextBoxColumn();
-            NameColumn = new DataGridViewTextBoxColumn();
-            AddressColumn = new DataGridViewTextBoxColumn();
-            AmountColumn = new DataGridViewTextBoxColumn();
-            StatusColumn = new DataGridViewTextBoxColumn();
             IdTextBox = new TextBox();
             DateTextBox = new TextBox();
             StatusLabel = new Label();
@@ -53,6 +48,13 @@
             AmountTextLabel = new Label();
             AmountLabel = new Label();
             PriorityOptionsPanel = new Panel();
+            IsPriority = new DataGridViewTextBoxColumn();
+            IdColumn = new DataGridViewTextBoxColumn();
+            DateColumn = new DataGridViewTextBoxColumn();
+            NameColumn = new DataGridViewTextBoxColumn();
+            AddressColumn = new DataGridViewTextBoxColumn();
+            AmountColumn = new DataGridViewTextBoxColumn();
+            StatusColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGrid).BeginInit();
             PriorityOptionsPanel.SuspendLayout();
             SuspendLayout();
@@ -74,49 +76,13 @@
             OrdersDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrdersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             OrdersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            OrdersDataGrid.Columns.AddRange(new DataGridViewColumn[] { IdColumn, DateColumn, NameColumn, AddressColumn, AmountColumn, StatusColumn });
+            OrdersDataGrid.Columns.AddRange(new DataGridViewColumn[] { IsPriority, IdColumn, DateColumn, NameColumn, AddressColumn, AmountColumn, StatusColumn });
             OrdersDataGrid.Location = new Point(3, 21);
             OrdersDataGrid.MultiSelect = false;
             OrdersDataGrid.Name = "OrdersDataGrid";
             OrdersDataGrid.Size = new Size(641, 603);
             OrdersDataGrid.TabIndex = 13;
             OrdersDataGrid.RowHeaderMouseClick += OrdersDataGrid_RowHeaderMouseClick;
-            // 
-            // IdColumn
-            // 
-            IdColumn.HeaderText = "Id";
-            IdColumn.Name = "IdColumn";
-            IdColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DateColumn
-            // 
-            DateColumn.HeaderText = "Created";
-            DateColumn.Name = "DateColumn";
-            DateColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // NameColumn
-            // 
-            NameColumn.HeaderText = "Customer Full Name";
-            NameColumn.Name = "NameColumn";
-            NameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AddressColumn
-            // 
-            AddressColumn.HeaderText = "Address";
-            AddressColumn.Name = "AddressColumn";
-            AddressColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AmountColumn
-            // 
-            AmountColumn.HeaderText = "Amount";
-            AmountColumn.Name = "AmountColumn";
-            AmountColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // StatusColumn
-            // 
-            StatusColumn.HeaderText = "OrderStatus";
-            StatusColumn.Name = "StatusColumn";
-            StatusColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // IdTextBox
             // 
@@ -157,13 +123,13 @@
             // 
             // addressControl1
             // 
-            address2.Apartment = "0";
-            address2.Building = "0";
-            address2.City = "Город";
-            address2.Country = "Страна";
-            address2.Index = 100000;
-            address2.Street = "Улица";
-            addressControl1.Address = address2;
+            address1.Apartment = "0";
+            address1.Building = "0";
+            address1.City = "Город";
+            address1.Country = "Страна";
+            address1.Index = 100000;
+            address1.Street = "Улица";
+            addressControl1.Address = address1;
             addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             addressControl1.ApartmentTextBoxValue = "0";
             addressControl1.BuildingTextBoxValue = "0";
@@ -296,6 +262,52 @@
             PriorityOptionsPanel.TabIndex = 20;
             PriorityOptionsPanel.Visible = false;
             // 
+            // IsPriority
+            // 
+            IsPriority.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            IsPriority.DefaultCellStyle = dataGridViewCellStyle1;
+            IsPriority.HeaderText = "";
+            IsPriority.Name = "IsPriority";
+            IsPriority.SortMode = DataGridViewColumnSortMode.NotSortable;
+            IsPriority.Width = 50;
+            // 
+            // IdColumn
+            // 
+            IdColumn.HeaderText = "Id";
+            IdColumn.Name = "IdColumn";
+            IdColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DateColumn
+            // 
+            DateColumn.HeaderText = "Created";
+            DateColumn.Name = "DateColumn";
+            DateColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // NameColumn
+            // 
+            NameColumn.HeaderText = "Customer Full Name";
+            NameColumn.Name = "NameColumn";
+            NameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AddressColumn
+            // 
+            AddressColumn.HeaderText = "Address";
+            AddressColumn.Name = "AddressColumn";
+            AddressColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AmountColumn
+            // 
+            AmountColumn.HeaderText = "Amount";
+            AmountColumn.Name = "AmountColumn";
+            AmountColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // StatusColumn
+            // 
+            StatusColumn.HeaderText = "OrderStatus";
+            StatusColumn.Name = "StatusColumn";
+            StatusColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -328,12 +340,6 @@
 
         private Label OrdersLabel;
         private DataGridView OrdersDataGrid;
-        private DataGridViewTextBoxColumn IdColumn;
-        private DataGridViewTextBoxColumn DateColumn;
-        private DataGridViewTextBoxColumn NameColumn;
-        private DataGridViewTextBoxColumn AddressColumn;
-        private DataGridViewTextBoxColumn AmountColumn;
-        private DataGridViewTextBoxColumn StatusColumn;
         private TextBox IdTextBox;
         private TextBox DateTextBox;
         private Label StatusLabel;
@@ -350,5 +356,12 @@
         private Label AmountTextLabel;
         private Label AmountLabel;
         private Panel PriorityOptionsPanel;
+        private DataGridViewTextBoxColumn IsPriority;
+        private DataGridViewTextBoxColumn IdColumn;
+        private DataGridViewTextBoxColumn DateColumn;
+        private DataGridViewTextBoxColumn NameColumn;
+        private DataGridViewTextBoxColumn AddressColumn;
+        private DataGridViewTextBoxColumn AmountColumn;
+        private DataGridViewTextBoxColumn StatusColumn;
     }
 }

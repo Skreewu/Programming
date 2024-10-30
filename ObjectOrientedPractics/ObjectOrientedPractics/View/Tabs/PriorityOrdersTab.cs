@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     internal partial class PriorityOrdersTab : UserControl
     {
-        PriorityOrder _priorityOrder = new PriorityOrder();
+        PriorityOrder _priorityOrder = new PriorityOrder(false);
         List<Item> _items = new List<Item>();
         public List<Item> Items
         {
@@ -69,7 +69,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ClearOrderButton_Click(object sender, EventArgs e)
         {
             _priorityOrder = null;
-            _priorityOrder = new PriorityOrder();
+            _priorityOrder = new PriorityOrder(false);
             UpdateInfo();
             IdTextBox.Text = _priorityOrder.Id.ToString();
             CreationTimeTextBox.Text = _priorityOrder.OrderCreationDate.ToString();

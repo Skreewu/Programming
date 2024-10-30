@@ -15,9 +15,10 @@ namespace ObjectOrientedPractics.View.Tabs
     internal partial class CartsTab : UserControl
     {
         List<Item> _items = new List<Item>();
-        Item _currentItem = new Item();
+        Item _currentItem = new Item(false);
+        Customer _currentCustomer = new Customer(false);
         List<Customer> _customers = new List<Customer>();
-        Customer _currentCustomer = new Customer();
+        
 
         public List<Customer> Customers
         {
@@ -89,12 +90,12 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_currentCustomer.IsPriority)
             {
-                PriorityOrder order = new PriorityOrder(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items));
+                PriorityOrder order = new PriorityOrder(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items), true);
                 _currentCustomer.Orders.Add(order);
             }
             else
             {
-                Order order = new Order(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items));
+                Order order = new Order(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items), true);
                 _currentCustomer.Orders.Add(order);
             }
             _currentCustomer.Cart.Items.Clear();

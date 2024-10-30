@@ -17,8 +17,8 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         List<Customer> _customers = new List<Customer>();
         List<Order> _orders = new List<Order>();
-        Order _currentOrder = new Order();
-        PriorityOrder _currentPriorityOrder = new PriorityOrder();
+        Order _currentOrder = new Order(false);
+        PriorityOrder _currentPriorityOrder = new PriorityOrder(false);
         public List<Customer> Customers
         {
             get
@@ -53,6 +53,10 @@ namespace ObjectOrientedPractics.View.Tabs
                     _orders.Add(order);
                     int rowIndex = OrdersDataGrid.Rows.Add();
                     DataGridViewRow row = OrdersDataGrid.Rows[rowIndex];
+                    if (order is PriorityOrder)
+                    {
+                        row.Cells["isPriority"].Value = "★";
+                    }
                     row.Cells["IdColumn"].Value = order.Id;
                     row.Cells["DateColumn"].Value = $"{order.OrderCreationDate.Day}:{order.OrderCreationDate.Month}:{order.OrderCreationDate.Year}";
                     row.Cells["NameColumn"].Value = customer.FullName;

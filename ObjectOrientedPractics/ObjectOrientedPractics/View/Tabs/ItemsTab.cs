@@ -17,7 +17,7 @@ namespace ObjectOrientedPractics.View.Tabs
     internal partial class ItemsTab : UserControl
     {
         List<Item> _items = new List<Item>();
-        Item _currentItem = new Item();
+        Item _currentItem = new Item(false);
         public List<Item> Items
         {
             get 
@@ -29,6 +29,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _items = value;
                 ItemsListBox.Items.AddRange(_items.ToArray());
                 UpdateInfo();
+
             }
         }
         public ItemsTab()
@@ -54,7 +55,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Item item = new Item();
+            Item item = new Item(true);
             _items.Add(item);
             ItemsListBox.Items.Add(item);
         }

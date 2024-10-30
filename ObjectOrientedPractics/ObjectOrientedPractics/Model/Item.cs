@@ -84,9 +84,12 @@ namespace ObjectOrientedPractics.Model
         /// <param name="info">Инфорация о товаре. Не больше 1000 символов.</param>
         /// <param name="cost">Стоимость. От 0 до 100 000.</param>
         /// <param name="category">Категория товара.</param>
-        public Item(string name, string info, double cost, Category category)
+        public Item(string name, string info, double cost, Category category, bool isId)
         {
-            Id = idGenerator.GetNextId();
+            if (isId)
+            {
+                Id = idGenerator.GetNextId();
+            }
             Name = name;
             Info = info;
             Cost = cost;;
@@ -95,9 +98,12 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Конструктор по умолчанию, создает экземпляр класса <see cref="Item"/>
         /// </summary>
-        public Item()
+        public Item(bool isId)
         {
-            Id = idGenerator.GetNextId();
+            if (isId)
+            {
+                Id = idGenerator.GetNextId();
+            }
             Name = "Название";
             Info = "Описание";
             Cost = 0;

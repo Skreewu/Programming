@@ -19,11 +19,11 @@ namespace ObjectOrientedPractics.Model
         /// Задает и возвращает желаемое время доставки.
         /// </summary>
         public DeliveryTimeSlot DesiredDeliveryTimeSlot { get; set; }
-        public PriorityOrder() : base()
+        public PriorityOrder(bool isId) : base(isId)
         {
         }
 
-        public PriorityOrder(Address address, List<Item> items) : base(address, items)
+        public PriorityOrder(Address address, List<Item> items, bool isId) : base(address, items, isId)
         {
             DesiredDeliveryDate = DateTime.MaxValue;
             DesiredDeliveryTimeSlot = 0;
