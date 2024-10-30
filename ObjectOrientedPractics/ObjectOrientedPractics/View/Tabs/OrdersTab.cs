@@ -119,5 +119,10 @@ namespace ObjectOrientedPractics.View.Tabs
             Array deliveryTime = Enum.GetValues(typeof(DeliveryTimeSlot));
             _currentPriorityOrder.DesiredDeliveryTimeSlot = (DeliveryTimeSlot)deliveryTime.GetValue(DeliveryTimeComboBox.SelectedIndex);
         }
+
+        private void DeleteOrderButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

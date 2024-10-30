@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address1 = new Model.Address();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            Model.Address address1 = new Model.Address();
             OrdersLabel = new Label();
             OrdersDataGrid = new DataGridView();
+            IsPriority = new DataGridViewTextBoxColumn();
+            IdColumn = new DataGridViewTextBoxColumn();
+            DateColumn = new DataGridViewTextBoxColumn();
+            NameColumn = new DataGridViewTextBoxColumn();
+            AddressColumn = new DataGridViewTextBoxColumn();
+            AmountColumn = new DataGridViewTextBoxColumn();
+            StatusColumn = new DataGridViewTextBoxColumn();
             IdTextBox = new TextBox();
             DateTextBox = new TextBox();
             StatusLabel = new Label();
@@ -48,13 +55,6 @@
             AmountTextLabel = new Label();
             AmountLabel = new Label();
             PriorityOptionsPanel = new Panel();
-            IsPriority = new DataGridViewTextBoxColumn();
-            IdColumn = new DataGridViewTextBoxColumn();
-            DateColumn = new DataGridViewTextBoxColumn();
-            NameColumn = new DataGridViewTextBoxColumn();
-            AddressColumn = new DataGridViewTextBoxColumn();
-            AmountColumn = new DataGridViewTextBoxColumn();
-            StatusColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGrid).BeginInit();
             PriorityOptionsPanel.SuspendLayout();
             SuspendLayout();
@@ -83,6 +83,52 @@
             OrdersDataGrid.Size = new Size(641, 603);
             OrdersDataGrid.TabIndex = 13;
             OrdersDataGrid.RowHeaderMouseClick += OrdersDataGrid_RowHeaderMouseClick;
+            // 
+            // IsPriority
+            // 
+            IsPriority.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            IsPriority.DefaultCellStyle = dataGridViewCellStyle1;
+            IsPriority.HeaderText = "";
+            IsPriority.Name = "IsPriority";
+            IsPriority.SortMode = DataGridViewColumnSortMode.NotSortable;
+            IsPriority.Width = 50;
+            // 
+            // IdColumn
+            // 
+            IdColumn.HeaderText = "Id";
+            IdColumn.Name = "IdColumn";
+            IdColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DateColumn
+            // 
+            DateColumn.HeaderText = "Created";
+            DateColumn.Name = "DateColumn";
+            DateColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // NameColumn
+            // 
+            NameColumn.HeaderText = "Customer Full Name";
+            NameColumn.Name = "NameColumn";
+            NameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AddressColumn
+            // 
+            AddressColumn.HeaderText = "Address";
+            AddressColumn.Name = "AddressColumn";
+            AddressColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AmountColumn
+            // 
+            AmountColumn.HeaderText = "Amount";
+            AmountColumn.Name = "AmountColumn";
+            AmountColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // StatusColumn
+            // 
+            StatusColumn.HeaderText = "OrderStatus";
+            StatusColumn.Name = "StatusColumn";
+            StatusColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // IdTextBox
             // 
@@ -261,52 +307,6 @@
             PriorityOptionsPanel.Size = new Size(208, 41);
             PriorityOptionsPanel.TabIndex = 20;
             PriorityOptionsPanel.Visible = false;
-            // 
-            // IsPriority
-            // 
-            IsPriority.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            IsPriority.DefaultCellStyle = dataGridViewCellStyle1;
-            IsPriority.HeaderText = "";
-            IsPriority.Name = "IsPriority";
-            IsPriority.SortMode = DataGridViewColumnSortMode.NotSortable;
-            IsPriority.Width = 50;
-            // 
-            // IdColumn
-            // 
-            IdColumn.HeaderText = "Id";
-            IdColumn.Name = "IdColumn";
-            IdColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // DateColumn
-            // 
-            DateColumn.HeaderText = "Created";
-            DateColumn.Name = "DateColumn";
-            DateColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // NameColumn
-            // 
-            NameColumn.HeaderText = "Customer Full Name";
-            NameColumn.Name = "NameColumn";
-            NameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AddressColumn
-            // 
-            AddressColumn.HeaderText = "Address";
-            AddressColumn.Name = "AddressColumn";
-            AddressColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AmountColumn
-            // 
-            AmountColumn.HeaderText = "Amount";
-            AmountColumn.Name = "AmountColumn";
-            AmountColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // StatusColumn
-            // 
-            StatusColumn.HeaderText = "OrderStatus";
-            StatusColumn.Name = "StatusColumn";
-            StatusColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // OrdersTab
             // 

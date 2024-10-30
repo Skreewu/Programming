@@ -8,16 +8,19 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    [DataContract]
     internal class PriorityOrder : Order
     {
         private static IdGenerator idGenerator = new IdGenerator();
         /// <summary>
         /// Задает и возвращает желаемую дату доставки.
         /// </summary>
+        [DataMember]
         public DateTime DesiredDeliveryDate { get; set; }
         /// <summary>
         /// Задает и возвращает желаемое время доставки.
         /// </summary>
+        [DataMember]
         public DeliveryTimeSlot DesiredDeliveryTimeSlot { get; set; }
         public PriorityOrder(bool isId) : base(isId)
         {

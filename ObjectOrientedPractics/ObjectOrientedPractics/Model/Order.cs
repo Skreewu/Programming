@@ -12,6 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// Хранит данные о заказе пользователя.
     /// </summary>
     [DataContract]
+    [KnownType(typeof(PriorityOrder))]
     internal class Order
     {
         private static IdGenerator idGenerator = new IdGenerator();
