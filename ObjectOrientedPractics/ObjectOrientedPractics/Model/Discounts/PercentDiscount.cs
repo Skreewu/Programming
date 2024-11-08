@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Discounts
 {
     /// <summary>
     /// Хранит информацию о процентной скидке.
@@ -69,7 +69,7 @@ namespace ObjectOrientedPractics.Model
         {
             double discountAmount = 0;
             discountAmount = CalculateTotalCost(items) * CurrentDiscountPercentage / 100;
-            
+
             return discountAmount;
         }
 

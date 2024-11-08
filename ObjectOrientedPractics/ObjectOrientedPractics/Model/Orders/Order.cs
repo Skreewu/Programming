@@ -5,8 +5,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Discounts;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Хранит данные о заказе пользователя.
@@ -20,7 +21,7 @@ namespace ObjectOrientedPractics.Model
         /// ID заказа.
         /// </summary>
         [DataMember]
-        public int Id {  get; private set; }
+        public int Id { get; private set; }
         /// <summary>
         /// Возвращает дату создания заказа.
         /// </summary>
@@ -43,6 +44,9 @@ namespace ObjectOrientedPractics.Model
         /// Общая стоимость товаров.
         /// </summary>
         private double _amount;
+        /// <summary>
+        /// Общая стоимость товаров с учетом скидки.
+        /// </summary>
         private double _total;
         /// <summary>
         /// Задает и возвращает размер приминенной скидки.
@@ -54,7 +58,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public double Total
         {
-            get 
+            get
             {
                 if (Amount - DiscountAmount < 0)
                 {
@@ -69,13 +73,13 @@ namespace ObjectOrientedPractics.Model
         [DataMember]
         public Address Address
         {
-            get 
-            { 
-                return _address; 
+            get
+            {
+                return _address;
             }
-            set 
-            { 
-                _address = value; 
+            set
+            {
+                _address = value;
             }
         }
         /// <summary>
@@ -121,7 +125,7 @@ namespace ObjectOrientedPractics.Model
             OrderCreationDate = DateTime.Now;
             Items = new List<Item>();
             Address = new Address();
-            Status = 0;  
+            Status = 0;
         }
         /// <summary>
         /// Создает экземпляр класса <see cref="Order"/>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Discounts
 {
     /// <summary>
     /// Хранит данные о скидке.
@@ -45,7 +45,7 @@ namespace ObjectOrientedPractics.Model
         /// Создает экземпляр класса <see cref="PointsDiscount"/>
         /// </summary>
         /// <param name="category"></param>
-        public PointsDiscount() 
+        public PointsDiscount()
         {
             Points = 0;
         }

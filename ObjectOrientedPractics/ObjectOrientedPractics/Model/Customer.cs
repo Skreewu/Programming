@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Reflection.Emit;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -42,6 +44,9 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         [DataMember]
         public bool IsPriority { get; set; }
+        /// <summary>
+        /// Задает и возвращает список скидок покупателя.
+        /// </summary>
         public List<IDiscount> Discounts { get; set; }
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
