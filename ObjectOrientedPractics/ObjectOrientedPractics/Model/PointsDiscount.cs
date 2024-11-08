@@ -34,10 +34,17 @@ namespace ObjectOrientedPractics.Model
                 _points = value;
             }
         }
+        /// <summary>
+        /// Возвращает информацию о скидке.
+        /// </summary>
         public string Info
         {
             get { return $"Накопительная – {Points} баллов"; }
         }
+        /// <summary>
+        /// Создает экземпляр класса <see cref="PointsDiscount"/>
+        /// </summary>
+        /// <param name="category"></param>
         public PointsDiscount() { }
         /// <summary>
         /// Расчитывает размер скидки.
@@ -85,6 +92,14 @@ namespace ObjectOrientedPractics.Model
                 totalCost += item.Cost;
             }
             return totalCost;
+        }
+        /// <summary>
+        /// Возвращает информацию в более удобной форме.
+        /// </summary>
+        /// <returns>Возвращает информацию.</returns>
+        public override string ToString()
+        {
+            return Info;
         }
     }
 }
