@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Хранит информацию о процентной скидке.
     /// </summary>
+    [DataContract]
     internal class PercentDiscount : IDiscount
     {
         /// <summary>
@@ -19,14 +21,17 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <summary>
         /// Возвращает информацию, сколько было потрачено.
         /// </summary>
+        [DataMember]
         public double TotalSpent { get; private set; }
         /// <summary>
         /// Возвращает категорию товаров.
         /// </summary>
+        [DataMember]
         public Category Category { get; private set; }
         /// <summary>
         /// Возвращает текущую скидку.
         /// </summary>
+        [DataMember]
         public int CurrentDiscountPercentage { get; private set; }
 
         /// <summary>

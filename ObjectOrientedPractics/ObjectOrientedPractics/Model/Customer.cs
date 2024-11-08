@@ -15,6 +15,8 @@ namespace ObjectOrientedPractics.Model
     /// Хранит информацию о покупателе.
     /// </summary>
     [DataContract]
+    [KnownType(typeof(PointsDiscount))]
+    [KnownType(typeof(PercentDiscount))]
     internal class Customer
     {
         private static IdGenerator idGenerator = new IdGenerator();
@@ -47,6 +49,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Задает и возвращает список скидок покупателя.
         /// </summary>
+        [DataMember]
         public List<IDiscount> Discounts { get; set; }
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.

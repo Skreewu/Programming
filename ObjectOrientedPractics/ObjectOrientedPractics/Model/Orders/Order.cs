@@ -51,6 +51,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <summary>
         /// Задает и возвращает размер приминенной скидки.
         /// </summary>
+        [DataMember]
         public double DiscountAmount { get; set; }
 
         /// <summary>
