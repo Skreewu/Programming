@@ -43,7 +43,26 @@ namespace ObjectOrientedPractics.Model
         /// Общая стоимость товаров.
         /// </summary>
         private double _amount;
+        private double _total;
+        /// <summary>
+        /// Задает и возвращает размер приминенной скидки.
+        /// </summary>
+        public double DiscountAmount { get; set; }
 
+        /// <summary>
+        /// Задает и возвращает конечную стоимость заказа.
+        /// </summary>
+        public double Total
+        {
+            get 
+            {
+                if (Amount - DiscountAmount < 0)
+                {
+                    throw new ArgumentException("Value must be a positive number");
+                }
+                return Amount - DiscountAmount;
+            }
+        }
         /// <summary>
         /// Задает и возвращает адрес доставки.
         /// </summary>

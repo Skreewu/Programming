@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит информацию о процентной скидке.
     /// </summary>
-    internal class PercentDiscount
+    internal class PercentDiscount : IDiscount
     {
         /// <summary>
         /// Максимально возможная скидка.

@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные о скидке.
     /// </summary>
-    internal class PointsDiscount
+    internal class PointsDiscount : IDiscount
     {
         /// <summary>
         /// Хранит данные о накопительных баллах.
@@ -45,7 +45,10 @@ namespace ObjectOrientedPractics.Model
         /// Создает экземпляр класса <see cref="PointsDiscount"/>
         /// </summary>
         /// <param name="category"></param>
-        public PointsDiscount() { }
+        public PointsDiscount() 
+        {
+            Points = 0;
+        }
         /// <summary>
         /// Расчитывает размер скидки.
         /// </summary>

@@ -42,6 +42,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         [DataMember]
         public bool IsPriority { get; set; }
+        public List<IDiscount> Discounts { get; set; }
         /// <summary>
         /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
         /// </summary>
@@ -106,6 +107,7 @@ namespace ObjectOrientedPractics.Model
             FullName = fullname;
             Address = address;
             IsPriority = false;
+            Discounts = new List<IDiscount>() { new PointsDiscount() };
         }
         /// <summary>
         /// Конструктор по умолчанию. Создает экзепляр класса <see cref="Customer"/>
@@ -121,6 +123,7 @@ namespace ObjectOrientedPractics.Model
             Cart = new Cart();
             Orders = new List<Order>();
             IsPriority = false;
+            Discounts = new List<IDiscount>() { new PointsDiscount() };
         }
         /// <summary>
         /// Предоставляет экземпляр класса в более удобной форме.
