@@ -131,8 +131,23 @@ namespace ObjectOrientedPractics.View.Tabs
             addDiscountForm.ShowDialog();
             if (addDiscountForm.Result == DialogResult.OK)
             {
-                _currentCustomer.Discounts.Add(new PercentDiscount(addDiscountForm.SelectedValue));
-                UpdateInfo();
+                bool isContains = false;
+                foreach (var discount in _currentCustomer.Discounts)
+                {
+                    if (discount is PercentDiscount percentDiscount1)
+                    {
+                        if (percentDiscount1.Category == addDiscountForm.SelectedValue)
+                        {
+                            isContains = true;
+                            break;
+                        }
+                    }
+                }
+                if (!isContains)
+                {
+                    _currentCustomer.Discounts.Add(new PercentDiscount(addDiscountForm.SelectedValue));
+                    UpdateInfo();
+                }
             }
         }
 

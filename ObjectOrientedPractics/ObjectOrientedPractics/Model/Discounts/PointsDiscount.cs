@@ -79,7 +79,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <param name="items">Список товаров.</param>
         public void Update(List<Item> items)
         {
-            int earnedPoints = (int)Math.Ceiling(CalculateTotalCost(items) * 0.10);
+            int earnedPoints = (int)(CalculateTotalCost(items) / 10);
             Points += earnedPoints;
         }
         /// <summary>

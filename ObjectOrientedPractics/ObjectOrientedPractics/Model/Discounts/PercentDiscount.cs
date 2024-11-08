@@ -58,7 +58,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         public void Update(List<Item> items)
         {
             TotalSpent = CalculateTotalCost(items);
-            CurrentDiscountPercentage = Math.Min(1 + (int)(TotalSpent / 1000), maxDiscountPercentage);
+            CurrentDiscountPercentage = Math.Min(CurrentDiscountPercentage + (int)(TotalSpent / 1000), maxDiscountPercentage);
         }
         /// <summary>
         /// Рассчитывает размер скидки в рублях.
