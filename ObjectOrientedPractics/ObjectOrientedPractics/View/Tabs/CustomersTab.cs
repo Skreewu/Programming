@@ -9,8 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.View.Controls;
+using ObjectOrientedPractics.View.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -44,6 +47,8 @@ namespace ObjectOrientedPractics.View.Tabs
             FullNameTextBox.Text = _currentCustomer.FullName.ToString();
             addressControl1.Address = _currentCustomer.Address;
             IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
+            DiscountsListBox.Items.Clear();
+            DiscountsListBox.Items.AddRange(_currentCustomer.Discounts.ToArray());
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -93,6 +98,8 @@ namespace ObjectOrientedPractics.View.Tabs
             if (index == -1) return;
             CustomersListBox.Items.Clear();
             CustomersListBox.Items.AddRange(_customers.ToArray());
+            DiscountsListBox.Items.Clear();
+            DiscountsListBox.Items.AddRange(_currentCustomer.Discounts.ToArray());
             CustomersListBox.SelectedIndex = index;
         }
         /// <summary>
@@ -115,6 +122,28 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentCustomer.IsPriority = false;
             }
+        }
+
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (CustomersListBox.SelectedIndex == -1) return;
+            AddDiscountForm addDiscountForm = new AddDiscountForm();
+            addDiscountForm.ShowDialog();
+            if (addDiscountForm.Result == DialogResult.OK)
+            {
+                _currentCustomer.Discounts.Add(new PercentDiscount(addDiscountForm.SelectedValue));
+                UpdateInfo();
+            }
+        }
+
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (DiscountsListBox.SelectedIndex == 0 || DiscountsListBox.SelectedIndex == -1 || CustomersListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+            _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
+            UpdateInfo();
         }
     }
 }

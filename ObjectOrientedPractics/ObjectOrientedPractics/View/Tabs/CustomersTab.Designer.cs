@@ -34,12 +34,16 @@
             AddButton = new Button();
             CustomersListBox = new ListBox();
             CustomersInfoGroupBox = new GroupBox();
+            RemoveDiscountButton = new Button();
+            AddDiscountButton = new Button();
+            DiscountsListBox = new ListBox();
+            DiscountsLabel = new Label();
+            IsPriorityCheckBox = new CheckBox();
             addressControl1 = new Controls.AddressControl();
             FullNameLabel = new Label();
             IdLabel = new Label();
             IdTextBox = new TextBox();
             FullNameTextBox = new TextBox();
-            IsPriorityCheckBox = new CheckBox();
             CustomersListGroupBox.SuspendLayout();
             CustomersInfoGroupBox.SuspendLayout();
             SuspendLayout();
@@ -95,6 +99,10 @@
             // CustomersInfoGroupBox
             // 
             CustomersInfoGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CustomersInfoGroupBox.Controls.Add(RemoveDiscountButton);
+            CustomersInfoGroupBox.Controls.Add(AddDiscountButton);
+            CustomersInfoGroupBox.Controls.Add(DiscountsListBox);
+            CustomersInfoGroupBox.Controls.Add(DiscountsLabel);
             CustomersInfoGroupBox.Controls.Add(IsPriorityCheckBox);
             CustomersInfoGroupBox.Controls.Add(addressControl1);
             CustomersInfoGroupBox.Controls.Add(FullNameLabel);
@@ -107,6 +115,56 @@
             CustomersInfoGroupBox.TabIndex = 0;
             CustomersInfoGroupBox.TabStop = false;
             CustomersInfoGroupBox.Text = "SelectedCustomer";
+            // 
+            // RemoveDiscountButton
+            // 
+            RemoveDiscountButton.Location = new Point(222, 372);
+            RemoveDiscountButton.Name = "RemoveDiscountButton";
+            RemoveDiscountButton.Size = new Size(95, 37);
+            RemoveDiscountButton.TabIndex = 11;
+            RemoveDiscountButton.Text = "Remove";
+            RemoveDiscountButton.UseVisualStyleBackColor = true;
+            RemoveDiscountButton.Click += RemoveDiscountButton_Click;
+            // 
+            // AddDiscountButton
+            // 
+            AddDiscountButton.Location = new Point(222, 329);
+            AddDiscountButton.Name = "AddDiscountButton";
+            AddDiscountButton.Size = new Size(95, 37);
+            AddDiscountButton.TabIndex = 10;
+            AddDiscountButton.Text = "Add";
+            AddDiscountButton.UseVisualStyleBackColor = true;
+            AddDiscountButton.Click += AddDiscountButton_Click;
+            // 
+            // DiscountsListBox
+            // 
+            DiscountsListBox.FormattingEnabled = true;
+            DiscountsListBox.ItemHeight = 15;
+            DiscountsListBox.Location = new Point(6, 329);
+            DiscountsListBox.Name = "DiscountsListBox";
+            DiscountsListBox.Size = new Size(210, 94);
+            DiscountsListBox.TabIndex = 9;
+            // 
+            // DiscountsLabel
+            // 
+            DiscountsLabel.AutoSize = true;
+            DiscountsLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            DiscountsLabel.Location = new Point(6, 311);
+            DiscountsLabel.Name = "DiscountsLabel";
+            DiscountsLabel.Size = new Size(67, 15);
+            DiscountsLabel.TabIndex = 8;
+            DiscountsLabel.Text = "Discounts";
+            // 
+            // IsPriorityCheckBox
+            // 
+            IsPriorityCheckBox.AutoSize = true;
+            IsPriorityCheckBox.Location = new Point(79, 92);
+            IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            IsPriorityCheckBox.Size = new Size(75, 19);
+            IsPriorityCheckBox.TabIndex = 7;
+            IsPriorityCheckBox.Text = "Is Priority";
+            IsPriorityCheckBox.UseVisualStyleBackColor = true;
+            IsPriorityCheckBox.CheckedChanged += IsPriorityCheckBox_CheckedChanged;
             // 
             // addressControl1
             // 
@@ -168,17 +226,6 @@
             FullNameTextBox.TabIndex = 2;
             FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
             // 
-            // IsPriorityCheckBox
-            // 
-            IsPriorityCheckBox.AutoSize = true;
-            IsPriorityCheckBox.Location = new Point(79, 92);
-            IsPriorityCheckBox.Name = "IsPriorityCheckBox";
-            IsPriorityCheckBox.Size = new Size(75, 19);
-            IsPriorityCheckBox.TabIndex = 7;
-            IsPriorityCheckBox.Text = "Is Priority";
-            IsPriorityCheckBox.UseVisualStyleBackColor = true;
-            IsPriorityCheckBox.CheckedChanged += IsPriorityCheckBox_CheckedChanged;
-            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -206,5 +253,9 @@
         private TextBox FullNameTextBox;
         private Controls.AddressControl addressControl1;
         private CheckBox IsPriorityCheckBox;
+        private Button RemoveDiscountButton;
+        private Button AddDiscountButton;
+        private ListBox DiscountsListBox;
+        private Label DiscountsLabel;
     }
 }
