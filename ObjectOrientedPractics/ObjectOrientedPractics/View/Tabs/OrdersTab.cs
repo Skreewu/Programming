@@ -64,6 +64,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     row.Cells["AddressColumn"].Value = order.Address.ToString();
                     row.Cells["AmountColumn"].Value = order.Amount;
                     row.Cells["StatusColumn"].Value = order.Status;
+                    row.Cells["TotalColumn"].Value = order.Total;
                 }
             }
         }
@@ -81,6 +82,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.Items.Clear();
                 ItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
                 AmountLabel.Text = _currentOrder.Amount.ToString();
+                TotalLabel.Text = _currentOrder.Total.ToString();
                 PriorityOptionsPanel.Visible = true;
                 DeliveryTimeComboBox.SelectedIndex = (int)_currentPriorityOrder.DesiredDeliveryTimeSlot;
             }
@@ -95,6 +97,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.Items.Clear();
                 ItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
                 AmountLabel.Text = _currentOrder.Amount.ToString();
+                TotalLabel.Text = _currentOrder.Total.ToString();
                 PriorityOptionsPanel.Visible = false;
             }
         }

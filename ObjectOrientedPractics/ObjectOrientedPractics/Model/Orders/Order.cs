@@ -64,7 +64,8 @@ namespace ObjectOrientedPractics.Model.Orders
                 {
                     throw new ArgumentException("Value must be a positive number");
                 }
-                return Amount - DiscountAmount;
+                _total = Amount - DiscountAmount;
+                return _total;
             }
         }
         /// <summary>

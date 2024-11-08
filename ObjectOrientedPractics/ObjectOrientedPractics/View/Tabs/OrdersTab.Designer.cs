@@ -39,6 +39,7 @@
             AddressColumn = new DataGridViewTextBoxColumn();
             AmountColumn = new DataGridViewTextBoxColumn();
             StatusColumn = new DataGridViewTextBoxColumn();
+            TotalColumn = new DataGridViewTextBoxColumn();
             IdTextBox = new TextBox();
             DateTextBox = new TextBox();
             StatusLabel = new Label();
@@ -55,6 +56,8 @@
             AmountTextLabel = new Label();
             AmountLabel = new Label();
             PriorityOptionsPanel = new Panel();
+            TotalTextLabel = new Label();
+            TotalLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGrid).BeginInit();
             PriorityOptionsPanel.SuspendLayout();
             SuspendLayout();
@@ -76,7 +79,7 @@
             OrdersDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrdersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             OrdersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            OrdersDataGrid.Columns.AddRange(new DataGridViewColumn[] { IsPriority, IdColumn, DateColumn, NameColumn, AddressColumn, AmountColumn, StatusColumn });
+            OrdersDataGrid.Columns.AddRange(new DataGridViewColumn[] { IsPriority, IdColumn, DateColumn, NameColumn, AddressColumn, AmountColumn, StatusColumn, TotalColumn });
             OrdersDataGrid.Location = new Point(3, 21);
             OrdersDataGrid.MultiSelect = false;
             OrdersDataGrid.Name = "OrdersDataGrid";
@@ -129,6 +132,12 @@
             StatusColumn.HeaderText = "OrderStatus";
             StatusColumn.Name = "StatusColumn";
             StatusColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TotalColumn
+            // 
+            TotalColumn.HeaderText = "Total";
+            TotalColumn.Name = "TotalColumn";
+            TotalColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // IdTextBox
             // 
@@ -308,12 +317,36 @@
             PriorityOptionsPanel.TabIndex = 20;
             PriorityOptionsPanel.Visible = false;
             // 
+            // TotalTextLabel
+            // 
+            TotalTextLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            TotalTextLabel.AutoSize = true;
+            TotalTextLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalTextLabel.Location = new Point(1086, 573);
+            TotalTextLabel.Name = "TotalTextLabel";
+            TotalTextLabel.Size = new Size(43, 15);
+            TotalTextLabel.TabIndex = 18;
+            TotalTextLabel.Text = "Total:";
+            // 
+            // TotalLabel
+            // 
+            TotalLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            TotalLabel.AutoSize = true;
+            TotalLabel.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalLabel.Location = new Point(1086, 588);
+            TotalLabel.Name = "TotalLabel";
+            TotalLabel.Size = new Size(23, 25);
+            TotalLabel.TabIndex = 19;
+            TotalLabel.Text = "0";
+            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(PriorityOptionsPanel);
+            Controls.Add(TotalLabel);
             Controls.Add(AmountLabel);
+            Controls.Add(TotalTextLabel);
             Controls.Add(AmountTextLabel);
             Controls.Add(OrdersDataGrid);
             Controls.Add(SelectedOrderLabel);
@@ -363,5 +396,8 @@
         private DataGridViewTextBoxColumn AddressColumn;
         private DataGridViewTextBoxColumn AmountColumn;
         private DataGridViewTextBoxColumn StatusColumn;
+        private DataGridViewTextBoxColumn TotalColumn;
+        private Label TotalTextLabel;
+        private Label TotalLabel;
     }
 }
