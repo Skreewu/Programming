@@ -11,7 +11,6 @@ namespace ObjectOrientedPractics.Model
     [DataContract]
     internal class PriorityOrder : Order
     {
-        private static IdGenerator idGenerator = new IdGenerator();
         /// <summary>
         /// Задает и возвращает желаемую дату доставки.
         /// </summary>
