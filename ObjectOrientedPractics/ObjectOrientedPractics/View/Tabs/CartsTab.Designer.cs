@@ -101,16 +101,15 @@
             // 
             // AmountLabel
             // 
-            AmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            AmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(1059, 341);
+            AmountLabel.Location = new Point(1080, 341);
             AmountLabel.Name = "AmountLabel";
-            AmountLabel.RightToLeft = RightToLeft.Yes;
             AmountLabel.Size = new Size(23, 25);
             AmountLabel.TabIndex = 5;
             AmountLabel.Text = "0";
-            AmountLabel.TextAlign = ContentAlignment.MiddleRight;
+            AmountLabel.TextAlign = ContentAlignment.TopRight;
             // 
             // CustomerComboBox
             // 
@@ -207,7 +206,7 @@
             // 
             DiscountAmountTextLabel.AutoSize = true;
             DiscountAmountTextLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            DiscountAmountTextLabel.Location = new Point(1046, 426);
+            DiscountAmountTextLabel.Location = new Point(1050, 426);
             DiscountAmountTextLabel.Name = "DiscountAmountTextLabel";
             DiscountAmountTextLabel.Size = new Size(117, 15);
             DiscountAmountTextLabel.TabIndex = 15;
@@ -215,33 +214,33 @@
             // 
             // DiscountAmountLabel
             // 
-            DiscountAmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            DiscountAmountLabel.Anchor = AnchorStyles.Right;
             DiscountAmountLabel.AutoSize = true;
             DiscountAmountLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            DiscountAmountLabel.Location = new Point(1059, 441);
+            DiscountAmountLabel.Location = new Point(1080, 441);
             DiscountAmountLabel.Name = "DiscountAmountLabel";
             DiscountAmountLabel.Size = new Size(23, 25);
             DiscountAmountLabel.TabIndex = 5;
             DiscountAmountLabel.Text = "0";
-            DiscountAmountLabel.TextAlign = ContentAlignment.MiddleRight;
+            DiscountAmountLabel.TextAlign = ContentAlignment.TopRight;
             // 
             // TotalLabel
             // 
-            TotalLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            TotalLabel.Anchor = AnchorStyles.Right;
             TotalLabel.AutoSize = true;
             TotalLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            TotalLabel.Location = new Point(1055, 594);
+            TotalLabel.Location = new Point(1080, 590);
             TotalLabel.Name = "TotalLabel";
             TotalLabel.Size = new Size(23, 25);
             TotalLabel.TabIndex = 5;
             TotalLabel.Text = "0";
-            TotalLabel.TextAlign = ContentAlignment.MiddleRight;
+            TotalLabel.TextAlign = ContentAlignment.TopRight;
             // 
             // TotalTextLabel
             // 
             TotalTextLabel.AutoSize = true;
             TotalTextLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            TotalTextLabel.Location = new Point(1042, 579);
+            TotalTextLabel.Location = new Point(1050, 575);
             TotalTextLabel.Name = "TotalTextLabel";
             TotalTextLabel.Size = new Size(117, 15);
             TotalTextLabel.TabIndex = 15;

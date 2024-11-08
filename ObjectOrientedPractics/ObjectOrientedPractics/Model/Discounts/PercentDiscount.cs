@@ -14,11 +14,6 @@ namespace ObjectOrientedPractics.Model.Discounts
     internal class PercentDiscount : IDiscount
     {
         /// <summary>
-        /// Максимально возможная скидка.
-        /// </summary>
-        private const int maxDiscountPercentage = 10;
-
-        /// <summary>
         /// Возвращает информацию, сколько было потрачено.
         /// </summary>
         [DataMember]
@@ -63,7 +58,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         public void Update(List<Item> items)
         {
             TotalSpent = CalculateTotalCost(items);
-            CurrentDiscountPercentage = Math.Min(CurrentDiscountPercentage + (int)(TotalSpent / 1000), maxDiscountPercentage);
+            CurrentDiscountPercentage = Math.Min(CurrentDiscountPercentage + (int)(TotalSpent / 1000), 10);
         }
         /// <summary>
         /// Рассчитывает размер скидки в рублях.
@@ -92,7 +87,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         /// <param name="items">Список товаров.</param>
         /// <returns>Возвращает стоимость.</returns>
-        private double CalculateTotalCost(List<Item> items)
+        public double CalculateTotalCost(List<Item> items)
         {
             double totalCost = 0;
             foreach (var item in items)

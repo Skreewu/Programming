@@ -156,6 +156,7 @@ namespace ObjectOrientedPractics.View.Tabs
             DiscountAmountLabel.Text = discountSum.ToString();
             TotalLabel.Text = (_currentCustomer.Cart.Amount - discountSum).ToString();
         }
+
         public void ApplyDiscounts()
         {
             for (int i = 0; i < DiscountsListBox.Items.Count; i++)
