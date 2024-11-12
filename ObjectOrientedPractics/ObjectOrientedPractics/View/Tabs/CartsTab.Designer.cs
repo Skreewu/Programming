@@ -101,7 +101,7 @@
             // 
             // AmountLabel
             // 
-            AmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            AmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
             AmountLabel.Location = new Point(1080, 341);
@@ -181,6 +181,7 @@
             // 
             // DiscountsListBox
             // 
+            DiscountsListBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             DiscountsListBox.BackColor = SystemColors.Control;
             DiscountsListBox.BorderStyle = BorderStyle.None;
             DiscountsListBox.CheckOnClick = true;
@@ -194,6 +195,7 @@
             // 
             // DiscountLabel
             // 
+            DiscountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             DiscountLabel.AutoSize = true;
             DiscountLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             DiscountLabel.Location = new Point(294, 426);
@@ -204,6 +206,7 @@
             // 
             // DiscountAmountTextLabel
             // 
+            DiscountAmountTextLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             DiscountAmountTextLabel.AutoSize = true;
             DiscountAmountTextLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             DiscountAmountTextLabel.Location = new Point(1050, 426);
@@ -214,7 +217,7 @@
             // 
             // DiscountAmountLabel
             // 
-            DiscountAmountLabel.Anchor = AnchorStyles.Right;
+            DiscountAmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             DiscountAmountLabel.AutoSize = true;
             DiscountAmountLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
             DiscountAmountLabel.Location = new Point(1080, 441);
@@ -226,7 +229,7 @@
             // 
             // TotalLabel
             // 
-            TotalLabel.Anchor = AnchorStyles.Right;
+            TotalLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             TotalLabel.AutoSize = true;
             TotalLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
             TotalLabel.Location = new Point(1080, 590);
@@ -238,6 +241,7 @@
             // 
             // TotalTextLabel
             // 
+            TotalTextLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             TotalTextLabel.AutoSize = true;
             TotalTextLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             TotalTextLabel.Location = new Point(1050, 575);
