@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные об адресе.
     /// </summary>
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
         /// <summary>
         /// Почтовый индекс.
@@ -138,6 +138,29 @@ namespace ObjectOrientedPractics.Model
             Street = "Улица";
             Building = "0";
             Apartment = "0";
+        }
+        /// <inheritdoc/>
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
+        }
+        /// <inheritdoc/>
+        public bool Equals(Address? address2)
+        {
+            if (address2 == null)
+            {
+                return false;
+            }
+            if (object.ReferenceEquals(this, address2))
+            {
+                return true;
+            }
+            return Index == address2.Index &&
+               Country == address2.Country &&
+               City == address2.City &&
+               Street == address2.Street &&
+               Building == address2.Building &&
+               Apartment == address2.Apartment;
         }
         public override string ToString()
         {

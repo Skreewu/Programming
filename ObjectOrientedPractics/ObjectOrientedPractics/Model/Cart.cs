@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     /// Хранит корзину товаров пользователя.
     /// </summary>
     [DataContract]
-    internal class Cart
+    internal class Cart : ICloneable
     {
         /// <summary>
         /// Список товаров.
@@ -48,11 +48,24 @@ namespace ObjectOrientedPractics.Model
             }
         }
         /// <summary>
+        /// Создает экземпляр классса <see cref="Cart">
+        /// </summary>
+        /// <param name="items">Список товаров</param>
+        public Cart(List<Item> items)
+        {
+            Items = items;
+        }
+        /// <summary>
         /// Создает экземпляр классса <see cref="Cart"/>
         /// </summary>
         public Cart()
         {
             Items = new List<Item>();
+        }
+        /// <inheritdoc/>
+        public object Clone()
+        {
+            return new Cart(this.Items);
         }
     }
 }

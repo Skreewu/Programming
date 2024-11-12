@@ -25,6 +25,8 @@ namespace ObjectOrientedPractics
             cartsTab1.Customers = _store.Customers;
 
             ordersTab1.Customers = _store.Customers;
+
+            interfacesTest1.Items = _store.Items;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -67,6 +69,10 @@ namespace ObjectOrientedPractics
             else if (TabControl.SelectedIndex == 3)
             {
                 ordersTab1.UpdateOrders();
+            }
+            else if (TabControl.SelectedIndex == 4)
+            {
+                interfacesTest1.RefreshData();
             }
         }
         private void WriteOnFileItems()
