@@ -43,6 +43,8 @@
             NameTextBox = new TextBox();
             CostTextBox = new TextBox();
             IdTextBox = new TextBox();
+            SearchLabel = new Label();
+            SearchTextBox = new TextBox();
             ItemsListGroupBox.SuspendLayout();
             ItemsInfoGroupBox.SuspendLayout();
             SuspendLayout();
@@ -50,12 +52,14 @@
             // ItemsListGroupBox
             // 
             ItemsListGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ItemsListGroupBox.Controls.Add(SearchTextBox);
+            ItemsListGroupBox.Controls.Add(SearchLabel);
             ItemsListGroupBox.Controls.Add(RemoveButton);
             ItemsListGroupBox.Controls.Add(AddButton);
             ItemsListGroupBox.Controls.Add(ItemsListBox);
             ItemsListGroupBox.Location = new Point(0, 0);
             ItemsListGroupBox.Name = "ItemsListGroupBox";
-            ItemsListGroupBox.Size = new Size(325, 500);
+            ItemsListGroupBox.Size = new Size(325, 634);
             ItemsListGroupBox.TabIndex = 0;
             ItemsListGroupBox.TabStop = false;
             ItemsListGroupBox.Text = "Items";
@@ -64,7 +68,7 @@
             // 
             RemoveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             RemoveButton.Cursor = Cursors.Hand;
-            RemoveButton.Location = new Point(218, 441);
+            RemoveButton.Location = new Point(218, 575);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(101, 47);
             RemoveButton.TabIndex = 2;
@@ -76,7 +80,7 @@
             // 
             AddButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             AddButton.Cursor = Cursors.Hand;
-            AddButton.Location = new Point(3, 441);
+            AddButton.Location = new Point(3, 575);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(101, 47);
             AddButton.TabIndex = 1;
@@ -89,9 +93,9 @@
             ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.ItemHeight = 15;
-            ItemsListBox.Location = new Point(3, 19);
+            ItemsListBox.Location = new Point(3, 63);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(316, 409);
+            ItemsListBox.Size = new Size(316, 484);
             ItemsListBox.TabIndex = 0;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
@@ -111,7 +115,7 @@
             ItemsInfoGroupBox.Controls.Add(IdTextBox);
             ItemsInfoGroupBox.Location = new Point(334, 0);
             ItemsInfoGroupBox.Name = "ItemsInfoGroupBox";
-            ItemsInfoGroupBox.Size = new Size(466, 500);
+            ItemsInfoGroupBox.Size = new Size(830, 634);
             ItemsInfoGroupBox.TabIndex = 1;
             ItemsInfoGroupBox.TabStop = false;
             ItemsInfoGroupBox.Text = "Selected Item";
@@ -131,7 +135,7 @@
             CategoryComboBox.FormattingEnabled = true;
             CategoryComboBox.Location = new Point(83, 109);
             CategoryComboBox.Name = "CategoryComboBox";
-            CategoryComboBox.Size = new Size(127, 23);
+            CategoryComboBox.Size = new Size(491, 23);
             CategoryComboBox.TabIndex = 8;
             CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
             // 
@@ -178,7 +182,7 @@
             DescriptionTextBox.Location = new Point(6, 305);
             DescriptionTextBox.Multiline = true;
             DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(454, 122);
+            DescriptionTextBox.Size = new Size(818, 256);
             DescriptionTextBox.TabIndex = 3;
             DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
             // 
@@ -189,7 +193,7 @@
             NameTextBox.Location = new Point(6, 174);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(454, 94);
+            NameTextBox.Size = new Size(818, 94);
             NameTextBox.TabIndex = 2;
             NameTextBox.TextChanged += NameTextBox_TextChanged;
             // 
@@ -199,7 +203,7 @@
             CostTextBox.BorderStyle = BorderStyle.FixedSingle;
             CostTextBox.Location = new Point(83, 80);
             CostTextBox.Name = "CostTextBox";
-            CostTextBox.Size = new Size(127, 23);
+            CostTextBox.Size = new Size(491, 23);
             CostTextBox.TabIndex = 1;
             CostTextBox.TextChanged += CostTextBox_TextChanged;
             // 
@@ -210,8 +214,25 @@
             IdTextBox.Location = new Point(83, 51);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
-            IdTextBox.Size = new Size(127, 23);
+            IdTextBox.Size = new Size(491, 23);
             IdTextBox.TabIndex = 0;
+            // 
+            // SearchLabel
+            // 
+            SearchLabel.AutoSize = true;
+            SearchLabel.Location = new Point(3, 28);
+            SearchLabel.Name = "SearchLabel";
+            SearchLabel.Size = new Size(33, 15);
+            SearchLabel.TabIndex = 3;
+            SearchLabel.Text = "Find:";
+            // 
+            // SearchTextBox
+            // 
+            SearchTextBox.Location = new Point(53, 25);
+            SearchTextBox.Name = "SearchTextBox";
+            SearchTextBox.Size = new Size(254, 23);
+            SearchTextBox.TabIndex = 4;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             // 
             // ItemsTab
             // 
@@ -220,8 +241,9 @@
             Controls.Add(ItemsInfoGroupBox);
             Controls.Add(ItemsListGroupBox);
             Name = "ItemsTab";
-            Size = new Size(800, 500);
+            Size = new Size(1164, 634);
             ItemsListGroupBox.ResumeLayout(false);
+            ItemsListGroupBox.PerformLayout();
             ItemsInfoGroupBox.ResumeLayout(false);
             ItemsInfoGroupBox.PerformLayout();
             ResumeLayout(false);
@@ -244,5 +266,7 @@
         private Label IdLabel;
         private Label CategoryLabel;
         private ComboBox CategoryComboBox;
+        private TextBox SearchTextBox;
+        private Label SearchLabel;
     }
 }

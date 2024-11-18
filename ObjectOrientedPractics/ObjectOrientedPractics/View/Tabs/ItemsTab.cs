@@ -17,17 +17,19 @@ namespace ObjectOrientedPractics.View.Tabs
     internal partial class ItemsTab : UserControl
     {
         List<Item> _items = new List<Item>();
+        List<Item> _displayedItems = new List<Item>();
         Item _currentItem = new Item(false);
         public List<Item> Items
         {
-            get 
-            { 
-                return _items; 
+            get
+            {
+                return _items;
             }
-            set 
-            { 
+            set
+            {
                 _items = value;
-                ItemsListBox.Items.AddRange(_items.ToArray());
+                _displayedItems = _items;
+                ItemsListBox.Items.AddRange(_displayedItems.ToArray());
                 UpdateInfo();
 
             }
@@ -45,8 +47,8 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex == -1) return;
-            _currentItem = _items[ItemsListBox.SelectedIndex];
             Item item = (Item)ItemsListBox.SelectedItem;
+            _currentItem = item;
             IdTextBox.Text = item.Id.ToString();
             CostTextBox.Text = item.Cost.ToString();
             NameTextBox.Text = item.Name.ToString();
@@ -71,8 +73,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-            int index = ItemsListBox.Items.IndexOf(_currentItem);
-            if (index == -1) return;
+            if (ItemsListBox.SelectedIndex == -1) return;
             try
             {
                 CostTextBox.BackColor = AppColors.basicWhite;
@@ -88,8 +89,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            int index = ItemsListBox.Items.IndexOf(_currentItem);
-            if (index == -1) return;
+            if (ItemsListBox.SelectedIndex == -1) return;
             try
             {
                 NameTextBox.BackColor = AppColors.basicWhite;
@@ -105,8 +105,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            int index = ItemsListBox.Items.IndexOf(_currentItem);
-            if (index == -1) return;
+            if (ItemsListBox.SelectedIndex == -1) return;
             try
             {
                 DescriptionTextBox.BackColor = AppColors.basicWhite;
@@ -127,7 +126,7 @@ namespace ObjectOrientedPractics.View.Tabs
             int index = ItemsListBox.Items.IndexOf(_currentItem);
             if (index == -1) return;
             ItemsListBox.Items.Clear();
-            ItemsListBox.Items.AddRange(_items.ToArray());
+            ItemsListBox.Items.AddRange(_displayedItems.ToArray());
             ItemsListBox.SelectedIndex = index;
         }
         /// <summary>
@@ -143,8 +142,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = ItemsListBox.Items.IndexOf(_currentItem);
-            if (index == -1) return;
+            if (ItemsListBox.SelectedIndex == -1) return;
             try
             {
                 CategoryComboBox.BackColor = AppColors.basicWhite;
@@ -155,6 +153,24 @@ namespace ObjectOrientedPractics.View.Tabs
             catch
             {
                 CategoryComboBox.BackColor = AppColors.errors;
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = SearchTextBox.Text.ToLower();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                _displayedItems = _items;
+                ItemsListBox.Items.Clear();
+                ItemsListBox.Items.AddRange(_displayedItems.ToArray());
+            }
+            else
+            {
+                List<Item> filteredItems = DataTools.Filter(_items, item => item.Name.ToLower().Contains(searchText));
+                _displayedItems = filteredItems;
+                ItemsListBox.Items.Clear();
+                ItemsListBox.Items.AddRange(_displayedItems.ToArray());
             }
         }
     }
