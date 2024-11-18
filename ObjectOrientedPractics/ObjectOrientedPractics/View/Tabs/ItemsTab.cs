@@ -129,6 +129,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Сортирует список.
+        /// </summary>
         private void Sort()
         {
             List<Item> sortedItems;
