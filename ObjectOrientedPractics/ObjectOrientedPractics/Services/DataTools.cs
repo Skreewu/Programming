@@ -21,5 +21,22 @@ namespace ObjectOrientedPractics.Services
             }
             return newItems;
         }
+        public static List<Item> Sort(List<Item> items, Func<Item, Item, bool> compare)
+        {
+            List<Item> newItems = items;
+            for (int i = 0; i < newItems.Count; i++)
+            {
+                for (int j = 1; j < newItems.Count; j++)
+                {
+                    if (compare(newItems[j], newItems[j - 1]))
+                    {
+                        var temp = newItems[j];
+                        newItems[j] = newItems[j - 1];
+                        newItems[j - 1] = temp;
+                    }
+                }
+            }
+            return newItems;
+        }
     }
 }

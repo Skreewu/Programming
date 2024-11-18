@@ -30,8 +30,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 _items = value;
                 _displayedItems = _items;
                 ItemsListBox.Items.AddRange(_displayedItems.ToArray());
-                UpdateInfo();
-
             }
         }
         public ItemsTab()
@@ -42,7 +40,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CategoryComboBox.Items.Add(category);
             }
-            ItemsListBox.Items.AddRange(_items.ToArray());
         }
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -59,7 +56,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Item item = new Item(true);
             _items.Add(item);
-            ItemsListBox.Items.Add(item);
+            UpdateInfo();
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
@@ -124,11 +121,33 @@ namespace ObjectOrientedPractics.View.Tabs
         private void UpdateInfo()
         {
             int index = ItemsListBox.Items.IndexOf(_currentItem);
-            if (index == -1) return;
             ItemsListBox.Items.Clear();
             ItemsListBox.Items.AddRange(_displayedItems.ToArray());
-            ItemsListBox.SelectedIndex = index;
+            if (index != -1)
+            {
+                ItemsListBox.SelectedIndex = index;
+            }
         }
+
+        private void Sort()
+        {
+            List<Item> sortedItems;
+
+            switch (SortComboBox.SelectedIndex)
+            {
+                case 1:
+                    sortedItems = DataTools.Sort(_displayedItems, (item1, item2) => item1.Cost < item2.Cost);
+                    break;
+                case 2:
+                    sortedItems = DataTools.Sort(_displayedItems, (item1, item2) => item1.Cost > item2.Cost);
+                    break;
+                default:
+                    sortedItems = DataTools.Sort(_displayedItems, (item1, item2) => string.Compare(item2.Name, item1.Name) > 0);
+                    break;
+            }
+            _displayedItems = sortedItems;
+        }
+
         /// <summary>
         /// Очищает поля.
         /// </summary>
@@ -172,6 +191,12 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.Items.Clear();
                 ItemsListBox.Items.AddRange(_displayedItems.ToArray());
             }
+        }
+
+        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Sort();
+            UpdateInfo();
         }
     }
 }

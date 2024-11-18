@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             ItemsListGroupBox = new GroupBox();
+            SortLabel = new Label();
+            SearchTextBox = new TextBox();
+            SortComboBox = new ComboBox();
+            SearchLabel = new Label();
             RemoveButton = new Button();
             AddButton = new Button();
             ItemsListBox = new ListBox();
@@ -43,8 +47,6 @@
             NameTextBox = new TextBox();
             CostTextBox = new TextBox();
             IdTextBox = new TextBox();
-            SearchLabel = new Label();
-            SearchTextBox = new TextBox();
             ItemsListGroupBox.SuspendLayout();
             ItemsInfoGroupBox.SuspendLayout();
             SuspendLayout();
@@ -52,7 +54,9 @@
             // ItemsListGroupBox
             // 
             ItemsListGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ItemsListGroupBox.Controls.Add(SortLabel);
             ItemsListGroupBox.Controls.Add(SearchTextBox);
+            ItemsListGroupBox.Controls.Add(SortComboBox);
             ItemsListGroupBox.Controls.Add(SearchLabel);
             ItemsListGroupBox.Controls.Add(RemoveButton);
             ItemsListGroupBox.Controls.Add(AddButton);
@@ -63,6 +67,43 @@
             ItemsListGroupBox.TabIndex = 0;
             ItemsListGroupBox.TabStop = false;
             ItemsListGroupBox.Text = "Items";
+            // 
+            // SortLabel
+            // 
+            SortLabel.AutoSize = true;
+            SortLabel.Location = new Point(6, 549);
+            SortLabel.Name = "SortLabel";
+            SortLabel.Size = new Size(31, 15);
+            SortLabel.TabIndex = 9;
+            SortLabel.Text = "Sort:";
+            // 
+            // SearchTextBox
+            // 
+            SearchTextBox.Location = new Point(43, 25);
+            SearchTextBox.Name = "SearchTextBox";
+            SearchTextBox.Size = new Size(276, 23);
+            SearchTextBox.TabIndex = 4;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
+            // 
+            // SortComboBox
+            // 
+            SortComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            SortComboBox.FormattingEnabled = true;
+            SortComboBox.Items.AddRange(new object[] { "Name", "Cost (Ascending)", "Cost (Descending)" });
+            SortComboBox.Location = new Point(43, 546);
+            SortComboBox.Name = "SortComboBox";
+            SortComboBox.Size = new Size(276, 23);
+            SortComboBox.TabIndex = 8;
+            SortComboBox.SelectedIndexChanged += SortComboBox_SelectedIndexChanged;
+            // 
+            // SearchLabel
+            // 
+            SearchLabel.AutoSize = true;
+            SearchLabel.Location = new Point(3, 28);
+            SearchLabel.Name = "SearchLabel";
+            SearchLabel.Size = new Size(33, 15);
+            SearchLabel.TabIndex = 3;
+            SearchLabel.Text = "Find:";
             // 
             // RemoveButton
             // 
@@ -95,7 +136,7 @@
             ItemsListBox.ItemHeight = 15;
             ItemsListBox.Location = new Point(3, 63);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(316, 484);
+            ItemsListBox.Size = new Size(316, 469);
             ItemsListBox.TabIndex = 0;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
@@ -217,23 +258,6 @@
             IdTextBox.Size = new Size(491, 23);
             IdTextBox.TabIndex = 0;
             // 
-            // SearchLabel
-            // 
-            SearchLabel.AutoSize = true;
-            SearchLabel.Location = new Point(3, 28);
-            SearchLabel.Name = "SearchLabel";
-            SearchLabel.Size = new Size(33, 15);
-            SearchLabel.TabIndex = 3;
-            SearchLabel.Text = "Find:";
-            // 
-            // SearchTextBox
-            // 
-            SearchTextBox.Location = new Point(53, 25);
-            SearchTextBox.Name = "SearchTextBox";
-            SearchTextBox.Size = new Size(254, 23);
-            SearchTextBox.TabIndex = 4;
-            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
-            // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -268,5 +292,7 @@
         private ComboBox CategoryComboBox;
         private TextBox SearchTextBox;
         private Label SearchLabel;
+        private Label SortLabel;
+        private ComboBox SortComboBox;
     }
 }
