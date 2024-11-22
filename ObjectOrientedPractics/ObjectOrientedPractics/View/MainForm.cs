@@ -27,6 +27,15 @@ namespace ObjectOrientedPractics
             ordersTab1.Customers = _store.Customers;
 
             interfacesTest1.Items = _store.Items;
+
+            itemsTab1.ItemsChanged += ItemsChanged;
+        }
+
+        private void ItemsChanged(object? sender, EventArgs e)
+        {
+            cartsTab1.RefreshData();
+            ordersTab1.UpdateOrders();
+            interfacesTest1.RefreshData();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,21 +69,6 @@ namespace ObjectOrientedPractics
             WriteOnFileCustomers();
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (TabControl.SelectedIndex == 2)
-            {
-                cartsTab1.RefreshData();
-            }
-            else if (TabControl.SelectedIndex == 3)
-            {
-                ordersTab1.UpdateOrders();
-            }
-            else if (TabControl.SelectedIndex == 4)
-            {
-                interfacesTest1.RefreshData();
-            }
-        }
         private void WriteOnFileItems()
         {
            try

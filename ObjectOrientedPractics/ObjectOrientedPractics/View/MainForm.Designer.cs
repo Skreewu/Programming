@@ -61,7 +61,6 @@
             TabControl.SelectedIndex = 0;
             TabControl.Size = new Size(1184, 661);
             TabControl.TabIndex = 0;
-            TabControl.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // ItemsTabControl
             // 

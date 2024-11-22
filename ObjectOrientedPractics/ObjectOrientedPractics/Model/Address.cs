@@ -37,6 +37,8 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private string _apartment;
 
+        public event EventHandler<EventArgs> AddressChanged;
+
         /// <summary>
         /// Задает и возвращает почтовый индекс. Должен быть целым шестизначным числом.
         /// </summary>

@@ -37,6 +37,18 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         [DataMember]
         public Category Category { get; set; }
+        /// <summary>
+        /// Событие изменения названия товара.
+        /// </summary>
+        public event EventHandler<EventArgs> NameChanged;
+        /// <summary>
+        /// Событие изменения описания товара.
+        /// </summary>
+        public event EventHandler<EventArgs> InfoChanged;
+        /// <summary>
+        /// Событие изменения стоимости товара.
+        /// </summary>
+        public event EventHandler<EventArgs> CostChanged;
 
         /// <summary>
         /// Задает и возвращает данные о названии товара. Не больше 200 символов.

@@ -41,6 +41,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 CategoryComboBox.Items.Add(category);
             }
         }
+
+        public event EventHandler ItemsChanged;
+
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex == -1) return;
@@ -57,6 +60,7 @@ namespace ObjectOrientedPractics.View.Tabs
             Item item = new Item(true);
             _items.Add(item);
             UpdateInfo();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
@@ -66,6 +70,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.RemoveAt(index);
             ItemsListBox.Items.RemoveAt(index);
             ClearInfo();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void CostTextBox_TextChanged(object sender, EventArgs e)
@@ -77,6 +82,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 double cost = double.Parse(CostTextBox.Text);
                 _currentItem.Cost = cost;
                 UpdateInfo();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
             {
@@ -93,6 +99,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 string name = NameTextBox.Text.ToString();
                 _currentItem.Name = name;
                 UpdateInfo();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
             {
@@ -109,6 +116,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 string description = DescriptionTextBox.Text.ToString();
                 _currentItem.Info = description;
                 UpdateInfo();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
             {
@@ -171,6 +179,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 Category category = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
                 _currentItem.Category = category;
                 UpdateInfo();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
             {
