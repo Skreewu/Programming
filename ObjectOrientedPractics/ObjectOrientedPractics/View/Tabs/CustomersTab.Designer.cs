@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address6 = new Model.Address();
+            Model.Address address1 = new Model.Address();
             CustomersListGroupBox = new GroupBox();
             RemoveButton = new Button();
             AddButton = new Button();
             CustomersListBox = new ListBox();
             CustomersInfoGroupBox = new GroupBox();
+            PictureBox = new PictureBox();
             RemoveDiscountButton = new Button();
             AddDiscountButton = new Button();
             DiscountsListBox = new ListBox();
@@ -44,7 +45,6 @@
             IdLabel = new Label();
             IdTextBox = new TextBox();
             FullNameTextBox = new TextBox();
-            PictureBox = new PictureBox();
             CustomersListGroupBox.SuspendLayout();
             CustomersInfoGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBox).BeginInit();
@@ -119,6 +119,17 @@
             CustomersInfoGroupBox.TabStop = false;
             CustomersInfoGroupBox.Text = "SelectedCustomer";
             // 
+            // PictureBox
+            // 
+            PictureBox.BackgroundImageLayout = ImageLayout.None;
+            PictureBox.Image = Properties.Resources.Важный_кот;
+            PictureBox.Location = new Point(6, 429);
+            PictureBox.Name = "PictureBox";
+            PictureBox.Size = new Size(210, 217);
+            PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBox.TabIndex = 12;
+            PictureBox.TabStop = false;
+            // 
             // RemoveDiscountButton
             // 
             RemoveDiscountButton.Location = new Point(222, 372);
@@ -171,13 +182,13 @@
             // 
             // addressControl1
             // 
-            address6.Apartment = "0";
-            address6.Building = "0";
-            address6.City = "Город";
-            address6.Country = "Страна";
-            address6.Index = 100000;
-            address6.Street = "Улица";
-            addressControl1.Address = address6;
+            address1.Apartment = "0";
+            address1.Building = "0";
+            address1.City = "Город";
+            address1.Country = "Страна";
+            address1.Index = 100000;
+            address1.Street = "Улица";
+            addressControl1.Address = address1;
             addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             addressControl1.ApartmentTextBoxValue = "0";
             addressControl1.BuildingTextBoxValue = "0";
@@ -228,17 +239,6 @@
             FullNameTextBox.Size = new Size(779, 23);
             FullNameTextBox.TabIndex = 2;
             FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
-            // 
-            // PictureBox
-            // 
-            PictureBox.BackgroundImageLayout = ImageLayout.None;
-            PictureBox.Image = Properties.Resources._1rFunhoLcgjLzNJZx0R40dA1_wJ9uBEcZrbmN2vwkKfZ1tL_e3Tre3mgGSlEesdz712QzAktNdYYwxrudqeSsXXt;
-            PictureBox.Location = new Point(6, 429);
-            PictureBox.Name = "PictureBox";
-            PictureBox.Size = new Size(166, 129);
-            PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            PictureBox.TabIndex = 12;
-            PictureBox.TabStop = false;
             // 
             // CustomersTab
             // 

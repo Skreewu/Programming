@@ -121,4 +121,7 @@
   <data name="1rFunhoLcgjLzNJZx0R40dA1-wJ9uBEcZrbmN2vwkKfZ1tL_e3Tre3mgGSlEesdz712QzAktNdYYwxrudqeSsXXt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1rFunhoLcgjLzNJZx0R40dA1-wJ9uBEcZrbmN2vwkKfZ1tL_e3Tre3mgGSlEesdz712QzAktNdYYwxrudqeSsXXt.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Важный кот" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Важный кот.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
