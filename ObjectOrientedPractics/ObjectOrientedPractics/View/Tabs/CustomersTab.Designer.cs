@@ -34,6 +34,7 @@
             AddButton = new Button();
             CustomersListBox = new ListBox();
             CustomersInfoGroupBox = new GroupBox();
+            PictureBox = new PictureBox();
             RemoveDiscountButton = new Button();
             AddDiscountButton = new Button();
             DiscountsListBox = new ListBox();
@@ -46,6 +47,7 @@
             FullNameTextBox = new TextBox();
             CustomersListGroupBox.SuspendLayout();
             CustomersInfoGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBox).BeginInit();
             SuspendLayout();
             // 
             // CustomersListGroupBox
@@ -56,7 +58,7 @@
             CustomersListGroupBox.Controls.Add(CustomersListBox);
             CustomersListGroupBox.Location = new Point(3, 3);
             CustomersListGroupBox.Name = "CustomersListGroupBox";
-            CustomersListGroupBox.Size = new Size(348, 494);
+            CustomersListGroupBox.Size = new Size(348, 652);
             CustomersListGroupBox.TabIndex = 0;
             CustomersListGroupBox.TabStop = false;
             CustomersListGroupBox.Text = "Customers";
@@ -65,7 +67,7 @@
             // 
             RemoveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             RemoveButton.Cursor = Cursors.Hand;
-            RemoveButton.Location = new Point(233, 452);
+            RemoveButton.Location = new Point(233, 610);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(109, 36);
             RemoveButton.TabIndex = 2;
@@ -77,7 +79,7 @@
             // 
             AddButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             AddButton.Cursor = Cursors.Hand;
-            AddButton.Location = new Point(6, 452);
+            AddButton.Location = new Point(6, 610);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(109, 36);
             AddButton.TabIndex = 1;
@@ -92,13 +94,14 @@
             CustomersListBox.ItemHeight = 15;
             CustomersListBox.Location = new Point(6, 22);
             CustomersListBox.Name = "CustomersListBox";
-            CustomersListBox.Size = new Size(336, 424);
+            CustomersListBox.Size = new Size(336, 574);
             CustomersListBox.TabIndex = 0;
             CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
             // 
             // CustomersInfoGroupBox
             // 
             CustomersInfoGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CustomersInfoGroupBox.Controls.Add(PictureBox);
             CustomersInfoGroupBox.Controls.Add(RemoveDiscountButton);
             CustomersInfoGroupBox.Controls.Add(AddDiscountButton);
             CustomersInfoGroupBox.Controls.Add(DiscountsListBox);
@@ -111,10 +114,21 @@
             CustomersInfoGroupBox.Controls.Add(FullNameTextBox);
             CustomersInfoGroupBox.Location = new Point(357, 3);
             CustomersInfoGroupBox.Name = "CustomersInfoGroupBox";
-            CustomersInfoGroupBox.Size = new Size(440, 497);
+            CustomersInfoGroupBox.Size = new Size(864, 655);
             CustomersInfoGroupBox.TabIndex = 0;
             CustomersInfoGroupBox.TabStop = false;
             CustomersInfoGroupBox.Text = "SelectedCustomer";
+            // 
+            // PictureBox
+            // 
+            PictureBox.BackgroundImageLayout = ImageLayout.None;
+            PictureBox.Image = Properties.Resources.Важный_кот;
+            PictureBox.Location = new Point(6, 429);
+            PictureBox.Name = "PictureBox";
+            PictureBox.Size = new Size(210, 217);
+            PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBox.TabIndex = 12;
+            PictureBox.TabStop = false;
             // 
             // RemoveDiscountButton
             // 
@@ -183,7 +197,7 @@
             addressControl1.IndexTextBoxValue = "100000";
             addressControl1.Location = new Point(0, 117);
             addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(434, 193);
+            addressControl1.Size = new Size(858, 351);
             addressControl1.StreetTextBoxValue = "Улица";
             addressControl1.TabIndex = 6;
             // 
@@ -212,7 +226,7 @@
             IdTextBox.Location = new Point(79, 28);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
-            IdTextBox.Size = new Size(101, 23);
+            IdTextBox.Size = new Size(525, 23);
             IdTextBox.TabIndex = 1;
             IdTextBox.TextChanged += IdTextBox_TextChanged;
             // 
@@ -222,7 +236,7 @@
             FullNameTextBox.BorderStyle = BorderStyle.FixedSingle;
             FullNameTextBox.Location = new Point(79, 56);
             FullNameTextBox.Name = "FullNameTextBox";
-            FullNameTextBox.Size = new Size(355, 23);
+            FullNameTextBox.Size = new Size(779, 23);
             FullNameTextBox.TabIndex = 2;
             FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
             // 
@@ -233,10 +247,11 @@
             Controls.Add(CustomersInfoGroupBox);
             Controls.Add(CustomersListGroupBox);
             Name = "CustomersTab";
-            Size = new Size(800, 500);
+            Size = new Size(1224, 658);
             CustomersListGroupBox.ResumeLayout(false);
             CustomersInfoGroupBox.ResumeLayout(false);
             CustomersInfoGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -257,5 +272,6 @@
         private Button AddDiscountButton;
         private ListBox DiscountsListBox;
         private Label DiscountsLabel;
+        private PictureBox PictureBox;
     }
 }

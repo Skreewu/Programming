@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -11,7 +12,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// Хранит информацию о процентной скидке.
     /// </summary>
     [DataContract]
-    internal class PercentDiscount : IDiscount
+    internal class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         /// <summary>
         /// Возвращает информацию, сколько было потрачено.
@@ -98,6 +99,27 @@ namespace ObjectOrientedPractics.Model.Discounts
                 }
             }
             return totalCost;
+        }
+        /// <inheritdoc/>
+        public int CompareTo(PercentDiscount? discount2)
+        {
+            if (discount2 == null)
+            {
+                return 1;
+            }
+            if (object.ReferenceEquals(this, discount2))
+            {
+                return 0;
+            }
+            if (CurrentDiscountPercentage < discount2.CurrentDiscountPercentage)
+            {
+                return -1;
+            }
+            else if (CurrentDiscountPercentage == discount2.CurrentDiscountPercentage)
+            {
+                return 0;
+            }
+            return 1;
         }
         /// <summary>
         /// Возвращает информацию в более удобной форме.

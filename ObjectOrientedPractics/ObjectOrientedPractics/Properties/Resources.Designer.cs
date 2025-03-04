@@ -59,5 +59,26 @@ namespace ObjectOrientedPractics.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1rFunhoLcgjLzNJZx0R40dA1_wJ9uBEcZrbmN2vwkKfZ1tL_e3Tre3mgGSlEesdz712QzAktNdYYwxrudqeSsXXt {
+            get {
+                object obj = ResourceManager.GetObject("1rFunhoLcgjLzNJZx0R40dA1-wJ9uBEcZrbmN2vwkKfZ1tL_e3Tre3mgGSlEesdz712QzAktNdYYwxrud" +
+                        "qeSsXXt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Важный_кот {
+            get {
+                object obj = ResourceManager.GetObject("Важный кот", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model.Orders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -11,7 +12,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// Хранит данные о скидке.
     /// </summary>
     [DataContract]
-    internal class PointsDiscount : IDiscount
+    internal class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         /// <summary>
         /// Хранит данные о накопительных баллах.
@@ -98,6 +99,27 @@ namespace ObjectOrientedPractics.Model.Discounts
                 totalCost += item.Cost;
             }
             return totalCost;
+        }
+        /// <inheritdoc/>
+        public int CompareTo(PointsDiscount? discount2)
+        {
+            if (discount2 == null)
+            {
+                return 1;
+            }
+            if (object.ReferenceEquals(this, discount2))
+            {
+                return 0;
+            }
+            if (Points < discount2.Points)
+            {
+                return -1;
+            }
+            else if (Points == discount2.Points)
+            {
+                return 0;
+            }
+            return 1;
         }
         /// <summary>
         /// Возвращает информацию в более удобной форме.

@@ -1,6 +1,6 @@
 ﻿namespace ObjectOrientedPractics.View.Tabs
 {
-    partial class ItemsTab
+    partial class InterfacesTest
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,14 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ItemsListGroupBox = new GroupBox();
-            SortLabel = new Label();
-            SearchTextBox = new TextBox();
-            SortComboBox = new ComboBox();
-            SearchLabel = new Label();
-            RemoveButton = new Button();
-            AddButton = new Button();
-            ItemsListBox = new ListBox();
+            ItemListBox = new ListBox();
             ItemsInfoGroupBox = new GroupBox();
             CategoryLabel = new Label();
             CategoryComboBox = new ComboBox();
@@ -47,98 +40,22 @@
             NameTextBox = new TextBox();
             CostTextBox = new TextBox();
             IdTextBox = new TextBox();
-            ItemsListGroupBox.SuspendLayout();
+            CompareToButton = new Button();
+            EqualButton = new Button();
+            CopyButton = new Button();
             ItemsInfoGroupBox.SuspendLayout();
             SuspendLayout();
             // 
-            // ItemsListGroupBox
+            // ItemListBox
             // 
-            ItemsListGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            ItemsListGroupBox.Controls.Add(SortLabel);
-            ItemsListGroupBox.Controls.Add(SearchTextBox);
-            ItemsListGroupBox.Controls.Add(SortComboBox);
-            ItemsListGroupBox.Controls.Add(SearchLabel);
-            ItemsListGroupBox.Controls.Add(RemoveButton);
-            ItemsListGroupBox.Controls.Add(AddButton);
-            ItemsListGroupBox.Controls.Add(ItemsListBox);
-            ItemsListGroupBox.Location = new Point(0, 0);
-            ItemsListGroupBox.Name = "ItemsListGroupBox";
-            ItemsListGroupBox.Size = new Size(325, 634);
-            ItemsListGroupBox.TabIndex = 0;
-            ItemsListGroupBox.TabStop = false;
-            ItemsListGroupBox.Text = "Items";
-            // 
-            // SortLabel
-            // 
-            SortLabel.AutoSize = true;
-            SortLabel.Location = new Point(6, 549);
-            SortLabel.Name = "SortLabel";
-            SortLabel.Size = new Size(31, 15);
-            SortLabel.TabIndex = 9;
-            SortLabel.Text = "Sort:";
-            // 
-            // SearchTextBox
-            // 
-            SearchTextBox.Location = new Point(43, 25);
-            SearchTextBox.Name = "SearchTextBox";
-            SearchTextBox.Size = new Size(276, 23);
-            SearchTextBox.TabIndex = 4;
-            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
-            // 
-            // SortComboBox
-            // 
-            SortComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            SortComboBox.FormattingEnabled = true;
-            SortComboBox.Items.AddRange(new object[] { "Name", "Cost (Ascending)", "Cost (Descending)" });
-            SortComboBox.Location = new Point(43, 546);
-            SortComboBox.Name = "SortComboBox";
-            SortComboBox.Size = new Size(276, 23);
-            SortComboBox.TabIndex = 8;
-            SortComboBox.SelectedIndexChanged += SortComboBox_SelectedIndexChanged;
-            // 
-            // SearchLabel
-            // 
-            SearchLabel.AutoSize = true;
-            SearchLabel.Location = new Point(3, 28);
-            SearchLabel.Name = "SearchLabel";
-            SearchLabel.Size = new Size(33, 15);
-            SearchLabel.TabIndex = 3;
-            SearchLabel.Text = "Find:";
-            // 
-            // RemoveButton
-            // 
-            RemoveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            RemoveButton.Cursor = Cursors.Hand;
-            RemoveButton.Location = new Point(218, 575);
-            RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(101, 47);
-            RemoveButton.TabIndex = 2;
-            RemoveButton.Text = "Remove";
-            RemoveButton.UseVisualStyleBackColor = true;
-            RemoveButton.Click += RemoveButton_Click;
-            // 
-            // AddButton
-            // 
-            AddButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            AddButton.Cursor = Cursors.Hand;
-            AddButton.Location = new Point(3, 575);
-            AddButton.Name = "AddButton";
-            AddButton.Size = new Size(101, 47);
-            AddButton.TabIndex = 1;
-            AddButton.Text = "Add";
-            AddButton.UseVisualStyleBackColor = true;
-            AddButton.Click += AddButton_Click;
-            // 
-            // ItemsListBox
-            // 
-            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            ItemsListBox.FormattingEnabled = true;
-            ItemsListBox.ItemHeight = 15;
-            ItemsListBox.Location = new Point(3, 63);
-            ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(316, 469);
-            ItemsListBox.TabIndex = 0;
-            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
+            ItemListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ItemListBox.FormattingEnabled = true;
+            ItemListBox.ItemHeight = 15;
+            ItemListBox.Location = new Point(0, 0);
+            ItemListBox.Name = "ItemListBox";
+            ItemListBox.Size = new Size(229, 424);
+            ItemListBox.TabIndex = 0;
+            ItemListBox.SelectedIndexChanged += ItemListBox_SelectedIndexChanged;
             // 
             // ItemsInfoGroupBox
             // 
@@ -154,10 +71,10 @@
             ItemsInfoGroupBox.Controls.Add(NameTextBox);
             ItemsInfoGroupBox.Controls.Add(CostTextBox);
             ItemsInfoGroupBox.Controls.Add(IdTextBox);
-            ItemsInfoGroupBox.Location = new Point(334, 0);
+            ItemsInfoGroupBox.Location = new Point(235, 3);
             ItemsInfoGroupBox.Name = "ItemsInfoGroupBox";
-            ItemsInfoGroupBox.Size = new Size(830, 634);
-            ItemsInfoGroupBox.TabIndex = 1;
+            ItemsInfoGroupBox.Size = new Size(659, 421);
+            ItemsInfoGroupBox.TabIndex = 5;
             ItemsInfoGroupBox.TabStop = false;
             ItemsInfoGroupBox.Text = "Selected Item";
             // 
@@ -176,9 +93,8 @@
             CategoryComboBox.FormattingEnabled = true;
             CategoryComboBox.Location = new Point(83, 109);
             CategoryComboBox.Name = "CategoryComboBox";
-            CategoryComboBox.Size = new Size(491, 23);
+            CategoryComboBox.Size = new Size(570, 23);
             CategoryComboBox.TabIndex = 8;
-            CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
             // 
             // DescriptionLabel
             // 
@@ -223,9 +139,8 @@
             DescriptionTextBox.Location = new Point(6, 305);
             DescriptionTextBox.Multiline = true;
             DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(818, 256);
+            DescriptionTextBox.Size = new Size(647, 110);
             DescriptionTextBox.TabIndex = 3;
-            DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
             // 
             // NameTextBox
             // 
@@ -234,9 +149,8 @@
             NameTextBox.Location = new Point(6, 174);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(818, 94);
+            NameTextBox.Size = new Size(647, 94);
             NameTextBox.TabIndex = 2;
-            NameTextBox.TextChanged += NameTextBox_TextChanged;
             // 
             // CostTextBox
             // 
@@ -244,9 +158,8 @@
             CostTextBox.BorderStyle = BorderStyle.FixedSingle;
             CostTextBox.Location = new Point(83, 80);
             CostTextBox.Name = "CostTextBox";
-            CostTextBox.Size = new Size(491, 23);
+            CostTextBox.Size = new Size(570, 23);
             CostTextBox.TabIndex = 1;
-            CostTextBox.TextChanged += CostTextBox_TextChanged;
             // 
             // IdTextBox
             // 
@@ -255,19 +168,54 @@
             IdTextBox.Location = new Point(83, 51);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
-            IdTextBox.Size = new Size(491, 23);
+            IdTextBox.Size = new Size(570, 23);
             IdTextBox.TabIndex = 0;
             // 
-            // ItemsTab
+            // CompareToButton
+            // 
+            CompareToButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            CompareToButton.Location = new Point(235, 430);
+            CompareToButton.Name = "CompareToButton";
+            CompareToButton.Size = new Size(109, 32);
+            CompareToButton.TabIndex = 6;
+            CompareToButton.Text = "CompareTo";
+            CompareToButton.UseVisualStyleBackColor = true;
+            CompareToButton.Click += CompareToButton_Click;
+            // 
+            // EqualButton
+            // 
+            EqualButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            EqualButton.Location = new Point(120, 430);
+            EqualButton.Name = "EqualButton";
+            EqualButton.Size = new Size(109, 32);
+            EqualButton.TabIndex = 7;
+            EqualButton.Text = "Equal";
+            EqualButton.UseVisualStyleBackColor = true;
+            EqualButton.Click += EqualButton_Click;
+            // 
+            // CopyButton
+            // 
+            CopyButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            CopyButton.Location = new Point(3, 430);
+            CopyButton.Name = "CopyButton";
+            CopyButton.Size = new Size(109, 32);
+            CopyButton.TabIndex = 8;
+            CopyButton.Text = "Copy";
+            CopyButton.UseVisualStyleBackColor = true;
+            CopyButton.Click += CopyButton_Click;
+            // 
+            // InterfacesTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(CopyButton);
+            Controls.Add(EqualButton);
+            Controls.Add(CompareToButton);
             Controls.Add(ItemsInfoGroupBox);
-            Controls.Add(ItemsListGroupBox);
-            Name = "ItemsTab";
-            Size = new Size(1164, 634);
-            ItemsListGroupBox.ResumeLayout(false);
-            ItemsListGroupBox.PerformLayout();
+            Controls.Add(ItemListBox);
+            Name = "InterfacesTest";
+            Size = new Size(897, 465);
+            Load += InterfacesTest_Load;
             ItemsInfoGroupBox.ResumeLayout(false);
             ItemsInfoGroupBox.PerformLayout();
             ResumeLayout(false);
@@ -275,24 +223,20 @@
 
         #endregion
 
-        private GroupBox ItemsListGroupBox;
-        private Button RemoveButton;
-        private Button AddButton;
-        private ListBox ItemsListBox;
+        private ListBox ItemListBox;
         private GroupBox ItemsInfoGroupBox;
-        private TextBox DescriptionTextBox;
-        private TextBox NameTextBox;
-        private TextBox CostTextBox;
-        private TextBox IdTextBox;
+        private Label CategoryLabel;
+        private ComboBox CategoryComboBox;
         private Label DescriptionLabel;
         private Label NameLabel;
         private Label CostLabel;
         private Label IdLabel;
-        private Label CategoryLabel;
-        private ComboBox CategoryComboBox;
-        private TextBox SearchTextBox;
-        private Label SearchLabel;
-        private Label SortLabel;
-        private ComboBox SortComboBox;
+        private TextBox DescriptionTextBox;
+        private TextBox NameTextBox;
+        private TextBox CostTextBox;
+        private TextBox IdTextBox;
+        private Button CompareToButton;
+        private Button EqualButton;
+        private Button CopyButton;
     }
 }
