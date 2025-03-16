@@ -37,8 +37,8 @@
                 <TextBlock TextWrapping="Wrap" Text="{Binding Email}" Margin="1,0,1,0" FontWeight="Bold"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="SaveButton" Grid.Column="2" Content="Save" Margin="2,3,2,3" Grid.Row="1"/>
-        <Button x:Name="LoadButton" Grid.Column="3" Content="Load" Margin="2,3,10,3" Grid.Row="1"/>
+        <Button x:Name="SaveButton" Command="{Binding SaveCommand}" Grid.Column="2" Content="Save" Margin="2,3,2,3" Grid.Row="1"/>
+        <Button x:Name="LoadButton" Command="{Binding LoadCommand}" Grid.Column="3" Content="Load" Margin="2,3,10,3" Grid.Row="1"/>
 
     </Grid>
 </Window>

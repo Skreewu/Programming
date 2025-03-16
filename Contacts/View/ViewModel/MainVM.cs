@@ -4,21 +4,30 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using View.Model;
+using View.Model.Services;
 
 namespace View.ViewModel
 {
     internal class MainVM : INotifyPropertyChanged
     {
+        private readonly ContactSerializer _contactSerializer;
+        public ICommand SaveCommand { get; }
+        public ICommand LoadCommand { get; }
+
         private Contact _contact;
 
         public MainVM()
         {
             _contact = new Contact();
+            _contactSerializer = new ContactSerializer();
+            SaveCommand = new SaveCommand(_contactSerializer, _contact);
+            LoadCommand = new LoadCommand(_contactSerializer, this);
         }
         public string Name
         {
-            get => _contact.Name;
+            get { return _contact.Name; }
             set
             {
                 if (_contact.Name != value)
@@ -31,7 +40,7 @@ namespace View.ViewModel
 
         public string PhoneNumber
         {
-            get => _contact.PhoneNumber;
+            get { return _contact.PhoneNumber; }
             set
             {
                 if (_contact.PhoneNumber != value)
@@ -44,7 +53,7 @@ namespace View.ViewModel
 
         public string Email
         {
-            get => _contact.Email;
+            get { return _contact.Email; }
             set
             {
                 if (_contact.Email != value)
