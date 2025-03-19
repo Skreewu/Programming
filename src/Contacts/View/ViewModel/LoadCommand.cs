@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using View.Model.Services;
 using View.Model;
 
@@ -15,11 +9,14 @@ namespace View.ViewModel
     /// </summary>
     class LoadCommand : ICommand
     {
+        /// <summary>
+        /// Сериализатор.
+        /// </summary>
         private readonly ContactSerializer _contactSerializer;
         private readonly MainVM _viewModel;
 
         /// <summary>
-        /// Создает объект класса <see cref="LoadCommand"/>
+        /// Создает экземпляр класса <see cref="LoadCommand"/>
         /// </summary>
         /// <param name="contactSerializer"></param>
         /// <param name="viewModel"></param>

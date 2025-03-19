@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using View.Model.Services;
 using View.Model;
 
@@ -18,7 +13,7 @@ namespace View.ViewModel
         private readonly Contact _contact;
 
         /// <summary>
-        /// Создает объект класса <see cref="SaveCommand"/>
+        /// Создает экземпляр класса <see cref="SaveCommand"/>
         /// </summary>
         /// <param name="contactSerializer">Сериализатор.</param>
         /// <param name="contact">Контакт для сохранения.</param>
