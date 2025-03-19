@@ -10,21 +10,40 @@ using View.Model;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Команда для загрузки данных из файла.
+    /// </summary>
     class LoadCommand : ICommand
     {
         private readonly ContactSerializer _contactSerializer;
         private readonly MainVM _viewModel;
 
+        /// <summary>
+        /// Создает объект класса <see cref="LoadCommand"/>
+        /// </summary>
+        /// <param name="contactSerializer"></param>
+        /// <param name="viewModel"></param>
         public LoadCommand(ContactSerializer contactSerializer, MainVM viewModel)
         {
             _contactSerializer = contactSerializer;
             _viewModel = viewModel;
         }
-
+        /// <summary>
+        /// Событие изменения возможности выполнения команды.
+        /// </summary>
         public event EventHandler CanExecuteChanged;
 
+        /// <summary>
+        /// Возвращает возможность выполения команды.
+        /// </summary>
+        /// <param name="parameter">Параметр.</param>
+        /// <returns></returns>
         public bool CanExecute(object parameter) => true;
 
+        /// <summary>
+        /// Загружает из файла.
+        /// </summary>
+        /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
             try

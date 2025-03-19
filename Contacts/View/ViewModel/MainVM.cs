@@ -10,14 +10,31 @@ using View.Model.Services;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// ViewModel.
+    /// </summary>
     internal class MainVM : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Сериализатор.
+        /// </summary>
         private readonly ContactSerializer _contactSerializer;
+        /// <summary>
+        /// Команда для сохранения в файл.
+        /// </summary>
         public ICommand SaveCommand { get; }
+        /// <summary>
+        /// Команда для загрузки из файла.
+        /// </summary>
         public ICommand LoadCommand { get; }
-
+        /// <summary>
+        /// Контакт.
+        /// </summary>
         private Contact _contact;
 
+        /// <summary>
+        /// Создает объект класса <see cref="MainVM"/>
+        /// </summary>
         public MainVM()
         {
             _contact = new Contact();
@@ -25,6 +42,9 @@ namespace View.ViewModel
             SaveCommand = new SaveCommand(_contactSerializer, _contact);
             LoadCommand = new LoadCommand(_contactSerializer, this);
         }
+        /// <summary>
+        /// Задает и возвращает имя контакта.
+        /// </summary>
         public string Name
         {
             get { return _contact.Name; }
@@ -37,7 +57,9 @@ namespace View.ViewModel
                 }
             }
         }
-
+        /// <summary>
+        /// Задает и возвращает номер контакта.
+        /// </summary>
         public string PhoneNumber
         {
             get { return _contact.PhoneNumber; }
@@ -50,7 +72,9 @@ namespace View.ViewModel
                 }
             }
         }
-
+        /// <summary>
+        /// Задает и возвращает почту контакта.
+        /// </summary>
         public string Email
         {
             get { return _contact.Email; }
@@ -64,8 +88,15 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Событие, возникающее при изменении значения свойства.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>
+        /// </summary>
+        /// <param name="propertyName">Название измененного свойства.</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
