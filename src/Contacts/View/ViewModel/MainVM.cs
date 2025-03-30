@@ -9,7 +9,7 @@ namespace View.ViewModel
     /// <summary>
     /// ViewModel.
     /// </summary>
-    internal class MainVM
+    internal class MainVM : INotifyPropertyChanged
     {
         /// <summary>
         /// Список контактов.
@@ -23,7 +23,7 @@ namespace View.ViewModel
         /// <summary>
         /// Выбранный контакт.
         /// </summary>
-        private Contact _contact;
+        private Contact _selectedContact;
 
         /// <summary>
         /// Сериализатор.
@@ -45,10 +45,23 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            _contact = new Contact();
+            _selectedContact = new Contact();
             _contactSerializer = new ContactSerializer();
-            SaveCommand = new SaveCommand(_contactSerializer, _contact);
+            SaveCommand = new SaveCommand(_contactSerializer, _selectedContact);
             LoadCommand = new LoadCommand(_contactSerializer, this);
+        }
+
+        public Contact SelectedContact
+        {
+            get { return _selectedContact; }
+            set
+            {
+                _selectedContact = value;
+                OnPropertyChanged(nameof(SelectedContact));
+                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(PhoneNumber));
+                OnPropertyChanged(nameof(Email));
+            }
         }
 
         /// <summary>
@@ -56,12 +69,13 @@ namespace View.ViewModel
         /// </summary>
         public string Name
         {
-            get { return _contact.Name; }
+            get { return _selectedContact.Name; }
             set
             {
-                if (_contact.Name != value)
+                if (_selectedContact.Name != value)
                 {
-                    _contact.Name = value;
+                    _selectedContact.Name = value;
+                    OnPropertyChanged(nameof(Name));
                 }
             }
         }
@@ -71,12 +85,13 @@ namespace View.ViewModel
         /// </summary>
         public string PhoneNumber
         {
-            get { return _contact.PhoneNumber; }
+            get { return _selectedContact.PhoneNumber; }
             set
             {
-                if (_contact.PhoneNumber != value)
+                if (_selectedContact.PhoneNumber != value)
                 {
-                    _contact.PhoneNumber = value;
+                    _selectedContact.PhoneNumber = value;
+                    OnPropertyChanged(nameof(PhoneNumber));
                 }
             }
         }
@@ -86,14 +101,29 @@ namespace View.ViewModel
         /// </summary>
         public string Email
         {
-            get { return _contact.Email; }
+            get { return _selectedContact.Email; }
             set
             {
-                if (_contact.Email != value)
+                if (_selectedContact.Email != value)
                 {
-                    _contact.Email = value;
+                    _selectedContact.Email = value;
+                    OnPropertyChanged(nameof(Email));
                 }
             }
+        }
+
+        /// <summary>
+        /// Событие, возникающее при изменении значения свойства.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>
+        /// </summary>
+        /// <param name="propertyName">Название измененного свойства.</param>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

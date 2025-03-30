@@ -23,7 +23,7 @@
         <Border Grid.Column="0" Background="#FFF8F8F8"/>
         <Border Grid.Column="0" Grid.Row="1" Background="#FFF8F8F8"/>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Height="100" Margin="0,138,0,0" VerticalAlignment="Top" Width="3" Background="White"/>
-        <ListBox ItemsSource="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}" Margin="8">
+        <ListBox ItemsSource="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedContact, Mode=TwoWay}" Margin="8">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
@@ -52,11 +52,11 @@
             <Image HorizontalAlignment="Center" Height="100" Margin="0,45,0,0" VerticalAlignment="Top" Width="100" Source="/free-icon-contacts-3963199.png"/>
             <StackPanel Grid.Column="1" Margin="8,8,8,3">
                 <Label Content="Name:" Margin="0,3,0,3"/>
-                <TextBox TextWrapping="Wrap" Text="TextBox" Margin="0,3,0,3" Height="25"/>
+                <TextBox TextWrapping="Wrap" Text="{Binding Name}" Margin="0,3,0,3" Height="25"/>
                 <Label Content="Phone Number:" Margin="0,3,0,3"/>
-                <TextBox TextWrapping="Wrap" Text="TextBox" Margin="0,3,0,3" Height="25"/>
+                <TextBox TextWrapping="Wrap" Text="{Binding PhoneNumber}" Margin="0,3,0,3" Height="25"/>
                 <Label Content="Email:" Margin="0,3,0,3"/>
-                <TextBox TextWrapping="Wrap" Text="TextBox" Margin="0,3,0,3" Height="25"/>
+                <TextBox TextWrapping="Wrap" Text="{Binding Email}" Margin="0,3,0,3" Height="25"/>
             </StackPanel>
             <Button Grid.Column="1" Content="Apply" HorizontalAlignment="Left" Margin="8,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="25"/>
         </Grid>
