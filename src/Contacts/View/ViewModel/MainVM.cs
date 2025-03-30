@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
@@ -8,10 +9,19 @@ namespace View.ViewModel
     /// <summary>
     /// ViewModel.
     /// </summary>
-    internal class MainVM : INotifyPropertyChanged
+    internal class MainVM
     {
         /// <summary>
-        /// Контакт.
+        /// Список контактов.
+        /// </summary>
+        public ObservableCollection<Contact> Contacts { get; } = new ObservableCollection<Contact>
+        {
+            new Contact("Алексей", "89235678902", "Alexey@gmail.com"),
+            new Contact("Мария", "89832613523", "Maria@mail.ru")
+        };
+
+        /// <summary>
+        /// Выбранный контакт.
         /// </summary>
         private Contact _contact;
 
@@ -52,7 +62,6 @@ namespace View.ViewModel
                 if (_contact.Name != value)
                 {
                     _contact.Name = value;
-                    OnPropertyChanged(nameof(Name));
                 }
             }
         }
@@ -68,7 +77,6 @@ namespace View.ViewModel
                 if (_contact.PhoneNumber != value)
                 {
                     _contact.PhoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
                 }
             }
         }
@@ -84,23 +92,8 @@ namespace View.ViewModel
                 if (_contact.Email != value)
                 {
                     _contact.Email = value;
-                    OnPropertyChanged(nameof(Email));
                 }
             }
-        }
-
-        /// <summary>
-        /// Событие, возникающее при изменении значения свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>
-        /// </summary>
-        /// <param name="propertyName">Название измененного свойства.</param>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
