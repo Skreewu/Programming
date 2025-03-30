@@ -7,9 +7,16 @@ namespace View.ViewModel
     /// <summary>
     /// Команда сохранения объекта в файл.
     /// </summary>
-    class SaveCommand : ICommand
+    internal class SaveCommand : ICommand
     {
+        /// <summary>
+        /// Сериализатор.
+        /// </summary>
         private readonly ContactSerializer _contactSerializer;
+
+        /// <summary>
+        /// Контакт.
+        /// </summary>
         private readonly Contact _contact;
 
         /// <summary>
@@ -22,6 +29,7 @@ namespace View.ViewModel
             _contactSerializer = contactSerializer;
             _contact = contact;
         }
+
         /// <summary>
         /// Событие изменения возможности выполнения команды.
         /// </summary>

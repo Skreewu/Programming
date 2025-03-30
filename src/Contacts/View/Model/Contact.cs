@@ -9,10 +9,12 @@
         /// Задает и возвращает имя.
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         /// Задает и возвращает номер телефона.
         /// </summary>
         public string PhoneNumber { get; set; }
+
         /// <summary>
         /// Задает и возвращает электронную почту.
         /// </summary>
@@ -30,6 +32,7 @@
             PhoneNumber = phoneNumber;
             Email = email;
         }
+
         /// <summary>
         /// Создает объект класса <see cref="Contact"
         /// </summary>

@@ -1,21 +1,25 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
+using System.Windows;
 
 namespace View.Model.Services
 {
     /// <summary>
     /// Сериализует и десериализует данные контакта.
     /// </summary>
-    class ContactSerializer
+    internal class ContactSerializer
     {
         /// <summary>
-        /// Путь к файлу.
+        /// Директория.
         /// </summary>
-        private string filePath = Path.Combine(
-            System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
-            "Contacts",
-            "contacts.json"
-        );
+        private string _directory = Path.Combine(Environment.GetFolderPath(
+            Environment.SpecialFolder.MyDocuments), "Contacts");
+        
+        /// <summary>
+        /// Название файла.
+        /// </summary>
+        private string _fileName = "contacts.json";
+
         /// <summary>
         /// Сохраняет данные контакта в файл.
         /// </summary>
@@ -23,9 +27,10 @@ namespace View.Model.Services
         public void SaveInFile(Contact contact)
         {
             string json = JsonConvert.SerializeObject(contact);
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            File.WriteAllText(filePath, json);
+            Directory.CreateDirectory(_directory);
+            File.WriteAllText(Path.Combine(_directory, _fileName), json);
         }
+
         /// <summary>
         /// Загружает данные контакта из файла.
         /// </summary>
@@ -33,6 +38,7 @@ namespace View.Model.Services
         /// <exception cref="FileNotFoundException"></exception>
         public Contact LoadFromFile()
         {
+            string filePath = Path.Combine(_directory, _fileName);
             if (!File.Exists(filePath))
                 throw new FileNotFoundException("Файл не найден", filePath);
 

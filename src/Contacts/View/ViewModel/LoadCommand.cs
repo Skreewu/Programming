@@ -7,12 +7,16 @@ namespace View.ViewModel
     /// <summary>
     /// Команда для загрузки данных из файла.
     /// </summary>
-    class LoadCommand : ICommand
+    internal class LoadCommand : ICommand
     {
         /// <summary>
         /// Сериализатор.
         /// </summary>
         private readonly ContactSerializer _contactSerializer;
+        
+        /// <summary>
+        /// Объект ViewModel.
+        /// </summary>
         private readonly MainVM _viewModel;
 
         /// <summary>
@@ -25,6 +29,7 @@ namespace View.ViewModel
             _contactSerializer = contactSerializer;
             _viewModel = viewModel;
         }
+
         /// <summary>
         /// Событие изменения возможности выполнения команды.
         /// </summary>
@@ -52,7 +57,7 @@ namespace View.ViewModel
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception(ex.Message);
             }
         }
     }

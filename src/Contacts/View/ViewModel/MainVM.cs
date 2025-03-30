@@ -11,21 +11,24 @@ namespace View.ViewModel
     internal class MainVM : INotifyPropertyChanged
     {
         /// <summary>
+        /// Контакт.
+        /// </summary>
+        private Contact _contact;
+
+        /// <summary>
         /// Сериализатор.
         /// </summary>
         private readonly ContactSerializer _contactSerializer;
+
         /// <summary>
         /// Команда для сохранения в файл.
         /// </summary>
         public ICommand SaveCommand { get; }
+
         /// <summary>
         /// Команда для загрузки из файла.
         /// </summary>
         public ICommand LoadCommand { get; }
-        /// <summary>
-        /// Контакт.
-        /// </summary>
-        private Contact _contact;
 
         /// <summary>
         /// Создает объект класса <see cref="MainVM"/>
@@ -37,6 +40,7 @@ namespace View.ViewModel
             SaveCommand = new SaveCommand(_contactSerializer, _contact);
             LoadCommand = new LoadCommand(_contactSerializer, this);
         }
+
         /// <summary>
         /// Задает и возвращает имя контакта.
         /// </summary>
@@ -52,6 +56,7 @@ namespace View.ViewModel
                 }
             }
         }
+
         /// <summary>
         /// Задает и возвращает номер контакта.
         /// </summary>
@@ -67,6 +72,7 @@ namespace View.ViewModel
                 }
             }
         }
+
         /// <summary>
         /// Задает и возвращает почту контакта.
         /// </summary>
