@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
@@ -11,14 +12,7 @@ namespace View.ViewModel
     /// </summary>
     internal class MainVM : INotifyPropertyChanged
     {
-        /// <summary>
-        /// Список контактов.
-        /// </summary>
-        public ObservableCollection<Contact> Contacts { get; } = new ObservableCollection<Contact>
-        {
-            new Contact("Алексей", "89235678902", "Alexey@gmail.com"),
-            new Contact("Мария", "89832613523", "Maria@mail.ru")
-        };
+        private bool isEditOrAdd;
 
         /// <summary>
         /// Выбранный контакт.
@@ -45,10 +39,30 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            _selectedContact = new Contact();
+            isEditOrAdd = false;
             _contactSerializer = new ContactSerializer();
             SaveCommand = new SaveCommand(_contactSerializer, _selectedContact);
             LoadCommand = new LoadCommand(_contactSerializer, this);
+        }
+        public ObservableCollection<Contact> Contacts { get; } = new ObservableCollection<Contact> 
+        {
+            new Contact("Алексей", "89235678902", "Alexey@gmail.com"),
+            new Contact("Мария", "89832613523", "Maria@mail.ru")
+        };
+
+        public bool IsReadOnly
+        {
+            get { return !isEditOrAdd; }
+        }
+
+        public bool IsEnabled
+        {
+            get { return _selectedContact != null && Contacts.Count > 0; }
+        }
+
+        public Visibility Visible
+        {
+            get { return isEditOrAdd ? Visibility.Visible : Visibility.Collapsed; }
         }
 
         public Contact SelectedContact
@@ -61,6 +75,7 @@ namespace View.ViewModel
                 OnPropertyChanged(nameof(Name));
                 OnPropertyChanged(nameof(PhoneNumber));
                 OnPropertyChanged(nameof(Email));
+                OnPropertyChanged(nameof(IsEnabled));
             }
         }
 
@@ -69,7 +84,7 @@ namespace View.ViewModel
         /// </summary>
         public string Name
         {
-            get { return _selectedContact.Name; }
+            get { return _selectedContact?.Name; }
             set
             {
                 if (_selectedContact.Name != value)
@@ -85,7 +100,7 @@ namespace View.ViewModel
         /// </summary>
         public string PhoneNumber
         {
-            get { return _selectedContact.PhoneNumber; }
+            get { return _selectedContact?.PhoneNumber; }
             set
             {
                 if (_selectedContact.PhoneNumber != value)
@@ -101,7 +116,7 @@ namespace View.ViewModel
         /// </summary>
         public string Email
         {
-            get { return _selectedContact.Email; }
+            get { return _selectedContact?.Email; }
             set
             {
                 if (_selectedContact.Email != value)
