@@ -9,7 +9,7 @@
         Height="422" 
         Width="648" 
         MinHeight="400" 
-        MinWidth="450" Icon="/free-icon-contacts-3963199.png">
+        MinWidth="450" Icon="/free-icon-contacts-3963199.png" Closing="MainWindow1_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

@@ -40,7 +40,7 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// 
+        /// Редактирует объект
         /// </summary>
         /// <param name="parameter"></param>
         public void Execute(object? parameter)

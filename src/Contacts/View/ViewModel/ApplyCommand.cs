@@ -43,14 +43,13 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// 
+        /// Подтверждает действие.
         /// </summary>
         /// <param name="parameter"></param>
         public void Execute(object? parameter)
         {
             if (_viewModel.SelectedContact == null)
             {
-                // Добавление нового контакта
                 var newContact = new Contact(
                     _viewModel.TempContact.Name,
                     _viewModel.TempContact.PhoneNumber,
@@ -60,7 +59,6 @@ namespace View.ViewModel
             }
             else
             {
-                // Редактирование существующего контакта
                 _viewModel.SelectedContact.Name = _viewModel.TempContact.Name;
                 _viewModel.SelectedContact.PhoneNumber = _viewModel.TempContact.PhoneNumber;
                 _viewModel.SelectedContact.Email = _viewModel.TempContact.Email;

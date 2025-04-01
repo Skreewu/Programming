@@ -11,7 +11,7 @@ namespace View.ViewModel
         private readonly MainVM _viewModel;
 
         /// <summary>
-        /// Создает экземпляр класса <see cref=""/>
+        /// Создает экземпляр класса <see cref="AddCommand"/>
         /// </summary>
         /// <param name="contactSerializer"></param>
         /// <param name="viewModel"></param>
@@ -33,7 +33,7 @@ namespace View.ViewModel
         public bool CanExecute(object? parameter) => true;
 
         /// <summary>
-        /// Создает объект
+        /// Создает объект.
         /// </summary>
         /// <param name="parameter"></param>
         public void Execute(object? parameter)

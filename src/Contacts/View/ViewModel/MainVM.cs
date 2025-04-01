@@ -10,7 +10,7 @@ namespace View.ViewModel
     /// <summary>
     /// ViewModel.
     /// </summary>
-    internal class MainVM : INotifyPropertyChanged
+    internal class MainVM : INotifyPropertyChanged, IDisposable
     {
         /// <summary>
         /// Режим редактирования или добавления.
@@ -38,8 +38,7 @@ namespace View.ViewModel
         public MainVM()
         {
             _contactSerializer = new ContactSerializer();
-            SaveCommand = new SaveCommand(_contactSerializer, _selectedContact);
-            LoadCommand = new LoadCommand(_contactSerializer, this);
+            Contacts = _contactSerializer.Load();
             AddCommand = new AddCommand(this);
             EditCommand = new EditCommand(this);
             RemoveCommand = new RemoveCommand(this);
@@ -50,16 +49,6 @@ namespace View.ViewModel
         /// Событие, возникающее при изменении значения свойства.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Команда сохранения.
-        /// </summary>
-        public ICommand SaveCommand { get; }
-
-        /// <summary>
-        /// Команда загрузки
-        /// </summary>
-        public ICommand LoadCommand { get; }
 
         /// <summary>
         /// Команда добавления.
@@ -84,11 +73,7 @@ namespace View.ViewModel
         /// <summary>
         /// Список контактов.
         /// </summary>
-        public ObservableCollection<Contact> Contacts { get; } = new ObservableCollection<Contact> 
-        {
-            new Contact("Алексей", "89235678902", "Alexey@gmail.com"),
-            new Contact("Мария", "89832613523", "Maria@mail.ru")
-        };
+        public ObservableCollection<Contact> Contacts { get; }
 
         /// <summary>
         /// Задает и возвращает режим редактирования
@@ -247,7 +232,7 @@ namespace View.ViewModel
                 }
             }
         }
-
+        
         /// <summary>
         /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>
         /// </summary>
@@ -255,6 +240,11 @@ namespace View.ViewModel
         public virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void Dispose()
+        {
+            _contactSerializer.Save(Contacts);
         }
     }
 }

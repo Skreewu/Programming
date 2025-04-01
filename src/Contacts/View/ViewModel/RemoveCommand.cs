@@ -10,7 +10,7 @@ namespace View.ViewModel
         private readonly MainVM _viewModel;
 
         /// <summary>
-        /// Создает экземпляр класса <see cref=""/>
+        /// Создает экземпляр класса <see cref="RemoveCommand"/>
         /// </summary>
         /// <param name="contactSerializer"></param>
         /// <param name="viewModel"></param>
@@ -38,9 +38,8 @@ namespace View.ViewModel
             return _viewModel.SelectedContact != null && _viewModel.Contacts.Count > 0;
         }
 
-
         /// <summary>
-        /// 
+        /// Удаляет элемент.
         /// </summary>
         /// <param name="parameter"></param>
         public void Execute(object? parameter)
