@@ -24,6 +24,29 @@ namespace View.Model
         private string _email;
 
         /// <summary>
+        /// Создает экземпляр класса <see cref="Contact"/>
+        /// </summary>
+        /// <param name="name">Имя.</param>
+        /// <param name="phoneNumber">Номер телефона.</param>
+        /// <param name="email">Электронная почта.</param>
+        public Contact(string name, string phoneNumber, string email)
+        {
+            Name = name;
+            PhoneNumber = phoneNumber;
+            Email = email;
+        }
+
+        /// <summary>
+        /// Создает объект класса <see cref="Contact"
+        /// </summary>
+        public Contact() { }
+
+        /// <summary>
+        /// Событие, возникающее при изменении значения свойства.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Задает и возвращает имя.
         /// </summary>
         public string Name
@@ -61,28 +84,6 @@ namespace View.Model
                 OnPropertyChanged(nameof(Email));
             }
         }
-        /// <summary>
-        /// Создает экземпляр класса <see cref="Contact"/>
-        /// </summary>
-        /// <param name="name">Имя.</param>
-        /// <param name="phoneNumber">Номер телефона.</param>
-        /// <param name="email">Электронная почта.</param>
-        public Contact(string name, string phoneNumber, string email)
-        {
-            Name = name;
-            PhoneNumber = phoneNumber;
-            Email = email;
-        }
-
-        /// <summary>
-        /// Создает объект класса <see cref="Contact"
-        /// </summary>
-        public Contact() { }
-
-        /// <summary>
-        /// Событие, возникающее при изменении значения свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>

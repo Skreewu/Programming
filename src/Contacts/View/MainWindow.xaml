@@ -46,17 +46,20 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="2" 
                     Content="Remove" 
+                    Command="{Binding RemoveCommand}"
                     Margin="3,0,3,3" 
                     Height="25" 
                     VerticalAlignment="Bottom"
                     IsEnabled="{Binding IsEnabled}"/>
             <Button Content="Edit" 
+                    Command="{Binding EditCommand}"
                     Height="25" 
                     VerticalAlignment="Bottom" 
                     Margin="3,0,3,3" 
                     Grid.Column="1"
                     IsEnabled="{Binding IsEnabled}"/>
             <Button Content="Add" 
+                    Command="{Binding AddCommand}"
                     Margin="3,0,3,3" 
                     Height="25" 
                     VerticalAlignment="Bottom"/>
@@ -79,25 +82,26 @@
             <StackPanel Grid.Column="1" Margin="8,8,8,3">
                 <Label Content="Name:" Margin="0,3,0,3"/>
                 <TextBox TextWrapping="Wrap" 
-                         Text="{Binding Name}" 
+                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                          IsReadOnly="{Binding IsReadOnly}"
                          Margin="0,3,0,3" 
                          Height="25"/>
                 <Label Content="Phone Number:" Margin="0,3,0,3"/>
                 <TextBox TextWrapping="Wrap" 
-                         Text="{Binding PhoneNumber}" 
+                         Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                          IsReadOnly="{Binding IsReadOnly}" 
                          Margin="0,3,0,3" 
                          Height="25"/>
                 <Label Content="Email:" Margin="0,3,0,3"/>
                 <TextBox TextWrapping="Wrap" 
-                         Text="{Binding Email}" 
+                         Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                          IsReadOnly="{Binding IsReadOnly}" 
                          Margin="0,3,0,3" 
                          Height="25"/>
             </StackPanel>
             <Button Grid.Column="1" 
-                    Content="Apply" 
+                    Content="Apply"
+                    Command="{Binding ApplyCommand}"
                     HorizontalAlignment="Left" 
                     Margin="8,50,0,0" 
                     Grid.Row="1" 
