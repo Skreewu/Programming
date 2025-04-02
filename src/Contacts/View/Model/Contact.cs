@@ -6,21 +6,6 @@
     internal class Contact
     {
         /// <summary>
-        /// Задает и возвращает имя.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Задает и возвращает номер телефона.
-        /// </summary>
-        public string PhoneNumber { get; set; }
-
-        /// <summary>
-        /// Задает и возвращает электронную почту.
-        /// </summary>
-        public string Email { get; set; }
-
-        /// <summary>
         /// Создает экземпляр класса <see cref="Contact"/>
         /// </summary>
         /// <param name="name">Имя.</param>
@@ -37,5 +22,21 @@
         /// Создает объект класса <see cref="Contact"
         /// </summary>
         public Contact() { }
+
+        /// <summary>
+        /// Задает и возвращает имя.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Задает и возвращает номер телефона.
+        /// </summary>
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Задает и возвращает электронную почту.
+        /// </summary>
+        public string Email { get; set; }
+
     }
 }

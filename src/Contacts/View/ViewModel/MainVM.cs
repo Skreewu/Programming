@@ -11,14 +11,14 @@ namespace View.ViewModel
     internal class MainVM : INotifyPropertyChanged
     {
         /// <summary>
-        /// Контакт.
-        /// </summary>
-        private Contact _contact;
-
-        /// <summary>
         /// Сериализатор.
         /// </summary>
         private readonly ContactSerializer _contactSerializer;
+
+        /// <summary>
+        /// Контакт.
+        /// </summary>
+        private Contact _contact;
 
         /// <summary>
         /// Команда для сохранения в файл.
@@ -40,6 +40,11 @@ namespace View.ViewModel
             SaveCommand = new SaveCommand(_contactSerializer, _contact);
             LoadCommand = new LoadCommand(_contactSerializer, this);
         }
+
+        /// <summary>
+        /// Событие, возникающее при изменении значения свойства.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Задает и возвращает имя контакта.
@@ -89,10 +94,6 @@ namespace View.ViewModel
             }
         }
 
-        /// <summary>
-        /// Событие, возникающее при изменении значения свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>
