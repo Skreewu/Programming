@@ -13,13 +13,5 @@ namespace View
             InitializeComponent();
             DataContext = new MainVM();
         }
-
-        private void MainWindow1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (DataContext is IDisposable disposableVm)
-            {
-                disposableVm.Dispose();
-            }
-        }
     }
 }

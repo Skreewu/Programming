@@ -1,26 +1,34 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using View.Model;
+using View.Model.Services;
 
 namespace View.ViewModel
 {
     /// <summary>
-    /// Команда для добавления элемента.
+    /// Команда для сохранения коллекции контакта.
     /// </summary>
-    internal class AddCommand : ICommand
+    internal class SaveInFileCommand : ICommand
     {
         /// <summary>
-        /// Объект ViewModel.
+        /// Список контактов для сохранения
         /// </summary>
-        private readonly MainVM _viewModel;
+        private readonly ObservableCollection<Contact> _contacts;
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="AddCommand"/>
+        /// Сериализатор.
+        /// </summary>
+        private readonly ContactSerializer _contactSerializer;
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="SaveInFileCommand"/>
         /// </summary>
         /// <param name="contactSerializer"></param>
         /// <param name="viewModel"></param>
-        public AddCommand(MainVM viewModel)
+        public SaveInFileCommand(ContactSerializer contactSerializer, ObservableCollection<Contact> contacts)
         {
-            _viewModel = viewModel;
+            _contactSerializer = contactSerializer;
+            _contacts = contacts;
         }
 
         /// <summary>
@@ -41,11 +49,7 @@ namespace View.ViewModel
         /// <param name="parameter"></param>
         public void Execute(object? parameter)
         {
-            _viewModel.IsEditOrAdd = true;
-            _viewModel.TempContact = new Contact();
-            _viewModel.SelectedContact = null;
-            _viewModel.OnPropertyChanged(nameof(MainVM.IsReadOnly));
-            _viewModel.OnPropertyChanged(nameof(MainVM.Visible));
+            _contactSerializer.Save(_contacts);
         }
     }
 }

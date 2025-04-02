@@ -3,6 +3,9 @@ using View.Model;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Команда для редактирования элемента.
+    /// </summary>
     internal class EditCommand : ICommand
     {
         /// <summary>

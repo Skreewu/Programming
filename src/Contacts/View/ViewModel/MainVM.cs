@@ -8,9 +8,9 @@ using View.Model.Services;
 namespace View.ViewModel
 {
     /// <summary>
-    /// ViewModel.
+    /// ViewModel основного окна.
     /// </summary>
-    internal class MainVM : INotifyPropertyChanged, IDisposable
+    internal class MainVM : INotifyPropertyChanged
     {
         /// <summary>
         /// Режим редактирования или добавления.
@@ -43,6 +43,7 @@ namespace View.ViewModel
             EditCommand = new EditCommand(this);
             RemoveCommand = new RemoveCommand(this);
             ApplyCommand = new ApplyCommand(this);
+            SaveInFileCommand = new SaveInFileCommand(_contactSerializer, Contacts);
         }
 
         /// <summary>
@@ -69,6 +70,11 @@ namespace View.ViewModel
         /// Команда подтверждения.
         /// </summary>
         public ICommand ApplyCommand { get; }
+
+        /// <summary>
+        /// Команда для сохранения коллекции элементов в файл.
+        /// </summary>
+        public ICommand SaveInFileCommand { get; }
 
         /// <summary>
         /// Список контактов.
@@ -240,11 +246,6 @@ namespace View.ViewModel
         public virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public void Dispose()
-        {
-            _contactSerializer.Save(Contacts);
         }
     }
 }

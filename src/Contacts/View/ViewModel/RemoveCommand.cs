@@ -2,6 +2,9 @@
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Команда для удаления элемента.
+    /// </summary>
     internal class RemoveCommand : ICommand
     {
         /// <summary>
