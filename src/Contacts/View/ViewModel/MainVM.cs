@@ -13,6 +13,11 @@ namespace View.ViewModel
     internal class MainVM : INotifyPropertyChanged
     {
         /// <summary>
+        /// Сериализатор.
+        /// </summary>
+        private readonly ContactSerializer _contactSerializer;
+
+        /// <summary>
         /// Режим редактирования или добавления.
         /// </summary>
         private bool _isEditOrAdd;
@@ -26,11 +31,6 @@ namespace View.ViewModel
         /// Временный контакт для редактирования.
         /// </summary>
         private Contact _tempContact;
-
-        /// <summary>
-        /// Сериализатор.
-        /// </summary>
-        private readonly ContactSerializer _contactSerializer;
 
         /// <summary>
         /// Создает объект класса <see cref="MainVM"/>
@@ -107,6 +107,7 @@ namespace View.ViewModel
             set
             {
                 _tempContact = value;
+                OnPropertyChanged(nameof(TempContact));
                 OnPropertyChanged(nameof(Name));
                 OnPropertyChanged(nameof(PhoneNumber));
                 OnPropertyChanged(nameof(Email));
@@ -132,9 +133,9 @@ namespace View.ViewModel
         /// <summary>
         /// Возвращает видимость.
         /// </summary>
-        public Visibility Visible
+        public bool Visible
         {
-            get { return _isEditOrAdd ? Visibility.Visible : Visibility.Collapsed; }
+            get { return _isEditOrAdd; }
         }
 
         /// <summary>

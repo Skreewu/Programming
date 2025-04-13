@@ -11,14 +11,21 @@
         Width="648" 
         MinHeight="400" 
         MinWidth="450" 
-        Icon="/free-icon-contacts-3963199.png">
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="Closing">
-                <i:InvokeCommandAction Command="{Binding SaveInFileCommand}"/>
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
+        Icon="/contact.png">
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SaveInFileCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -27,28 +34,39 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" 
-                Background="#FFF8F8F8"/>
-        <Border Grid.Column="0" 
-                Grid.Row="1" 
-                Background="#FFF8F8F8"/>
+        
+        <Border Background="#FFF8F8F8" Grid.Row="0"/>
+        <Border Background="#FFF8F8F8" Grid.Row="1"/>
+        <Border Background="#FFF8F8F8" Grid.Row="2"/>
+        
         <GridSplitter Grid.Column="1" 
                       HorizontalAlignment="Center" 
-                      Height="100" 
-                      Margin="0,138,0,0" 
-                      VerticalAlignment="Top" 
                       Width="3" 
-                      Background="White"/>
+                      Background="White" Grid.RowSpan="3"/>
+        <Grid Margin="8,8,8,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Find:" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Left"/>
+            <TextBox Text="" 
+                     Margin="3,0,0,0" 
+                     Grid.Column="1" 
+                     Height="25" 
+                     VerticalAlignment="Center"/>
+        </Grid>
         <ListBox ItemsSource="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}" 
                  SelectedItem="{Binding SelectedContact, Mode=TwoWay}" 
-                 Margin="8">
+                 Margin="8,8,8,8" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Grid Margin="8,8,8,8" Grid.Row="1">
+        <Grid Margin="8,8,8,5" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -74,7 +92,7 @@
                     Height="25" 
                     VerticalAlignment="Bottom"/>
         </Grid>
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -88,7 +106,7 @@
                    Margin="0,45,0,0" 
                    VerticalAlignment="Top" 
                    Width="100" 
-                   Source="/free-icon-contacts-3963199.png"/>
+                   Source="/contact.png"/>
             <StackPanel Grid.Column="1" Margin="8,8,8,3">
                 <Label Content="Name:" Margin="0,3,0,3"/>
                 <TextBox TextWrapping="Wrap" 
@@ -118,7 +136,7 @@
                     VerticalAlignment="Top" 
                     Width="75" 
                     Height="25"
-                    Visibility="{Binding Visible}"/>
+                    Visibility="{Binding Visible, Converter={StaticResource BoolToVisibilityConverter}}"/>
         </Grid>
     </Grid>
 </Window>
