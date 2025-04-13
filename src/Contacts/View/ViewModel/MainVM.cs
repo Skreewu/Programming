@@ -39,11 +39,37 @@ namespace View.ViewModel
         {
             _contactSerializer = new ContactSerializer();
             Contacts = _contactSerializer.Load();
-            AddCommand = new AddCommand(this);
-            EditCommand = new EditCommand(this);
-            RemoveCommand = new RemoveCommand(this);
-            ApplyCommand = new ApplyCommand(this);
-            SaveInFileCommand = new SaveInFileCommand(_contactSerializer, Contacts);
+
+            AddCommand = new RelayCommand(
+                execute: ExecuteAddCommand,
+                canExecute: _ => true
+            );
+
+            EditCommand = new RelayCommand(
+                execute: ExecuteEditCommand,
+                canExecute: _ => SelectedContact != null && Contacts.Count > 0,
+                useCommandManager: true
+            );
+
+            RemoveCommand = new RelayCommand(
+                execute: ExecuteRemoveCommand,
+                canExecute: _ => SelectedContact != null && Contacts.Count > 0,
+                useCommandManager: true
+            );
+
+            ApplyCommand = new RelayCommand(
+                execute: ExecuteApplyCommand,
+                canExecute: _ => IsEditOrAdd &&
+                       !string.IsNullOrWhiteSpace(TempContact?.Name) &&
+                       !string.IsNullOrWhiteSpace(TempContact?.PhoneNumber) &&
+                       !string.IsNullOrWhiteSpace(TempContact?.Email),
+                useCommandManager: true
+            );
+
+            SaveInFileCommand = new RelayCommand(
+                execute: ExecuteSaveInFileCommand,
+                canExecute: _ => true
+            );
         }
 
         /// <summary>
@@ -239,7 +265,91 @@ namespace View.ViewModel
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Метод для комманды добавления.
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void ExecuteAddCommand(object parameter)
+        {
+            IsEditOrAdd = true;
+            TempContact = new Contact();
+            SelectedContact = null;
+            OnPropertyChanged(nameof(IsReadOnly));
+            OnPropertyChanged(nameof(Visible));
+        }
+
+        /// <summary>
+        /// Метод для комманды редактирования.
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void ExecuteEditCommand(object parameter)
+        {
+            IsEditOrAdd = true;
+            TempContact = new Contact(SelectedContact.Name, SelectedContact.PhoneNumber, SelectedContact.Email);
+            OnPropertyChanged(nameof(IsReadOnly));
+            OnPropertyChanged(nameof(Visible));
+        }
+
+        /// <summary>
+        /// Метод для команды удаления.
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void ExecuteRemoveCommand(object parameter)
+        {
+            int index = Contacts.IndexOf(SelectedContact);
+            Contacts.Remove(SelectedContact);
+
+            if (Contacts.Count > 0)
+            {
+                if (index >= Contacts.Count)
+                {
+                    index = Contacts.Count - 1;
+                }
+                SelectedContact = Contacts[index];
+            }
+            else
+            {
+                SelectedContact = null;
+            }
+
+            OnPropertyChanged(nameof(IsEnabled));
+        }
+
+        /// <summary>
+        /// Метод для комманды подтверждения.
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void ExecuteApplyCommand(object parameter)
+        {
+            if (SelectedContact == null)
+            {
+                var newContact = new Contact(TempContact.Name, TempContact.PhoneNumber, TempContact.Email);
+                Contacts.Add(newContact);
+                SelectedContact = newContact;
+            }
+            else
+            {
+                SelectedContact.Name = TempContact.Name;
+                SelectedContact.PhoneNumber = TempContact.PhoneNumber;
+                SelectedContact.Email = TempContact.Email;
+            }
+
+            IsEditOrAdd = false;
+            TempContact = null;
+            OnPropertyChanged(nameof(IsReadOnly));
+            OnPropertyChanged(nameof(Visible));
+        }
+
+        /// <summary>
+        /// Метод для комманды сохранения и загрузки в файл.
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void ExecuteSaveInFileCommand(object parameter)
+        {
+            _contactSerializer.Save(Contacts);
+        }
+
         /// <summary>
         /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>
         /// </summary>
