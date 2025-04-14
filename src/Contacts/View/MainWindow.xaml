@@ -15,6 +15,32 @@
     
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <DataTemplate x:Key="contactTemplate">
+            <Grid Margin="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="/contact.png" 
+               Width="40" 
+               Height="40"
+               Stretch="UniformToFill"
+               Grid.Column="0"
+               VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Column="1" 
+                    Margin="8,0,0,0"
+                    VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Name}" 
+                       FontWeight="Bold"
+                       FontSize="14"/>
+                    <TextBlock Text="{Binding PhoneNumber}" 
+                       FontSize="12"
+                       Foreground="#666"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </Window.Resources>
     
     <i:Interaction.Triggers>
@@ -59,12 +85,8 @@
         </Grid>
         <ListBox ItemsSource="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}" 
                  SelectedItem="{Binding SelectedContact, Mode=TwoWay}" 
-                 Margin="8,8,8,8" Grid.Row="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+                 Margin="8,8,8,8" Grid.Row="1"
+                 ItemTemplate="{StaticResource contactTemplate}">
         </ListBox>
         <Grid Margin="8,8,8,5" Grid.Row="2">
             <Grid.ColumnDefinitions>
