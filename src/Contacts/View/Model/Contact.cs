@@ -6,7 +6,7 @@ namespace View.Model
     /// <summary>
     /// Хранит данные о контакте.
     /// </summary>
-    internal class Contact : INotifyPropertyChanged
+    public class Contact : INotifyPropertyChanged
     {
         /// <summary>
         /// Имя.

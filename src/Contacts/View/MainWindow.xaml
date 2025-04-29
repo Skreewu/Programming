@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:View"
+        xmlns:controls="clr-namespace:View.Controls"
         mc:Ignorable="d"
         Title="Contacts" 
         Height="422" 
@@ -123,37 +124,14 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Image HorizontalAlignment="Center" 
-                   Height="100" 
-                   Margin="0,45,0,0" 
-                   VerticalAlignment="Top" 
-                   Width="100" 
-                   Source="/contact.png"/>
-            <StackPanel Grid.Column="1" Margin="8,8,8,3">
-                <Label Content="Name:" Margin="0,3,0,3"/>
-                <TextBox TextWrapping="Wrap" 
-                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                         IsReadOnly="{Binding IsReadOnly}"
-                         Margin="0,3,0,3" 
-                         Height="25"/>
-                <Label Content="Phone Number:" Margin="0,3,0,3"/>
-                <TextBox TextWrapping="Wrap" 
-                         Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                         IsReadOnly="{Binding IsReadOnly}" 
-                         Margin="0,3,0,3" 
-                         Height="25"/>
-                <Label Content="Email:" Margin="0,3,0,3"/>
-                <TextBox TextWrapping="Wrap" 
-                         Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                         IsReadOnly="{Binding IsReadOnly}" 
-                         Margin="0,3,0,3" 
-                         Height="25"/>
-            </StackPanel>
+            <controls:ContactControl Grid.Column="2" Grid.RowSpan="2"
+                        CurrentContact="{Binding SelectedContact, Mode=TwoWay}"
+                        IsReadOnly="{Binding IsReadOnly}"/>
             <Button Grid.Column="1" 
                     Content="Apply"
                     Command="{Binding ApplyCommand}"
                     HorizontalAlignment="Left" 
-                    Margin="8,50,0,0" 
+                    Margin="112,236,0,0" 
                     Grid.Row="1" 
                     VerticalAlignment="Top" 
                     Width="75" 
