@@ -94,43 +94,40 @@ namespace View.Model
                 switch (columnName)
                 {
                     case nameof(Name):
-                        if (string.IsNullOrWhiteSpace(Name))
+                        if (Name != null)
                         {
-                            error = "Name is required";
-                        }
-                        else if (Name.Length > 100)
-                        {
-                            error = "Name cannot be longer than 100 characters";
+                            if (Name.Length > 100)
+                            {
+                                error = "Name cannot be longer than 100 characters";
+                            }
                         }
                         break;
 
                     case nameof(PhoneNumber):
-                        if (string.IsNullOrWhiteSpace(PhoneNumber))
+                        if (PhoneNumber != null)
                         {
-                            error = "Phone number is required";
-                        }
-                        else if (PhoneNumber.Length > 100)
-                        {
-                            error = "Phone number cannot be longer than 100 characters";
-                        }
-                        else if (!System.Text.RegularExpressions.Regex.IsMatch(PhoneNumber, @"^[\d\+\-\(\)\s]+$"))
-                        {
-                            error = "Phone number can only contain digits or +-() characters";
+                            if (PhoneNumber.Length > 100)
+                            {
+                                error = "Phone number cannot be longer than 100 characters";
+                            }
+                            else if (!System.Text.RegularExpressions.Regex.IsMatch(PhoneNumber, @"^[\d\+\-\(\)\s]+$"))
+                            {
+                                error = "Phone number can only contain digits or +-() characters";
+                            }
                         }
                         break;
 
                     case nameof(Email):
-                        if (string.IsNullOrWhiteSpace(Email))
+                        if (Email != null)
                         {
-                            error = "Email is required";
-                        }
-                        else if (Email.Length > 100)
-                        {
-                            error = "Email cannot be longer than 100 characters";
-                        }
-                        else if (!Email.Contains("@"))
-                        {
-                            error = "Email must contain @ symbol";
+                            if (Email.Length > 100)
+                            {
+                                error = "Email cannot be longer than 100 characters";
+                            }
+                            else if (!Email.Contains("@"))
+                            {
+                                error = "Email must contain @ symbol";
+                            }
                         }
                         break;
                 }
