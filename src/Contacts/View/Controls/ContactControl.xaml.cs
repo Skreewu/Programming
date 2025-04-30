@@ -10,16 +10,6 @@ namespace View.Controls
         {
             InitializeComponent();
         }
-
-        public static readonly DependencyProperty CurrentContactProperty =
-            DependencyProperty.Register("CurrentContact", typeof(Contact), typeof(ContactControl),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-        public Contact CurrentContact
-        {
-            get => (Contact)GetValue(CurrentContactProperty);
-            set => SetValue(CurrentContactProperty, value);
-        }
             
         public static readonly DependencyProperty IsReadOnlyProperty =
             DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(ContactControl),

@@ -125,8 +125,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <controls:ContactControl Grid.Column="2" Grid.RowSpan="2"
-                        CurrentContact="{Binding SelectedContact, Mode=TwoWay}"
-                        IsReadOnly="{Binding IsReadOnly}"/>
+                DataContext="{Binding CurrentContact}"
+                IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Window}}"/>
             <Button Grid.Column="1" 
                     Content="Apply"
                     Command="{Binding ApplyCommand}"

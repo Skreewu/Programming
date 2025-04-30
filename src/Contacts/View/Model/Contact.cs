@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel;
-using System.Windows.Controls;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит данные о контакте.
     /// </summary>
-    public class Contact : INotifyPropertyChanged
+    public class Contact : INotifyPropertyChanged, IDataErrorInfo
     {
         /// <summary>
         /// Имя.
@@ -82,6 +81,61 @@ namespace View.Model
             {
                 _email = value;
                 OnPropertyChanged(nameof(Email));
+            }
+        }
+        public string Error => null; 
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = null;
+
+                switch (columnName)
+                {
+                    case nameof(Name):
+                        if (string.IsNullOrWhiteSpace(Name))
+                        {
+                            error = "Name is required";
+                        }
+                        else if (Name.Length > 100)
+                        {
+                            error = "Name cannot be longer than 100 characters";
+                        }
+                        break;
+
+                    case nameof(PhoneNumber):
+                        if (string.IsNullOrWhiteSpace(PhoneNumber))
+                        {
+                            error = "Phone number is required";
+                        }
+                        else if (PhoneNumber.Length > 100)
+                        {
+                            error = "Phone number cannot be longer than 100 characters";
+                        }
+                        else if (!System.Text.RegularExpressions.Regex.IsMatch(PhoneNumber, @"^[\d\+\-\(\)\s]+$"))
+                        {
+                            error = "Phone number can only contain digits or +-() characters";
+                        }
+                        break;
+
+                    case nameof(Email):
+                        if (string.IsNullOrWhiteSpace(Email))
+                        {
+                            error = "Email is required";
+                        }
+                        else if (Email.Length > 100)
+                        {
+                            error = "Email cannot be longer than 100 characters";
+                        }
+                        else if (!Email.Contains("@"))
+                        {
+                            error = "Email must contain @ symbol";
+                        }
+                        break;
+                }
+
+                return error;
             }
         }
 
