@@ -34,6 +34,16 @@ namespace View.Model
             PhoneNumber = phoneNumber;
             Email = email;
         }
+        /// <summary>
+        /// Конструктор копирования. Создает объект класса <see cref="Contact"./>
+        /// </summary>
+        /// <param name="contact">Контакт для копирования.</param>
+        public Contact(Contact contact)
+        {
+            Name = contact.Name;
+            PhoneNumber = contact.PhoneNumber;
+            Email = contact.Email;
+        }
 
         /// <summary>
         /// Создает объект класса <see cref="Contact"
@@ -83,8 +93,17 @@ namespace View.Model
                 OnPropertyChanged(nameof(Email));
             }
         }
+
+        /// <summary>
+        /// Возвращает проверку всего объекта на ошибки.
+        /// </summary>
         public string Error => null; 
 
+        /// <summary>
+        /// Возвращает проверку отдельного свойства на ошибки.
+        /// </summary>
+        /// <param name="columnName">Свойство для проверки.</param>
+        /// <returns>Возвращает ошибку.</returns>
         public string this[string columnName]
         {
             get

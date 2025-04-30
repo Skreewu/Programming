@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
@@ -148,6 +147,9 @@ namespace View.ViewModel
             get { return _isEditOrAdd; }
         }
 
+        /// <summary>
+        /// Задает и возвращает активный контакт.
+        /// </summary>
         public Contact CurrentContact
         {
             get => _isEditOrAdd ? _tempContact : SelectedContact;
@@ -211,7 +213,7 @@ namespace View.ViewModel
         private void ExecuteEditCommand(object parameter)
         {
             IsEditOrAdd = true;
-            _tempContact = new Contact(SelectedContact.Name, SelectedContact.PhoneNumber, SelectedContact.Email);
+            _tempContact = new Contact(SelectedContact);
             CurrentContact = _tempContact;
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(Visible));
@@ -250,7 +252,7 @@ namespace View.ViewModel
         {
             if (SelectedContact == null)
             {
-                var newContact = new Contact(_tempContact.Name, _tempContact.PhoneNumber, _tempContact.Email);
+                var newContact = new Contact(_tempContact);
                 Contacts.Add(newContact);
                 SelectedContact = newContact;
             }

@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="250" d:DesignWidth="300">
     <UserControl.Resources>
         <Style x:Key="ErrorTooltipStyle" TargetType="TextBox">
             <Style.Triggers>
@@ -27,7 +27,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -41,24 +40,22 @@
                Width="100" 
                Source="/contact.png"/>
 
-        <StackPanel Grid.Column="1" Margin="8,8,8,3">
+        <StackPanel Grid.Column="1" Margin="8,8,8,0" Height="189" VerticalAlignment="Top">
             <Label Content="Name:" Margin="0,3,0,3"/>
-            <TextBox TextWrapping="Wrap" 
-                     Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                      IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"
                      Margin="0,3,0,3" 
                      Height="25"
                      Style="{StaticResource ErrorTooltipStyle}"/>
             <Label Content="Phone Number:" Margin="0,3,0,3"/>
-            <TextBox TextWrapping="Wrap" 
+            <TextBox x:Name="PhoneNumberTextBox"
                      Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                      IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                      Margin="0,3,0,3" 
                      Height="25"
                      Style="{StaticResource ErrorTooltipStyle}"/>
             <Label Content="Email:" Margin="0,3,0,3"/>
-            <TextBox TextWrapping="Wrap" 
-                     Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+            <TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                      IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                      Margin="0,3,0,3" 
                      Height="25"
