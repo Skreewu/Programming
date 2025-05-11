@@ -2,13 +2,11 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using View.Model;
 
 namespace View.Controls
 {
     public partial class ContactControl : UserControl
     {
-
         private static Regex regex = new Regex(@"^[\d\-\+\(\)\s]+$");
 
         public ContactControl()
@@ -28,7 +26,6 @@ namespace View.Controls
             if (e.DataObject.GetDataPresent(typeof(string)))
             {
                 var text = (string)e.DataObject.GetData(typeof(string));
-                var regex = new Regex(@"^[\d\-\+\(\)\s]+$");
 
                 if (!regex.IsMatch(text))
                 {

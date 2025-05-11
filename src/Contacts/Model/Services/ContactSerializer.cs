@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 
-namespace View.Model.Services
+namespace Model.Services
 {
     /// <summary>
     /// Сериализует и десериализует коллекцию контактов.
     /// </summary>
-    internal class ContactSerializer
+    public class ContactSerializer
     {
         /// <summary>
         /// Директория для хранения файлов.

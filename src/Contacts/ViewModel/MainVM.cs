@@ -1,15 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
-using View.Model;
-using View.Model.Services;
+using Model;
+using Model.Services;
 
-namespace View.ViewModel
+namespace ViewModel
 {
     /// <summary>
     /// ViewModel основного окна.
     /// </summary>
-    internal partial class MainVM : ObservableObject
+    public partial class MainVM : ObservableObject
     {
         /// <summary>
         /// Сериализатор.
@@ -23,6 +23,7 @@ namespace View.ViewModel
         [NotifyPropertyChangedFor(nameof(IsReadOnly))]
         [NotifyPropertyChangedFor(nameof(Visible))]
         [NotifyPropertyChangedFor(nameof(IsEnabled))]
+        [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
         private bool _isEditOrAdd;
 
         /// <summary>
@@ -46,6 +47,10 @@ namespace View.ViewModel
             _contactSerializer = new ContactSerializer();
             _activeContact = new Contact();
             Contacts = _contactSerializer.Load();
+            if (_activeContact != null)
+            {
+                _activeContact.PropertyChanged += (s, e) => ApplyCommand.NotifyCanExecuteChanged();
+            }
         }
 
         /// <summary>
@@ -95,6 +100,7 @@ namespace View.ViewModel
         {
             IsEditOrAdd = true;
             ActiveContact = new Contact();
+            ActiveContact.PropertyChanged += (s, e) => ApplyCommand.NotifyCanExecuteChanged();
             SelectedContact = null;
         }
 
@@ -107,7 +113,10 @@ namespace View.ViewModel
             IsEditOrAdd = true;
         }
 
-        private bool CanEdit() => SelectedContact != null && Contacts.Count > 0;
+        /// <summary>
+        /// Возвращает возможность редактирования.
+        /// </summary>
+        private bool CanEdit => SelectedContact != null && Contacts.Count > 0;
 
         /// <summary>
         /// Команда удаления.
@@ -133,7 +142,10 @@ namespace View.ViewModel
             }
         }
 
-        private bool CanRemove() => SelectedContact != null && Contacts.Count > 0;
+        /// <summary>
+        /// Возвращает возможность удаления.
+        /// </summary>
+        private bool CanRemove => SelectedContact != null && Contacts.Count > 0;
 
         /// <summary>
         /// Команда подтверждения.
@@ -157,7 +169,11 @@ namespace View.ViewModel
             IsEditOrAdd = false;
         }
 
-        private bool CanApply() => IsEditOrAdd &&
+        /// <summary>
+        /// Возвращает возможность применения изменений.
+        /// </summary>
+        private bool CanApply => IsEditOrAdd &&
+            !string.IsNullOrEmpty(ActiveContact.Name) &&
             string.IsNullOrEmpty(ActiveContact[nameof(Contact.Name)]) &&
             string.IsNullOrEmpty(ActiveContact[nameof(Contact.PhoneNumber)]) &&
             string.IsNullOrEmpty(ActiveContact[nameof(Contact.Email)]);

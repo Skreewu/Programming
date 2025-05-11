@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel;
 
-namespace View.Model
+namespace Model
 {
     /// <summary>
     /// Хранит данные о контакте.
