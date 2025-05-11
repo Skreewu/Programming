@@ -8,6 +8,9 @@ namespace View.Controls
 {
     public partial class ContactControl : UserControl
     {
+
+        private static Regex regex = new Regex(@"^[\d\-\+\(\)\s]+$");
+
         public ContactControl()
         {
             InitializeComponent();
@@ -17,7 +20,6 @@ namespace View.Controls
 
         private void PhoneNumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            var regex = new Regex(@"^[\d\-\+\(\)\s]+$");
             e.Handled = !regex.IsMatch(e.Text);
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Controls;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
@@ -26,10 +27,7 @@ namespace View.ViewModel
         /// </summary>
         private Contact _selectedContact;
 
-        /// <summary>
-        /// Временный контакт для редактирования.
-        /// </summary>
-        private Contact _tempContact;
+        private Contact _activeContact;
 
         /// <summary>
         /// Создает объект класса <see cref="MainVM"/>
@@ -37,6 +35,7 @@ namespace View.ViewModel
         public MainVM()
         {
             _contactSerializer = new ContactSerializer();
+            _activeContact = new Contact();
             Contacts = _contactSerializer.Load();
 
             AddCommand = new RelayCommand(
@@ -59,10 +58,10 @@ namespace View.ViewModel
             ApplyCommand = new RelayCommand(
                 execute: ExecuteApplyCommand,
                 canExecute: _ => IsEditOrAdd &&
-                       string.IsNullOrEmpty(CurrentContact[nameof(Contact.Name)]) &&
-                       string.IsNullOrEmpty(CurrentContact[nameof(Contact.PhoneNumber)]) &&
-                       string.IsNullOrEmpty(CurrentContact[nameof(Contact.Email)]),
-        useCommandManager: true
+                       string.IsNullOrEmpty(ActiveContact[nameof(Contact.Name)]) &&
+                       string.IsNullOrEmpty(ActiveContact[nameof(Contact.PhoneNumber)]) &&
+                       string.IsNullOrEmpty(ActiveContact[nameof(Contact.Email)]),
+                useCommandManager: true
             );
 
             SaveInFileCommand = new RelayCommand(
@@ -147,25 +146,6 @@ namespace View.ViewModel
             get { return _isEditOrAdd; }
         }
 
-        /// <summary>
-        /// Задает и возвращает активный контакт.
-        /// </summary>
-        public Contact CurrentContact
-        {
-            get => _isEditOrAdd ? _tempContact : SelectedContact;
-            set
-            {
-                if (_isEditOrAdd)
-                {
-                    _tempContact = value;
-                }
-                else
-                {
-                    SelectedContact = value;
-                }
-                OnPropertyChanged(nameof(CurrentContact));
-            }
-        }
 
         /// <summary>
         /// Задает и возвращает выбранный контакт.
@@ -178,17 +158,34 @@ namespace View.ViewModel
                 if (_selectedContact != value)
                 {
                     _selectedContact = value;
-
-                    if (IsEditOrAdd && value != null)
+                    if (value != null)
                     {
-                        IsEditOrAdd = false;
-                        _tempContact = null;
+                        if (IsEditOrAdd)
+                        {
+                            IsEditOrAdd = false;
+                        }   
+                        else
+                        {
+                            _activeContact.Name = value.Name;
+                            _activeContact.PhoneNumber = value.PhoneNumber;
+                            _activeContact.Email = value.Email;
+                        }
                     }
 
                     OnPropertyChanged(nameof(SelectedContact));
                     OnPropertyChanged(nameof(IsEnabled));
-                    OnPropertyChanged(nameof(CurrentContact));
+                    OnPropertyChanged(nameof(ActiveContact));
                 }
+            }
+        }
+
+        public Contact ActiveContact
+        {
+            get => _activeContact;
+            set
+            {
+                _activeContact = value;
+                OnPropertyChanged(nameof(ActiveContact));
             }
         }
 
@@ -199,8 +196,7 @@ namespace View.ViewModel
         private void ExecuteAddCommand(object parameter)
         {
             IsEditOrAdd = true;
-            _tempContact = new Contact();
-            CurrentContact = _tempContact;
+            ActiveContact = new Contact();
             SelectedContact = null;
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(Visible));
@@ -213,8 +209,6 @@ namespace View.ViewModel
         private void ExecuteEditCommand(object parameter)
         {
             IsEditOrAdd = true;
-            _tempContact = new Contact(SelectedContact);
-            CurrentContact = _tempContact;
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(Visible));
         }
@@ -252,22 +246,21 @@ namespace View.ViewModel
         {
             if (SelectedContact == null)
             {
-                var newContact = new Contact(_tempContact);
+                var newContact = new Contact(_activeContact);
                 Contacts.Add(newContact);
                 SelectedContact = newContact;
             }
             else
             {
-                SelectedContact.Name = _tempContact.Name;
-                SelectedContact.PhoneNumber = _tempContact.PhoneNumber;
-                SelectedContact.Email = _tempContact.Email;
+                SelectedContact.Name = _activeContact.Name;
+                SelectedContact.PhoneNumber = _activeContact.PhoneNumber;
+                SelectedContact.Email = _activeContact.Email;
             }
 
             IsEditOrAdd = false;
-            _tempContact = null;
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(Visible));
-            OnPropertyChanged(nameof(CurrentContact));
+            OnPropertyChanged(nameof(ActiveContact));
         }
 
         /// <summary>
