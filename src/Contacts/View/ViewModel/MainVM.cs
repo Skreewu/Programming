@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
@@ -27,10 +27,7 @@ namespace View.ViewModel
         /// </summary>
         private Contact _selectedContact;
 
-        /// <summary>
-        /// Временный контакт для редактирования.
-        /// </summary>
-        private Contact _tempContact;
+        private Contact _activeContact;
 
         /// <summary>
         /// Создает объект класса <see cref="MainVM"/>
@@ -38,6 +35,7 @@ namespace View.ViewModel
         public MainVM()
         {
             _contactSerializer = new ContactSerializer();
+            _activeContact = new Contact();
             Contacts = _contactSerializer.Load();
 
             AddCommand = new RelayCommand(
@@ -60,9 +58,9 @@ namespace View.ViewModel
             ApplyCommand = new RelayCommand(
                 execute: ExecuteApplyCommand,
                 canExecute: _ => IsEditOrAdd &&
-                       !string.IsNullOrWhiteSpace(TempContact?.Name) &&
-                       !string.IsNullOrWhiteSpace(TempContact?.PhoneNumber) &&
-                       !string.IsNullOrWhiteSpace(TempContact?.Email),
+                       string.IsNullOrEmpty(ActiveContact[nameof(Contact.Name)]) &&
+                       string.IsNullOrEmpty(ActiveContact[nameof(Contact.PhoneNumber)]) &&
+                       string.IsNullOrEmpty(ActiveContact[nameof(Contact.Email)]),
                 useCommandManager: true
             );
 
@@ -125,22 +123,6 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Задает и возвращает временный контакт.
-        /// </summary>
-        public Contact TempContact
-        {
-            get => _tempContact;
-            set
-            {
-                _tempContact = value;
-                OnPropertyChanged(nameof(TempContact));
-                OnPropertyChanged(nameof(Name));
-                OnPropertyChanged(nameof(PhoneNumber));
-                OnPropertyChanged(nameof(Email));
-            }
-        }
-
-        /// <summary>
         /// Возвращает свойство только для чтения.
         /// </summary>
         public bool IsReadOnly
@@ -164,6 +146,7 @@ namespace View.ViewModel
             get { return _isEditOrAdd; }
         }
 
+
         /// <summary>
         /// Задает и возвращает выбранный контакт.
         /// </summary>
@@ -175,94 +158,34 @@ namespace View.ViewModel
                 if (_selectedContact != value)
                 {
                     _selectedContact = value;
-
-                    if (IsEditOrAdd && value != null)
+                    if (value != null)
                     {
-                        IsEditOrAdd = false;
-                        TempContact = null;
+                        if (IsEditOrAdd)
+                        {
+                            IsEditOrAdd = false;
+                        }   
+                        else
+                        {
+                            _activeContact.Name = value.Name;
+                            _activeContact.PhoneNumber = value.PhoneNumber;
+                            _activeContact.Email = value.Email;
+                        }
                     }
 
                     OnPropertyChanged(nameof(SelectedContact));
-                    OnPropertyChanged(nameof(Name));
-                    OnPropertyChanged(nameof(PhoneNumber));
-                    OnPropertyChanged(nameof(Email));
                     OnPropertyChanged(nameof(IsEnabled));
+                    OnPropertyChanged(nameof(ActiveContact));
                 }
             }
         }
 
-        /// <summary>
-        /// Задает и возвращает имя контакта.
-        /// </summary>
-        public string Name
+        public Contact ActiveContact
         {
-            get => IsEditOrAdd ? TempContact?.Name : SelectedContact?.Name;
+            get => _activeContact;
             set
             {
-                if (IsEditOrAdd)
-                {
-                    if (TempContact != null && TempContact.Name != value)
-                    {
-                        TempContact.Name = value;
-                        OnPropertyChanged(nameof(Name));
-                        CommandManager.InvalidateRequerySuggested();
-                    }
-                }
-                else if (SelectedContact != null && SelectedContact.Name != value)
-                {
-                    SelectedContact.Name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Задает и возвращает номер контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get => IsEditOrAdd ? TempContact?.PhoneNumber : SelectedContact?.PhoneNumber;
-            set
-            {
-                if (IsEditOrAdd)
-                {
-                    if (TempContact != null && TempContact.PhoneNumber != value)
-                    {
-                        TempContact.PhoneNumber = value;
-                        OnPropertyChanged(nameof(PhoneNumber));
-                        CommandManager.InvalidateRequerySuggested();
-                    }
-                }
-                else if (SelectedContact != null && SelectedContact.PhoneNumber != value)
-                {
-                    SelectedContact.PhoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Задает и возвращает почту контакта.
-        /// </summary>
-        public string Email
-        {
-            get => IsEditOrAdd ? TempContact?.Email : SelectedContact?.Email;
-            set
-            {
-                if (IsEditOrAdd)
-                {
-                    if (TempContact != null && TempContact.Email != value)
-                    {
-                        TempContact.Email = value;
-                        OnPropertyChanged(nameof(Email));
-                        CommandManager.InvalidateRequerySuggested();
-                    }
-                }
-                else if (SelectedContact != null && SelectedContact.Email != value)
-                {
-                    SelectedContact.Email = value;
-                    OnPropertyChanged(nameof(Email));
-                }
+                _activeContact = value;
+                OnPropertyChanged(nameof(ActiveContact));
             }
         }
 
@@ -273,7 +196,7 @@ namespace View.ViewModel
         private void ExecuteAddCommand(object parameter)
         {
             IsEditOrAdd = true;
-            TempContact = new Contact();
+            ActiveContact = new Contact();
             SelectedContact = null;
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(Visible));
@@ -286,7 +209,6 @@ namespace View.ViewModel
         private void ExecuteEditCommand(object parameter)
         {
             IsEditOrAdd = true;
-            TempContact = new Contact(SelectedContact.Name, SelectedContact.PhoneNumber, SelectedContact.Email);
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(Visible));
         }
@@ -324,21 +246,21 @@ namespace View.ViewModel
         {
             if (SelectedContact == null)
             {
-                var newContact = new Contact(TempContact.Name, TempContact.PhoneNumber, TempContact.Email);
+                var newContact = new Contact(_activeContact);
                 Contacts.Add(newContact);
                 SelectedContact = newContact;
             }
             else
             {
-                SelectedContact.Name = TempContact.Name;
-                SelectedContact.PhoneNumber = TempContact.PhoneNumber;
-                SelectedContact.Email = TempContact.Email;
+                SelectedContact.Name = _activeContact.Name;
+                SelectedContact.PhoneNumber = _activeContact.PhoneNumber;
+                SelectedContact.Email = _activeContact.Email;
             }
 
             IsEditOrAdd = false;
-            TempContact = null;
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(Visible));
+            OnPropertyChanged(nameof(ActiveContact));
         }
 
         /// <summary>
@@ -357,6 +279,7 @@ namespace View.ViewModel
         public virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            CommandManager.InvalidateRequerySuggested();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace View.ViewModel
 {
@@ -8,8 +7,25 @@ namespace View.ViewModel
     /// </summary>
     internal class RelayCommand : ICommand
     {
+
+        /// <summary>
+        /// Делегат, содержащий логику выполнения команды.
+        /// Принимает параметр команды типа <see cref="object"/>.
+        /// </summary>
         private readonly Action<object> _execute;
+
+        /// <summary>
+        /// Делегат, определяющий возможность выполнения команды.
+        /// Принимает параметр команды типа <see cref="object"/> и возвращает <see cref="bool"/>.
+        /// Если равен null, команда всегда доступна для выполнения.
+        /// </summary>
         private readonly Func<object, bool> _canExecute;
+
+        /// <summary>
+        /// Флаг, указывающий, нужно ли автоматически вызывать перепроверку
+        /// возможности выполнения команды через <see cref="CommandManager"/>.
+        /// Если true, команда будет автоматически обновлять свой статус при изменениях в UI.
+        /// </summary>
         private readonly bool _useCommandManager;
 
         /// <summary>
