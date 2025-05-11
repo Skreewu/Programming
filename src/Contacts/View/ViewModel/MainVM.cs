@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using View.Model;
 using View.Model.Services;
 
@@ -10,7 +9,7 @@ namespace View.ViewModel
     /// <summary>
     /// ViewModel основного окна.
     /// </summary>
-    internal class MainVM : INotifyPropertyChanged
+    internal partial class MainVM : ObservableObject
     {
         /// <summary>
         /// Сериализатор.
@@ -20,13 +19,23 @@ namespace View.ViewModel
         /// <summary>
         /// Режим редактирования или добавления.
         /// </summary>
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsReadOnly))]
+        [NotifyPropertyChangedFor(nameof(Visible))]
+        [NotifyPropertyChangedFor(nameof(IsEnabled))]
         private bool _isEditOrAdd;
 
         /// <summary>
-        /// Выбранный контакт.
+        /// Выбранный в списке контакт.
         /// </summary>
+        [ObservableProperty]
         private Contact _selectedContact;
 
+        /// <summary>
+        /// Активный контакт.
+        /// </summary>
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
         private Contact _activeContact;
 
         /// <summary>
@@ -37,68 +46,7 @@ namespace View.ViewModel
             _contactSerializer = new ContactSerializer();
             _activeContact = new Contact();
             Contacts = _contactSerializer.Load();
-
-            AddCommand = new RelayCommand(
-                execute: ExecuteAddCommand,
-                canExecute: _ => true
-            );
-
-            EditCommand = new RelayCommand(
-                execute: ExecuteEditCommand,
-                canExecute: _ => SelectedContact != null && Contacts.Count > 0,
-                useCommandManager: true
-            );
-
-            RemoveCommand = new RelayCommand(
-                execute: ExecuteRemoveCommand,
-                canExecute: _ => SelectedContact != null && Contacts.Count > 0,
-                useCommandManager: true
-            );
-
-            ApplyCommand = new RelayCommand(
-                execute: ExecuteApplyCommand,
-                canExecute: _ => IsEditOrAdd &&
-                       string.IsNullOrEmpty(ActiveContact[nameof(Contact.Name)]) &&
-                       string.IsNullOrEmpty(ActiveContact[nameof(Contact.PhoneNumber)]) &&
-                       string.IsNullOrEmpty(ActiveContact[nameof(Contact.Email)]),
-                useCommandManager: true
-            );
-
-            SaveInFileCommand = new RelayCommand(
-                execute: ExecuteSaveInFileCommand,
-                canExecute: _ => true
-            );
         }
-
-        /// <summary>
-        /// Событие, возникающее при изменении значения свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Команда добавления.
-        /// </summary>
-        public ICommand AddCommand { get; }
-
-        /// <summary>
-        /// Команда редактирования.
-        /// </summary>
-        public ICommand EditCommand { get; }
-
-        /// <summary>
-        /// Команда удаления.
-        /// </summary>
-        public ICommand RemoveCommand { get; }
-
-        /// <summary>
-        /// Команда подтверждения.
-        /// </summary>
-        public ICommand ApplyCommand { get; }
-
-        /// <summary>
-        /// Команда для сохранения коллекции элементов в файл.
-        /// </summary>
-        public ICommand SaveInFileCommand { get; }
 
         /// <summary>
         /// Список контактов.
@@ -106,118 +54,66 @@ namespace View.ViewModel
         public ObservableCollection<Contact> Contacts { get; }
 
         /// <summary>
-        /// Задает и возвращает режим редактирования
-        /// </summary>
-        public bool IsEditOrAdd
-        {
-            get => _isEditOrAdd;
-            set
-            {
-                if (_isEditOrAdd != value)
-                {
-                    _isEditOrAdd = value;
-                    OnPropertyChanged(nameof(IsReadOnly));
-                    OnPropertyChanged(nameof(Visible));
-                }
-            }
-        }
-
-        /// <summary>
         /// Возвращает свойство только для чтения.
         /// </summary>
-        public bool IsReadOnly
-        {
-            get { return !_isEditOrAdd; }
-        }
-
-        /// <summary>
-        /// Возвращает свойство доступности объекта.
-        /// </summary>
-        public bool IsEnabled
-        {
-            get { return _selectedContact != null && Contacts.Count > 0; }
-        }
+        public bool IsReadOnly => !IsEditOrAdd;
 
         /// <summary>
         /// Возвращает видимость.
         /// </summary>
-        public bool Visible
-        {
-            get { return _isEditOrAdd; }
-        }
+        public bool Visible => IsEditOrAdd;
 
+        /// <summary>
+        /// Возвращает, включены ли кнопки.
+        /// </summary>
+        public bool IsEnabled => !IsEditOrAdd;
 
         /// <summary>
         /// Задает и возвращает выбранный контакт.
         /// </summary>
-        public Contact SelectedContact
+        partial void OnSelectedContactChanged(Contact value)
         {
-            get => _selectedContact;
-            set
+            if (value != null)
             {
-                if (_selectedContact != value)
+                if (IsEditOrAdd)
                 {
-                    _selectedContact = value;
-                    if (value != null)
-                    {
-                        if (IsEditOrAdd)
-                        {
-                            IsEditOrAdd = false;
-                        }   
-                        else
-                        {
-                            _activeContact.Name = value.Name;
-                            _activeContact.PhoneNumber = value.PhoneNumber;
-                            _activeContact.Email = value.Email;
-                        }
-                    }
-
-                    OnPropertyChanged(nameof(SelectedContact));
-                    OnPropertyChanged(nameof(IsEnabled));
-                    OnPropertyChanged(nameof(ActiveContact));
+                    IsEditOrAdd = false;
                 }
+                ActiveContact.Name = value.Name;
+                ActiveContact.PhoneNumber = value.PhoneNumber;
+                ActiveContact.Email = value.Email;
             }
-        }
-
-        public Contact ActiveContact
-        {
-            get => _activeContact;
-            set
-            {
-                _activeContact = value;
-                OnPropertyChanged(nameof(ActiveContact));
-            }
+            EditCommand.NotifyCanExecuteChanged();
+            RemoveCommand.NotifyCanExecuteChanged();
         }
 
         /// <summary>
-        /// Метод для комманды добавления.
+        /// Команда добавления.
         /// </summary>
-        /// <param name="parameter"></param>
-        private void ExecuteAddCommand(object parameter)
+        [RelayCommand]
+        private void Add()
         {
             IsEditOrAdd = true;
             ActiveContact = new Contact();
             SelectedContact = null;
-            OnPropertyChanged(nameof(IsReadOnly));
-            OnPropertyChanged(nameof(Visible));
         }
 
         /// <summary>
-        /// Метод для комманды редактирования.
+        /// Команда редактирования.
         /// </summary>
-        /// <param name="parameter"></param>
-        private void ExecuteEditCommand(object parameter)
+        [RelayCommand(CanExecute = nameof(CanEdit))]
+        private void Edit()
         {
             IsEditOrAdd = true;
-            OnPropertyChanged(nameof(IsReadOnly));
-            OnPropertyChanged(nameof(Visible));
         }
 
+        private bool CanEdit() => SelectedContact != null && Contacts.Count > 0;
+
         /// <summary>
-        /// Метод для команды удаления.
+        /// Команда удаления.
         /// </summary>
-        /// <param name="parameter"></param>
-        private void ExecuteRemoveCommand(object parameter)
+        [RelayCommand(CanExecute = nameof(CanRemove))]
+        private void Remove()
         {
             int index = Contacts.IndexOf(SelectedContact);
             Contacts.Remove(SelectedContact);
@@ -233,53 +129,47 @@ namespace View.ViewModel
             else
             {
                 SelectedContact = null;
+                ActiveContact = null;
             }
-
-            OnPropertyChanged(nameof(IsEnabled));
         }
 
+        private bool CanRemove() => SelectedContact != null && Contacts.Count > 0;
+
         /// <summary>
-        /// Метод для комманды подтверждения.
+        /// Команда подтверждения.
         /// </summary>
-        /// <param name="parameter"></param>
-        private void ExecuteApplyCommand(object parameter)
+        [RelayCommand(CanExecute = nameof(CanApply))]
+        private void Apply()
         {
             if (SelectedContact == null)
             {
-                var newContact = new Contact(_activeContact);
+                var newContact = new Contact(ActiveContact);
                 Contacts.Add(newContact);
                 SelectedContact = newContact;
             }
             else
             {
-                SelectedContact.Name = _activeContact.Name;
-                SelectedContact.PhoneNumber = _activeContact.PhoneNumber;
-                SelectedContact.Email = _activeContact.Email;
+                SelectedContact.Name = ActiveContact.Name;
+                SelectedContact.PhoneNumber = ActiveContact.PhoneNumber;
+                SelectedContact.Email = ActiveContact.Email;
             }
 
             IsEditOrAdd = false;
-            OnPropertyChanged(nameof(IsReadOnly));
-            OnPropertyChanged(nameof(Visible));
-            OnPropertyChanged(nameof(ActiveContact));
         }
 
+        private bool CanApply() => IsEditOrAdd &&
+            string.IsNullOrEmpty(ActiveContact[nameof(Contact.Name)]) &&
+            string.IsNullOrEmpty(ActiveContact[nameof(Contact.PhoneNumber)]) &&
+            string.IsNullOrEmpty(ActiveContact[nameof(Contact.Email)]);
+
         /// <summary>
-        /// Метод для комманды сохранения и загрузки в файл.
+        /// Команда сохранения и загрузки в файл.
         /// </summary>
         /// <param name="parameter"></param>
-        private void ExecuteSaveInFileCommand(object parameter)
+        [RelayCommand]
+        private void SaveInFile(object parameter)
         {
             _contactSerializer.Save(Contacts);
-        }
-
-        /// <summary>
-        /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>
-        /// </summary>
-        /// <param name="propertyName">Название измененного свойства.</param>
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            CommandManager.InvalidateRequerySuggested();
         }
     }
 }

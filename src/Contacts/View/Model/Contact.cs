@@ -1,25 +1,29 @@
-﻿using System.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит данные о контакте.
     /// </summary>
-    public class Contact : INotifyPropertyChanged, IDataErrorInfo
+    public partial class Contact : ObservableObject, IDataErrorInfo
     {
         /// <summary>
         /// Имя.
         /// </summary>
+        [ObservableProperty]
         private string _name;
 
         /// <summary>
         /// Номер телефона.
         /// </summary>
+        [ObservableProperty]
         private string _phoneNumber;
 
         /// <summary>
         /// Электронная почта.
         /// </summary>
+        [ObservableProperty]
         private string _email;
 
         /// <summary>
@@ -51,50 +55,6 @@ namespace View.Model
         public Contact() { }
 
         /// <summary>
-        /// Событие, возникающее при изменении значения свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Задает и возвращает имя.
-        /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                _name = value;
-                OnPropertyChanged(nameof(Name));
-            }
-        }
-
-        /// <summary>
-        /// Задает и возвращает номер телефона.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get { return _phoneNumber; }
-            set
-            {
-                _phoneNumber = value;
-                OnPropertyChanged(nameof(PhoneNumber));
-            }
-        }
-
-        /// <summary>
-        /// Задает и возвращает электронную почту.
-        /// </summary>
-        public string Email
-        {
-            get { return _email; }
-            set
-            {
-                _email = value;
-                OnPropertyChanged(nameof(Email));
-            }
-        }
-
-        /// <summary>
         /// Возвращает проверку всего объекта на ошибки.
         /// </summary>
         public string Error => null; 
@@ -108,7 +68,7 @@ namespace View.Model
         {
             get
             {
-                string error = null;
+                string error = string.Empty;
 
                 switch (columnName)
                 {
@@ -153,15 +113,6 @@ namespace View.Model
 
                 return error;
             }
-        }
-
-        /// <summary>
-        /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>
-        /// </summary>
-        /// <param name="propertyName">Название измененного свойства.</param>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
