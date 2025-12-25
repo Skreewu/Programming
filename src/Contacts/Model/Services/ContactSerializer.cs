@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Windows;
 
 namespace Model.Services
 {
@@ -33,17 +32,9 @@ namespace Model.Services
         /// <param name="contacts">Коллекция контактов для сохранения.</param>
         public void Save(ObservableCollection<Contact> contacts)
         {
-            try
-            {
-                string json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
-                Directory.CreateDirectory(_directory);
-                File.WriteAllText(_fullPath, json);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при сохранении контактов: {ex.Message}",
-                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            string json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
+            Directory.CreateDirectory(_directory);
+            File.WriteAllText(_fullPath, json);
         }
 
         /// <summary>
@@ -52,21 +43,12 @@ namespace Model.Services
         /// <returns>Загруженная коллекция контактов.</returns>
         public ObservableCollection<Contact> Load()
         {
-            try
-            {
-                if (!File.Exists(_fullPath))
-                    return new ObservableCollection<Contact>();
-
-                string json = File.ReadAllText(_fullPath);
-                var contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(json);
-                return contacts ?? new ObservableCollection<Contact>();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при загрузке контактов: {ex.Message}",
-                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (!File.Exists(_fullPath))
                 return new ObservableCollection<Contact>();
-            }
+
+            string json = File.ReadAllText(_fullPath);
+            var contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(json);
+            return contacts ?? new ObservableCollection<Contact>();
         }
     }
 }

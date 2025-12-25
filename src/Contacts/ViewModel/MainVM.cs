@@ -30,10 +30,12 @@ namespace ViewModel
         /// Выбранный в списке контакт.
         /// </summary>
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(EditCommand))]
+        [NotifyCanExecuteChangedFor(nameof(RemoveCommand))]
         private Contact _selectedContact;
 
         /// <summary>
-        /// Активный контакт.
+        /// Активный контакт, с которым происходит взаимодействие.
         /// </summary>
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
@@ -74,7 +76,7 @@ namespace ViewModel
         public bool IsEnabled => !IsEditOrAdd;
 
         /// <summary>
-        /// Задает и возвращает выбранный контакт.
+        /// Осуществляет выбор контакта.
         /// </summary>
         partial void OnSelectedContactChanged(Contact value)
         {
@@ -88,8 +90,6 @@ namespace ViewModel
                 ActiveContact.PhoneNumber = value.PhoneNumber;
                 ActiveContact.Email = value.Email;
             }
-            EditCommand.NotifyCanExecuteChanged();
-            RemoveCommand.NotifyCanExecuteChanged();
         }
 
         /// <summary>
@@ -173,10 +173,10 @@ namespace ViewModel
         /// Возвращает возможность применения изменений.
         /// </summary>
         private bool CanApply => IsEditOrAdd &&
-            !string.IsNullOrEmpty(ActiveContact.Name) &&
-            string.IsNullOrEmpty(ActiveContact[nameof(Contact.Name)]) &&
-            string.IsNullOrEmpty(ActiveContact[nameof(Contact.PhoneNumber)]) &&
-            string.IsNullOrEmpty(ActiveContact[nameof(Contact.Email)]);
+            !string.IsNullOrEmpty(ActiveContact?.Name) &&
+            string.IsNullOrEmpty(ActiveContact?[nameof(Contact.Name)]) &&
+            string.IsNullOrEmpty(ActiveContact?[nameof(Contact.PhoneNumber)]) &&
+            string.IsNullOrEmpty(ActiveContact?[nameof(Contact.Email)]);
 
         /// <summary>
         /// Команда сохранения и загрузки в файл.

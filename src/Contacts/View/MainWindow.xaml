@@ -13,7 +13,7 @@
         MinHeight="400" 
         MinWidth="450" 
         Icon="/contact.png">
-    
+
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <DataTemplate x:Key="contactTemplate">
@@ -43,13 +43,13 @@
             </Grid>
         </DataTemplate>
     </Window.Resources>
-    
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding SaveInFileCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -61,11 +61,11 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Border Background="#FFF8F8F8" Grid.Row="0"/>
         <Border Background="#FFF8F8F8" Grid.Row="1"/>
         <Border Background="#FFF8F8F8" Grid.Row="2"/>
-        
+
         <GridSplitter Grid.Column="1" 
                       HorizontalAlignment="Center" 
                       Width="3" 
@@ -124,14 +124,15 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <controls:ContactControl Grid.Column="2" Grid.RowSpan="2"
+            <controls:ContactControl Grid.Column="1"
                 DataContext="{Binding ActiveContact}"
-                IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Window}}" 
+                Margin="0"/>
             <Button Grid.Column="1" 
                     Content="Apply"
                     Command="{Binding ApplyCommand}"
                     HorizontalAlignment="Left" 
-                    Margin="112,236,0,0" 
+                    Margin="110,50,0,0" 
                     Grid.Row="1" 
                     VerticalAlignment="Top" 
                     Width="75" 

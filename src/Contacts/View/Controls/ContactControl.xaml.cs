@@ -7,8 +7,14 @@ namespace View.Controls
 {
     public partial class ContactControl : UserControl
     {
+        /// <summary>
+        /// Хранит допустимые символы.
+        /// </summary>
         private static Regex regex = new Regex(@"^[\d\-\+\(\)\s]+$");
 
+        /// <summary>
+        /// Создает объект класса <see cref="ContactControl"/>
+        /// </summary>
         public ContactControl()
         {
             InitializeComponent();
@@ -38,10 +44,16 @@ namespace View.Controls
             }
         }
 
+        /// <summary>
+        /// Регистрирует <see cref="IsReadOnly"/>
+        /// </summary>
         public static readonly DependencyProperty IsReadOnlyProperty =
             DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(ContactControl),
                 new PropertyMetadata(true));
 
+        /// <summary>
+        /// Задает и возвращает свойство readonly.
+        /// </summary>
         public bool IsReadOnly
         {
             get => (bool)GetValue(IsReadOnlyProperty);
